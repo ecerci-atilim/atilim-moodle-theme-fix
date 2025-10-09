@@ -18,6 +18,16 @@ body{
   display: none !important;
 }
 
+#usernavigation .login,
+#usernavigation .login a {
+  color: #fff !important;
+  align-self: center;
+}
+
+#usernavigation .login a:hover {
+  text-decoration: underline !important;
+}
+
 #page-footer {
     display: none !important;
 }
