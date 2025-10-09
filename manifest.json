@@ -1,0 +1,13 @@
+{
+  "manifest_version": 3,
+  "name": "Atilim Moodle UI Overlay",
+  "version": "1.1.0",
+  "description": "Applies a custom stylesheet to improve Atilim's Moodle UI.",
+  "content_scripts": [
+    {
+      "matches": ["https://moodle.atilim.edu.tr/*"],
+      "css": ["overlay.css"],
+      "js": ["content.js"]
+    }
+  ]
+}
