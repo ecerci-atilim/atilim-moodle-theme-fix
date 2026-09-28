@@ -35,16 +35,26 @@ html[data-atm] .navbar-light .navbar-nav .nav-link {
   border-radius: var(--atm-radius);
   transition: background-color var(--atm-transition), color var(--atm-transition);
 }
+/* Only .active marks the current page. Moodle also puts aria-current on
+   Home inside courses, where Stream shows no highlight either. */
 html[data-atm] .primary-navigation .nav-link:hover,
-html[data-atm] .primary-navigation .nav-link:focus,
-html[data-atm] .primary-navigation .nav-link.active,
-html[data-atm] .primary-navigation .nav-link[aria-current] {
+html[data-atm] .primary-navigation .nav-link:focus-visible,
+html[data-atm] .primary-navigation .nav-link.active {
   background-color: var(--atm-primary-2) !important;
   color: var(--atm-on-primary) !important;
+}
+html[data-atm] .primary-navigation .nav-link:not(.active) {
+  border-bottom-color: transparent !important;
 }
 html[data-atm] .primary-navigation .navbar-nav .nav-link.active::after,
 html[data-atm] .primary-navigation .navbar-nav .nav-link[aria-current]::after {
   display: none !important;
+}
+/* Moodle marks Home as current on My courses (see features.js simplifyNav) */
+html[data-atm-simplify-nav="1"] .primary-navigation .nav-link[data-atm-not-current]:not(:hover):not(:focus) {
+  background-color: transparent !important;
+  border-bottom-color: transparent !important;
+  color: rgba(255, 255, 255, 0.85) !important;
 }
 
 /* hide the theme's custom menus (Instructor, Student, FAQ, ...) */

@@ -46,6 +46,7 @@ html[data-atm-hide-hero="1"] .course-head {
 }
 
 html[data-atm] .course-head {
+  height: auto !important;             /* Stream fixes it at 160px */
   min-height: 0 !important;
   background-color: var(--atm-bg-2) !important;
   border: 1px solid var(--atm-border) !important;

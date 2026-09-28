@@ -1,0 +1,131 @@
+/* ------------------------------------------------------------------
+   User guide page. Colours come from ../styles/base.css and dark.css
+   (the --atm-* variables); this file only adds layout.
+   ------------------------------------------------------------------ */
+
+/* language switch: only the active language is shown */
+html[lang="en"] [data-l="tr"],
+html[lang="tr"] [data-l="en"] {
+  display: none !important;
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  font-size: 16px;
+  line-height: 1.6;
+}
+
+/* top bar, same navy as the Moodle navbar */
+.top {
+  background: var(--atm-primary);
+  color: var(--atm-on-primary);
+  box-shadow: var(--atm-shadow);
+}
+.top-inner {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+.brand { display: flex; align-items: center; gap: 12px; }
+.logo {
+  width: 36px; height: 36px; border-radius: 9px; background: #fff; position: relative; flex-shrink: 0;
+}
+.logo::before, .logo::after {
+  content: ''; position: absolute; left: 8px; right: 8px; height: 4px; border-radius: 2px; background: #223675;
+}
+.logo::before { top: 10px; box-shadow: 0 7px 0 #223675; }
+.logo::after { top: 24px; }
+.brand-title { font-weight: 700; font-size: 1.15rem; line-height: 1.2; color: var(--atm-on-primary); }
+.brand-sub { font-size: 0.85rem; opacity: 0.85; color: var(--atm-on-primary); }
+.version { margin-left: 6px; }
+
+.lang { display: flex; gap: 4px; }
+.lang button {
+  font: inherit;
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: var(--atm-on-primary);
+  background: transparent;
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  border-radius: var(--atm-radius);
+  padding: 4px 12px;
+  cursor: pointer;
+}
+.lang button[aria-pressed="true"] {
+  background: var(--atm-primary-2);
+  border-color: var(--atm-primary-2);
+}
+.lang button:hover { border-color: #fff; }
+
+/* content */
+.wrap {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 20px 16px 8px;
+}
+.card {
+  background: var(--atm-surface);
+  border: 1px solid var(--atm-border);
+  border-radius: var(--atm-radius-lg);
+  padding: 16px 20px;
+  margin-bottom: 14px;
+}
+.card h2 {
+  margin: 0 0 8px;
+  font-size: 1.15rem;
+  font-weight: 700;
+  color: var(--atm-accent);
+}
+.card p { margin: 0 0 10px; }
+.card p:last-child { margin-bottom: 0; }
+.card ol, .card ul { margin: 0; padding-left: 22px; }
+.card li { margin: 4px 0; }
+.note { color: var(--atm-muted); font-size: 0.92rem; }
+
+code {
+  font-size: 0.88em;
+  background: var(--atm-surface-2);
+  border: 1px solid var(--atm-border);
+  border-radius: 4px;
+  padding: 0 4px;
+}
+
+/* settings list */
+.settings { margin: 0; }
+.settings dt {
+  font-weight: 700;
+  margin-top: 12px;
+  color: var(--atm-text);
+}
+.settings dt:first-child { margin-top: 0; }
+.settings dd {
+  margin: 2px 0 0;
+  color: var(--atm-text-2);
+}
+
+/* icon colour legend */
+.legend { list-style: none; padding: 0 !important; }
+.legend li { display: flex; align-items: center; gap: 10px; }
+.swatch {
+  width: 22px; height: 22px; border-radius: 6px; flex-shrink: 0;
+  box-shadow: inset 0 0 0 1px rgba(0, 0, 0, 0.15);
+}
+
+.foot {
+  max-width: 860px;
+  margin: 0 auto;
+  padding: 8px 16px 28px;
+  font-size: 0.85rem;
+  color: var(--atm-muted);
+}
+
+@media (max-width: 480px) {
+  .card { padding: 14px 14px; }
+  .brand-title { font-size: 1rem; }
+}

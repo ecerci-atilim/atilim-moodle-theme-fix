@@ -33,6 +33,7 @@ html[data-atm-theme="dark"] {
   --atm-warning: #f5c542;
   --atm-danger: #e5645a;
   --atm-success: #3ec27e;
+  --atm-done: #1f7a4d;
 
   --atm-p-assessment: #d9468b;
   --atm-p-content: #3f86e5;
@@ -249,8 +250,7 @@ html[data-atm-theme="dark"] .userpicture {
 /* Moodle dims hidden/restricted items with mix-blend-mode: multiply, which
    only works on a light background; on a dark one it turns them black.
    Use opacity instead. */
-html[data-atm-theme="dark"] :is(.hiddenactivity, .dimmed, .dimmed_text, .isrestricted) :is(.activityiconcontainer, .badge, .activityicon, img),
-html[data-atm-theme="dark"] :is(.activityiconcontainer, .badge).dimmed {
+html[data-atm-theme="dark"] :is(.activityiconcontainer, .badge, .activityicon) {
   mix-blend-mode: normal !important;
 }
 html[data-atm-theme="dark"] .hiddenactivity .activityiconcontainer,

@@ -220,14 +220,21 @@ html[data-atm] .completion-dropdown .btn {
   border: 1px solid var(--atm-border) !important;
   border-radius: var(--atm-radius) !important;
 }
+/* "Done" must stay unmistakable next to the neutral "To do" button */
 html[data-atm] .completion-dropdown .btn.btn-success,
-html[data-atm] .completion-dropdown .btn[data-completion="complete"] {
-  background-color: var(--atm-success) !important;
-  border-color: var(--atm-success) !important;
+html[data-atm] .activity-completion .btn.btn-success {
+  background-color: var(--atm-done) !important;
+  border-color: var(--atm-done) !important;
 }
 html[data-atm] .completion-dropdown .btn.btn-success,
-html[data-atm] .completion-dropdown .btn.btn-success .icon {
+html[data-atm] .completion-dropdown .btn.btn-success .icon,
+html[data-atm] .activity-completion .btn.btn-success,
+html[data-atm] .activity-completion .btn.btn-success .icon {
   color: #fff !important;
+}
+html[data-atm] .completion-dropdown .btn.btn-success img.icon,
+html[data-atm] .activity-completion .btn.btn-success img.icon {
+  filter: brightness(0) invert(1) !important;
 }
 
 /* activity badges ("Hidden from students", "Restricted", ...) */

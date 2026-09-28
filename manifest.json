@@ -1,9 +1,11 @@
 {
   "manifest_version": 3,
   "name": "Atılım Moodle UI Fix",
-  "version": "3.1.0",
-  "description": "moodle.atilim.edu.tr için daha sade, okunaklı ve kullanışlı bir arayüz. Öğrenci ve eğitmen görünümlerinin ikisini de düzeltir.",
-  "permissions": ["storage"],
+  "version": "3.2.0",
+  "description": "A calmer, more readable and more usable interface for moodle.atilim.edu.tr, for both students and teachers.",
+  "permissions": [
+    "storage"
+  ],
   "icons": {
     "16": "icons/icon16.png",
     "48": "icons/icon48.png",
@@ -13,9 +15,14 @@
     "default_popup": "popup/popup.html",
     "default_title": "Atılım Moodle UI Fix"
   },
+  "background": {
+    "service_worker": "background.js"
+  },
   "content_scripts": [
     {
-      "matches": ["https://moodle.atilim.edu.tr/*"],
+      "matches": [
+        "https://moodle.atilim.edu.tr/*"
+      ],
       "run_at": "document_start",
       "css": [
         "fonts/lato.css",
@@ -41,8 +48,12 @@
   ],
   "web_accessible_resources": [
     {
-      "resources": ["fonts/*.woff2"],
-      "matches": ["https://moodle.atilim.edu.tr/*"]
+      "resources": [
+        "fonts/*.woff2"
+      ],
+      "matches": [
+        "https://moodle.atilim.edu.tr/*"
+      ]
     }
   ]
 }

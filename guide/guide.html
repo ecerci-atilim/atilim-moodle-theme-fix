@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en" data-atm="1" data-atm-font="lato" data-atm-theme="light">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Atılım Moodle UI Fix – User guide</title>
+  <!-- The palette comes from the extension's own stylesheets, so the guide
+       always matches the light and dark themes. -->
+  <link rel="stylesheet" href="../styles/base.css">
+  <link rel="stylesheet" href="../styles/dark.css">
+  <link rel="stylesheet" href="lato.css">
+  <link rel="stylesheet" href="guide.css">
+</head>
+<body>
+  <header class="top">
+    <div class="top-inner">
+      <div class="brand">
+        <span class="logo" aria-hidden="true"></span>
+        <div>
+          <div class="brand-title">Atılım Moodle UI Fix</div>
+          <div class="brand-sub">
+            <span data-l="en">User guide</span><span data-l="tr">Kullanım kılavuzu</span>
+            <span class="version" id="version"></span>
+          </div>
+        </div>
+      </div>
+      <div class="lang" role="group" aria-label="Language / Dil">
+        <button type="button" data-set-lang="en" aria-pressed="true">English</button>
+        <button type="button" data-set-lang="tr" aria-pressed="false">Türkçe</button>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+
+    <section class="card">
+      <h2><span data-l="en">What it does</span><span data-l="tr">Ne işe yarar</span></h2>
+      <p data-l="en">The extension restyles <b>moodle.atilim.edu.tr</b> so it is calmer and easier to read: a grey or dark theme, one font everywhere, coloured activity icons, a tidy course index and a single-column course list. It only changes how pages look. It does not read your grades, send data anywhere or change anything on the server.</p>
+      <p data-l="tr">Eklenti <b>moodle.atilim.edu.tr</b> sayfalarını daha sade ve okunaklı hale getirir: gri ya da koyu tema, her yerde tek bir yazı tipi, renkli etkinlik ikonları, düzenli bir ders dizini ve tek sütunlu ders listesi. Yalnızca sayfaların görünümünü değiştirir. Notlarınızı okumaz, hiçbir yere veri göndermez, sunucuda hiçbir şeyi değiştirmez.</p>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">Installing</span><span data-l="tr">Kurulum</span></h2>
+      <p class="note" data-l="en">The extension is not on the Chrome Web Store yet, so it is installed by hand. It takes about a minute.</p>
+      <p class="note" data-l="tr">Eklenti henüz Chrome Web Mağazası'nda değil, bu yüzden elle kuruluyor. Yaklaşık bir dakika sürer.</p>
+      <ol data-l="en">
+        <li>Download the extension as a ZIP file: <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip">atilim-moodle-theme-fix-main.zip</a>.</li>
+        <li>Extract the ZIP. You get a folder that contains <code>manifest.json</code>.</li>
+        <li>Open <code>chrome://extensions</code> (Edge: <code>edge://extensions</code>, Brave: <code>brave://extensions</code>).</li>
+        <li>Turn on <b>Developer mode</b> in the top right corner.</li>
+        <li>Click <b>Load unpacked</b> and choose the folder that contains <code>manifest.json</code>. If Chrome says the manifest is missing, you picked the outer folder; go one level deeper.</li>
+        <li>Reload any open Moodle tab.</li>
+      </ol>
+      <ol data-l="tr">
+        <li>Eklentiyi ZIP olarak indirin: <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip">atilim-moodle-theme-fix-main.zip</a>.</li>
+        <li>ZIP dosyasını çıkartın. İçinde <code>manifest.json</code> bulunan bir klasör oluşur.</li>
+        <li><code>chrome://extensions</code> adresini açın (Edge: <code>edge://extensions</code>, Brave: <code>brave://extensions</code>).</li>
+        <li>Sağ üstten <b>Geliştirici modu</b>'nu açın.</li>
+        <li><b>Paketlenmemiş öğe yükle</b>'ye tıklayın ve içinde <code>manifest.json</code> olan klasörü seçin. Chrome manifest bulunamadı derse dıştaki klasörü seçmişsinizdir; bir alt klasöre inin.</li>
+        <li>Açık olan Moodle sekmelerini yenileyin.</li>
+      </ol>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">Opening the settings</span><span data-l="tr">Ayarları açmak</span></h2>
+      <p data-l="en">Click the puzzle icon in the browser toolbar and pin <b>Atılım Moodle UI Fix</b>. Clicking its icon opens the settings. Every change applies to open Moodle tabs immediately, without reloading, and is synced with your browser profile.</p>
+      <p data-l="tr">Tarayıcı araç çubuğundaki yapboz simgesine tıklayın ve <b>Atılım Moodle UI Fix</b>'i sabitleyin. Simgesine tıklayınca ayarlar açılır. Her değişiklik açık Moodle sekmelerine sayfa yenilemeden hemen uygulanır ve tarayıcı profilinizle eşitlenir.</p>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">Settings</span><span data-l="tr">Ayarlar</span></h2>
+      <dl class="settings">
+        <dt>Theme</dt>
+        <dd data-l="en">Light (grey), Dark, or Follow system. In the dark theme, text that teachers coloured themselves is adjusted only where it would otherwise be unreadable.</dd>
+        <dd data-l="tr">Açık (gri), Koyu ya da Sisteme uy. Koyu temada hocaların kendi renklendirdiği metinler yalnızca okunamayacak durumdaysa ayarlanır.</dd>
+
+        <dt>Font</dt>
+        <dd data-l="en">Lato, the system font, or the theme's own font. The choice applies to every text on the page, including announcements; icons, code and formulas keep their fonts.</dd>
+        <dd data-l="tr">Lato, sistem yazı tipi ya da temanın kendi yazı tipi. Seçim duyurular dahil sayfadaki bütün metinlere uygulanır; ikonlar, kod ve formüller kendi yazı tiplerini korur.</dd>
+
+        <dt>Full width</dt>
+        <dd data-l="en">Uses the whole window instead of a narrow 830px column.</dd>
+        <dd data-l="tr">Dar 830 piksellik sütun yerine bütün pencereyi kullanır.</dd>
+
+        <dt>Hide header photo</dt>
+        <dd data-l="en">Removes the stock photo behind page titles and the slider on the home page.</dd>
+        <dd data-l="tr">Sayfa başlıklarının arkasındaki hazır fotoğrafı ve ana sayfadaki kayan görselleri kaldırır.</dd>
+
+        <dt>Hide footer</dt>
+        <dd data-l="en">Removes the page footer.</dd>
+        <dd data-l="tr">Sayfa altbilgisini kaldırır.</dd>
+
+        <dt>Compact layout</dt>
+        <dd data-l="en">Tighter rows and smaller gaps, so more fits on the screen.</dd>
+        <dd data-l="tr">Daha sık satırlar ve daha küçük boşluklar; ekrana daha çok içerik sığar.</dd>
+
+        <dt>Simplify top menu</dt>
+        <dd data-l="en">Hides the theme's extra dropdown menus and adds a direct My courses link.</dd>
+        <dd data-l="tr">Temanın fazladan açılır menülerini gizler ve doğrudan bir Derslerim linki ekler.</dd>
+
+        <dt>Text instead of logo</dt>
+        <dd data-l="en">Shows the university name as text in the top bar.</dd>
+        <dd data-l="tr">Üst çubukta üniversite adını logo yerine metin olarak gösterir.</dd>
+
+        <dt>Single-column course list</dt>
+        <dd data-l="en">My courses shows one course per row, with its course image on the left. Images set by teachers are shown whole; courses without an image get Moodle's pattern.</dd>
+        <dd data-l="tr">Derslerim sayfası her satırda bir ders gösterir, ders görseli solda durur. Hocaların atadığı görseller kırpılmadan gösterilir; görseli olmayan derslere Moodle'ın desenli görseli gelir.</dd>
+
+        <dt>All courses on the home page</dt>
+        <dd data-l="en">The home page lists only 20 courses by default; this shows all of them. Courses you removed from view on My courses stay hidden.</dd>
+        <dd data-l="tr">Ana sayfa normalde yalnızca 20 dersi listeler; bu ayar hepsini gösterir. Derslerim sayfasında görünümden kaldırdığınız dersler gizli kalır.</dd>
+
+        <dt>Colour activity icons</dt>
+        <dd data-l="en">Colours every activity by its purpose, see the legend below.</dd>
+        <dd data-l="tr">Her etkinliği amacına göre renklendirir, aşağıdaki açıklamaya bakın.</dd>
+
+        <dt>Icons in the course index</dt>
+        <dd data-l="en">Adds the same coloured icons to the course index on the left. File types such as PDF appear after the course page has been opened once.</dd>
+        <dd data-l="tr">Aynı renkli ikonları soldaki ders dizinine de ekler. PDF gibi dosya türü ikonları ders sayfası bir kez açıldıktan sonra görünür.</dd>
+
+        <dt>Split course titles</dt>
+        <dd data-l="en">Titles like "EE 203 | Digital Circuits and Systems 2526G | Teacher" are shown as a code badge, the name, and the term and teacher on a smaller line.</dd>
+        <dd data-l="tr">"EE 203 | Digital Circuits and Systems 2526G | Hoca" gibi başlıklar ders kodu rozeti, ders adı ve daha küçük bir satırda dönem ile hoca olarak gösterilir.</dd>
+      </dl>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">Icon colours</span><span data-l="tr">İkon renkleri</span></h2>
+      <ul class="legend">
+        <li><span class="swatch" style="background: var(--atm-p-assessment)"></span><span data-l="en">Assessment: assignments, quizzes, Turnitin</span><span data-l="tr">Değerlendirme: ödevler, sınavlar, Turnitin</span></li>
+        <li><span class="swatch" style="background: var(--atm-p-content)"></span><span data-l="en">Content: files, links, pages, folders</span><span data-l="tr">İçerik: dosyalar, linkler, sayfalar, klasörler</span></li>
+        <li><span class="swatch" style="background: var(--atm-p-collaboration)"></span><span data-l="en">Collaboration: forums, wikis, glossaries</span><span data-l="tr">İşbirliği: forumlar, vikiler, sözlükler</span></li>
+        <li><span class="swatch" style="background: var(--atm-p-communication)"></span><span data-l="en">Communication: polls, feedback, online sessions</span><span data-l="tr">İletişim: anketler, geri bildirim, çevrim içi dersler</span></li>
+        <li><span class="swatch" style="background: var(--atm-p-interactivecontent)"></span><span data-l="en">Interactive content: lessons, H5P, SCORM</span><span data-l="tr">Etkileşimli içerik: dersler, H5P, SCORM</span></li>
+        <li><span class="swatch" style="background: var(--atm-p-other)"></span><span data-l="en">Other</span><span data-l="tr">Diğer</span></li>
+      </ul>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">Updating</span><span data-l="tr">Güncelleme</span></h2>
+      <p data-l="en">Hand-installed extensions do not update themselves. Download the ZIP again, replace the old folder with the new one, then press the reload button of the extension on <code>chrome://extensions</code>. Your settings are kept.</p>
+      <p data-l="tr">Elle kurulan eklentiler kendiliğinden güncellenmez. ZIP dosyasını yeniden indirin, eski klasörü yenisiyle değiştirin, sonra <code>chrome://extensions</code> sayfasında eklentinin yenile düğmesine basın. Ayarlarınız korunur.</p>
+    </section>
+
+    <section class="card">
+      <h2><span data-l="en">If something looks wrong</span><span data-l="tr">Bir şey tuhaf görünüyorsa</span></h2>
+      <ul data-l="en">
+        <li>Switch off the related setting; the page updates immediately.</li>
+        <li>To see the original site, turn the extension off on <code>chrome://extensions</code> and reload the page.</li>
+        <li>Report problems with a screenshot on <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/issues">GitHub</a>.</li>
+      </ul>
+      <ul data-l="tr">
+        <li>İlgili ayarı kapatın; sayfa hemen güncellenir.</li>
+        <li>Sitenin orijinal halini görmek için eklentiyi <code>chrome://extensions</code> sayfasından kapatıp sayfayı yenileyin.</li>
+        <li>Sorunları ekran görüntüsüyle <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/issues">GitHub</a> üzerinden bildirin.</li>
+      </ul>
+    </section>
+
+  </main>
+
+  <footer class="foot">
+    <span data-l="en">Not affiliated with Atılım University IT. Open source on</span>
+    <span data-l="tr">Atılım Üniversitesi Bilgi İşlem ile bağlantılı değildir. Açık kaynak:</span>
+    <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix">GitHub</a>
+  </footer>
+
+  <script src="guide.js"></script>
+</body>
+</html>

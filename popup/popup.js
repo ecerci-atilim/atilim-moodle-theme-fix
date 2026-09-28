@@ -10,6 +10,8 @@
     hideHero: true,
     hideFooter: true,
     compact: true,
+    courseList: true,
+    allCourses: true,
     colorIcons: true,
     indexIcons: true,
     smartTitles: true,
@@ -41,7 +43,7 @@
     const obj = {};
     obj[KEY] = current;
     chrome.storage.sync.set(obj, function () {
-      flash(chrome.runtime.lastError ? 'Kaydedilemedi' : 'Kaydedildi');
+      flash(chrome.runtime.lastError ? 'Could not save' : 'Saved');
     });
   }
 

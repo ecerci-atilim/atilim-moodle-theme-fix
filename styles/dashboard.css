@@ -38,23 +38,110 @@ html[data-atm] .course-card {
   border: 1px solid var(--atm-border) !important;
   border-radius: var(--atm-radius-lg) !important;
   box-shadow: var(--atm-shadow);
-  overflow: hidden;
-  transition: box-shadow var(--atm-transition), transform var(--atm-transition), border-color var(--atm-transition);
+  /* no overflow: hidden here, it would clip the course menu (kebab) dropdown;
+     the image link rounds its own corners instead */
+  transition: box-shadow var(--atm-transition), border-color var(--atm-transition);
 }
 html[data-atm] .course-card:hover {
   box-shadow: var(--atm-shadow-lg);
   border-color: var(--atm-primary-2) !important;
 }
 
-/* pattern image: shrink to a thin colour strip */
-html[data-atm-compact="1"] .course-card .card-img-top {
-  height: 8px !important;
-  min-height: 0 !important;
-  border-radius: 0 !important;
-}
-html[data-atm-compact="1"] .course-card > a[tabindex="-1"] {
+/* course image. A teacher-assigned image is shown whole ("contain") over a
+   blurred copy of itself, so wide banners are never cropped away and no text
+   is ever drawn on top of an image. Moodle's generated pattern (an inline
+   SVG data URL) simply fills the box. The element's own background is sized
+   to 0 so only the two pseudo-elements paint; they inherit the image URL
+   from the inline style. */
+html[data-atm] .course-card > a[tabindex="-1"] {
   display: block;
-  line-height: 0;
+  line-height: normal;
+  overflow: hidden;
+  border-radius: var(--atm-radius-lg) var(--atm-radius-lg) 0 0;
+}
+html[data-atm] .course-card .card-img-top {
+  height: 110px !important;
+  border-radius: 0 !important;
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] .course-card .card-img-top[style*="data:image/svg"] {
+  background-size: cover !important;
+}
+html[data-atm] .course-card .card-img-top:not([style*="data:image/svg"]) {
+  position: relative;
+  overflow: hidden;
+  background-size: 0 0 !important;
+}
+html[data-atm] .course-card .card-img-top:not([style*="data:image/svg"])::before,
+html[data-atm] .course-card .card-img-top:not([style*="data:image/svg"])::after {
+  content: "";
+  position: absolute;
+  background-image: inherit;
+  background-position: center;
+}
+html[data-atm] .course-card .card-img-top:not([style*="data:image/svg"])::before {
+  inset: -16px;
+  background-size: cover;
+  filter: blur(12px) brightness(0.8);
+}
+html[data-atm] .course-card .card-img-top:not([style*="data:image/svg"])::after {
+  inset: 6px;
+  background-size: contain;
+  background-repeat: no-repeat;
+}
+
+/* single-column list (setting: courseList): one row per course, image on
+   the left, text in the middle, menu on the right. Only the Card view is
+   changed; Moodle's List and Summary views keep their own layout. */
+html[data-atm-course-list="1"] .block_myoverview .card-grid {
+  display: flex !important;
+  flex-direction: column !important;
+  flex-wrap: nowrap !important;
+  gap: 8px;
+  margin: 0 !important;
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid > * {
+  flex: 0 0 auto !important;
+  width: 100% !important;
+  max-width: 100% !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card {
+  flex-direction: row !important;
+  align-items: stretch;
+  width: 100%;
+  margin: 0 !important;
+  min-height: 92px;
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card > a[tabindex="-1"] {
+  flex: 0 0 240px;
+  border-radius: var(--atm-radius-lg) 0 0 var(--atm-radius-lg);
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card .card-img-top {
+  height: 100% !important;
+  min-height: 92px;
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card .card-body {
+  flex: 1 1 auto;
+  min-width: 0;
+  align-self: center;
+  padding: 0.6rem 1rem !important;
+}
+html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card > .d-flex:last-child {
+  align-self: center;
+  margin-right: 0.4rem;
+}
+@media (max-width: 575.98px) {
+  html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card {
+    flex-direction: column !important;
+  }
+  html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card > a[tabindex="-1"] {
+    flex-basis: auto;
+  }
+  html[data-atm-course-list="1"] .block_myoverview .card-grid .course-card .card-img-top {
+    height: 96px !important;
+  }
 }
 
 html[data-atm] .course-card .card-body {
@@ -130,6 +217,11 @@ html[data-atm] .course-card .progress-text span {
   color: var(--atm-muted) !important;
 }
 
+/* home page course list: entries appended by features.js (allCourses) */
+html[data-atm-all-courses="0"] #frontpage-course-list [data-atm-added-course] {
+  display: none !important;
+}
+
 /* list view */
 html[data-atm] .course-listitem {
   background-color: var(--atm-surface) !important;
@@ -155,4 +247,60 @@ html[data-atm] .block_calendar_month .calendarmonth td {
   background-color: var(--atm-surface) !important;
   border-color: var(--atm-border) !important;
   color: var(--atm-text) !important;
+}
+
+/* Moodle core paints parts of the course blocks with fixed colours
+   (".block-cards span.categoryname { color: #1d2125 }", a white summary
+   row); rebind them to the palette so List and Summary views work in dark. */
+html[data-atm] .block-cards span.categoryname,
+html[data-atm] .block_myoverview .categoryname {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] .block-cards .btn-link {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .block-cards .course-listitem,
+html[data-atm] .block-cards .course-summaryitem {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .block-cards .course-listitem:hover,
+html[data-atm] .block-cards .course-summaryitem:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .block-cards .course-listitem .coursename,
+html[data-atm] .block-cards .course-summaryitem .coursename {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .block-cards .course-summaryitem .summary {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .block-cards .progress-text {
+  color: var(--atm-muted) !important;
+}
+
+/* List and Summary views: show teacher-assigned images whole, same as cards */
+html[data-atm] .block_myoverview :is(.list-image, .summary-image):not([style*="data:image/svg"]) {
+  position: relative;
+  overflow: hidden;
+  background-size: 0 0 !important;
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] .block_myoverview :is(.list-image, .summary-image):not([style*="data:image/svg"])::before,
+html[data-atm] .block_myoverview :is(.list-image, .summary-image):not([style*="data:image/svg"])::after {
+  content: "";
+  position: absolute;
+  background-image: inherit;
+  background-position: center;
+}
+html[data-atm] .block_myoverview :is(.list-image, .summary-image):not([style*="data:image/svg"])::before {
+  inset: -12px;
+  background-size: cover;
+  filter: blur(10px) brightness(0.8);
+}
+html[data-atm] .block_myoverview :is(.list-image, .summary-image):not([style*="data:image/svg"])::after {
+  inset: 4px;
+  background-size: contain;
+  background-repeat: no-repeat;
 }

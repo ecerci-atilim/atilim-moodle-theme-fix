@@ -21,6 +21,8 @@
     hideHero: true,        // hide the site-home carousel and the header photo
     hideFooter: true,      // hide the page footer
     compact: true,         // tighter rows, less whitespace
+    courseList: true,      // My courses as a single column, one row per course
+    allCourses: true,      // show every enrolled course in the home page list
     colorIcons: true,      // colour activity icons by purpose
     indexIcons: true,      // add icons to the course index drawer
     smartTitles: true,     // split "CODE | Name TERM | Instructor" titles

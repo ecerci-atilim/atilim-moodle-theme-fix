@@ -25,22 +25,62 @@ views. It only changes how pages look; it never sends data anywhere.
 - **Parsed course titles.** Names like `EE 203 | Digital Circuits and Systems
   2526G | Özgür Doruk` are shown as code, name, term and teacher on course
   cards, the course heading, the index drawer and the browser tab.
+- **Single-column My courses.** One course per row with its image on the
+  left. Images set by teachers are shown whole (never cropped, never covered
+  by text); courses without an image keep Moodle's pattern.
+- **Every course on the home page.** The site home list stops at 20 courses;
+  the extension fetches the rest through the same web service that the My
+  courses page uses.
 - **Less clutter**: no header photo or hero carousel, no footer, no 830px
   width cap, tighter rows, and a primary menu without the theme's custom
-  dropdowns (Dashboard and My courses are added instead).
-- **Settings popup.** Every feature can be switched on or off. Settings sync
-  with your Chrome profile and apply without reloading the page.
+  dropdowns (a direct My courses link is added instead).
+- **Settings popup** and a bilingual **user guide** (English and Turkish).
+  Every feature can be switched on or off; settings sync with your browser
+  profile and apply without reloading the page.
 
 ## Installation
 
-1. Download this folder (as a zip, or `git clone`).
-2. Open `chrome://extensions` in Chrome.
-3. Turn on **Developer mode** in the top right corner.
-4. Click **Load unpacked** and select this folder.
-5. Reload moodle.atilim.edu.tr. Click the extension icon in the toolbar to
-   change settings.
+The extension is not on the Chrome Web Store yet, so it is loaded as an
+unpacked extension. This works in Chrome, Edge, Brave, Opera and other
+Chromium-based browsers; Firefox and Safari are not supported.
 
-The same steps work in Edge, Brave and other Chromium-based browsers.
+1. **Download.** On this GitHub page click **Code → Download ZIP**, or use
+   [this direct link](https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip).
+   If you use git: `git clone https://github.com/ecerci-atilim/atilim-moodle-theme-fix.git`.
+2. **Extract** the ZIP somewhere permanent (not the Downloads folder you
+   clean up). The browser loads the extension from this folder every time it
+   starts, so do not delete or move it afterwards.
+3. **Open the extensions page**: `chrome://extensions` in Chrome,
+   `edge://extensions` in Edge, `brave://extensions` in Brave.
+4. **Turn on Developer mode** (a switch in the top right corner; in Edge it is
+   in the left sidebar).
+5. Click **Load unpacked** and select the folder that directly contains
+   `manifest.json`. A ZIP from GitHub extracts to
+   `atilim-moodle-theme-fix-main/`; if the browser reports that the manifest
+   is missing, you selected a folder one level too high.
+6. **Pin the extension**: click the puzzle icon in the toolbar and pin
+   *Atılım Moodle UI Fix*. Its icon opens the settings.
+7. **Reload** any open moodle.atilim.edu.tr tab.
+
+The user guide opens automatically after the first install. It can be opened
+again from the **User guide** link in the settings popup.
+
+### Updating
+
+Unpacked extensions do not update themselves.
+
+- **ZIP install**: download the ZIP again, replace the contents of your
+  extension folder with the new files, then press the **reload** (circular
+  arrow) button on the extension's card in `chrome://extensions`.
+- **git install**: run `git pull` in the folder, then press **reload**.
+
+Settings are kept across updates. The version number is shown in the
+settings popup.
+
+### Removing
+
+Press **Remove** on the extension's card in `chrome://extensions`, then
+delete the folder.
 
 ## Project layout
 
@@ -62,6 +102,8 @@ styles/messages.css    Messaging drawer
 styles/editmode.css    Teacher edit mode
 styles/dark.css        Dark palette and dark-only fixes
 popup/                 Settings popup
+guide/                 User guide page (English / Turkish)
+background.js          Service worker; opens the guide after the first install
 fonts/                 Lato (latin + latin-ext subsets)
 icons/                 Extension icon
 ```

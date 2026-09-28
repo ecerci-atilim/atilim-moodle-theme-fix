@@ -38,6 +38,7 @@
   --atm-warning: #ffc107;
   --atm-danger: #c0392b;
   --atm-success: #1a9a5a;
+  --atm-done: #1a7f4b;          /* "Done" completion buttons, white text on it */
 
   /* activity purposes (Moodle "purpose" groups) */
   --atm-p-assessment: #c62f74;

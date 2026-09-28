@@ -82,9 +82,10 @@ select {
 .toggle small { grid-column: 2; color: var(--muted); font-size: 11px; }
 
 .foot {
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; gap: 14px;
   padding: 6px 12px 10px;
 }
+.foot .status { margin-left: auto; }
 .link {
   background: none; border: 0; color: var(--primary-2); cursor: pointer; font: inherit; padding: 0;
   text-decoration: underline;

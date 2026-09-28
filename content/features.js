@@ -80,7 +80,7 @@
   };
 
   /* ------------------------------------------------------------------ */
-  /* 2. Navbar: flag the theme's custom menus, add Dashboard/My courses  */
+  /* 2. Navbar: flag the theme's custom menus, add a My courses link     */
   /* ------------------------------------------------------------------ */
 
   // Primary menu links that stay visible; everything else (the theme's
@@ -117,8 +117,8 @@
 
     if (!nav.querySelector('[data-atm-added]')) {
       const home = nav.querySelector('li.nav-item');
+      // Only "My courses": on this site /my/ (Dashboard) redirects there anyway.
       const items = [
-        { href: '/my/', label: t('Panel', 'Dashboard'), test: /^\/my\/?$/ },
         { href: '/my/courses.php', label: t('Derslerim', 'My courses'), test: /^\/my\/courses\.php/ }
       ];
       let anchor = home;
@@ -128,7 +128,9 @@
         li.setAttribute('data-atm-added', '1');
         li.setAttribute('role', 'none');
         const a = document.createElement('a');
-        a.className = 'nav-link' + (it.test.test(location.pathname) ? ' active' : '');
+        const current = it.test.test(location.pathname);
+        a.className = 'nav-link' + (current ? ' active' : '');
+        if (current) a.setAttribute('aria-current', 'page');
         a.setAttribute('role', 'menuitem');
         a.href = it.href;
         a.textContent = it.label;
@@ -138,6 +140,16 @@
         anchor = li;
       });
       changed = true;
+    }
+
+    // With the My courses menu item removed by the site admin, Moodle marks
+    // "Home" as the current page on /my/courses.php. When our own link is the
+    // current one, flag the others so navbar.css drops their highlight (the
+    // DOM is left alone, so switching the setting off restores Moodle's state).
+    if (nav.querySelector('.atm-nav-added .nav-link.active')) {
+      nav.querySelectorAll('li.nav-item:not(.atm-nav-added) > .nav-link.active:not([data-atm-not-current])').forEach(function (a) {
+        a.setAttribute('data-atm-not-current', '1');
+      });
     }
 
     // Moodle's "more menu" measured the bar before our edits; a resize event
@@ -150,6 +162,9 @@
   /* ------------------------------------------------------------------ */
 
   const TERM_RE = /\s*\b(\d{2}-?\d{2}\s?[A-ZİÜÖŞÇĞ])\b\s*$/; // 2526G, 2627F, 24-25Y
+
+  // Words that mark a department or unit name, never a person's name.
+  const NOT_A_PERSON = /(mühendisli|bölüm|fakülte|enstitü|okulu|merkez|engineering|department|faculty|school|laborator|portal|project|program)/i;
 
   ATM.parseCourseTitle = function (raw) {
     const text = String(raw || '').replace(/\s+/g, ' ').trim();
@@ -166,7 +181,7 @@
     if (rest.length >= 2) {
       const last = rest[rest.length - 1];
       const words = last.split(' ');
-      if (!/\d/.test(last) && words.length >= 2 && words.length <= 4 && last.length <= 40) {
+      if (!/\d/.test(last) && !NOT_A_PERSON.test(last) && words.length >= 2 && words.length <= 4 && last.length <= 40) {
         instructor = last;
         rest = rest.slice(0, -1);
       }
@@ -575,6 +590,87 @@
   }
 
   /* ------------------------------------------------------------------ */
+  /* 8. Home page: list every enrolled course, not only the first 20     */
+  /* ------------------------------------------------------------------ */
+
+  // The site home "My courses" list stops at the site's front page limit
+  // (20) and only links to My courses. When it is truncated, fetch the full
+  // enrolled list through the same web service the My courses page uses and
+  // append the missing entries with the theme's own markup. Courses the user
+  // removed from view on My courses stay hidden, as they do there.
+
+  function sesskey() {
+    const input = document.querySelector('input[name="sesskey"]');
+    if (input && input.value) return input.value;
+    const a = document.querySelector('a[href*="sesskey="]');
+    const m = a && a.getAttribute('href').match(/sesskey=([A-Za-z0-9]+)/);
+    return m ? m[1] : null;
+  }
+
+  function plainText(html) {
+    // Course names come back HTML-formatted; DOMParser never runs scripts.
+    return new DOMParser().parseFromString(String(html || ''), 'text/html').body.textContent.trim();
+  }
+
+  F.allCourses = function () {
+    if (!document.body || document.body.id !== 'page-site-index') return;
+    const list = document.getElementById('frontpage-course-list');
+    const more = list && list.querySelector('.paging-morelink');
+    if (!more || list.hasAttribute('data-atm-all')) return;
+    const key = sesskey();
+    if (!key) return;
+    list.setAttribute('data-atm-all', 'loading');
+
+    const body = JSON.stringify([{
+      index: 0,
+      methodname: 'core_course_get_enrolled_courses_by_timeline_classification',
+      args: { offset: 0, limit: 0, classification: 'all', sort: 'fullname', customfieldname: '', customfieldvalue: '' }
+    }]);
+    fetch('/lib/ajax/service.php?sesskey=' + encodeURIComponent(key) +
+          '&info=core_course_get_enrolled_courses_by_timeline_classification', {
+      method: 'POST',
+      credentials: 'same-origin',
+      headers: { 'Content-Type': 'application/json' },
+      body: body
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      const courses = res && res[0] && !res[0].error && res[0].data && res[0].data.courses;
+      if (!courses) throw new Error('unexpected response');
+      const shown = {};
+      list.querySelectorAll('.coursebox[data-courseid]').forEach(function (b) { shown[b.getAttribute('data-courseid')] = true; });
+      let n = list.querySelectorAll('.coursebox').length;
+      const last = list.querySelector('.coursebox.last');
+      courses.forEach(function (c) {
+        if (shown[String(c.id)]) return;
+        n++;
+        const box = document.createElement('div');
+        box.className = 'coursebox clearfix ' + (n % 2 ? 'odd' : 'even');
+        box.setAttribute('data-courseid', String(c.id));
+        box.setAttribute('data-type', '1');
+        box.setAttribute('data-atm-added-course', '1');
+        const info = document.createElement('div');
+        info.className = 'info';
+        const h3 = document.createElement('h3');
+        h3.className = 'coursename';
+        const a = document.createElement('a');
+        a.className = 'aalink';
+        a.href = c.viewurl || ('/course/view.php?id=' + c.id);
+        a.textContent = plainText(c.fullname);
+        h3.appendChild(a);
+        info.appendChild(h3);
+        box.appendChild(info);
+        more.parentNode.insertBefore(box, more);
+      });
+      if (last) last.classList.remove('last');
+      const boxes = list.querySelectorAll('.coursebox');
+      if (boxes.length) boxes[boxes.length - 1].classList.add('last');
+      list.setAttribute('data-atm-all', 'done');
+    }).catch(function (e) {
+      list.setAttribute('data-atm-all', 'failed');
+      console.warn('[ATM] allCourses:', e);
+    });
+  };
+
+  /* ------------------------------------------------------------------ */
   /* Run order                                                           */
   /* ------------------------------------------------------------------ */
 
@@ -585,6 +681,7 @@
       ['simplifyNav', F.simplifyNav],
       ['smartTitles', F.smartTitles],
       ['indexIcons', F.indexIcons],
+      ['allCourses', F.allCourses],
       [null, F.tagActivities],
       [null, F.emptyHeaders],
       [null, F.darkContent]

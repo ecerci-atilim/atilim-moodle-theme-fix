@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html lang="tr">
+<html lang="en">
 <head>
   <meta charset="utf-8">
   <title>Atılım Moodle UI Fix</title>
@@ -18,45 +18,48 @@
 
   <main>
     <section class="group">
-      <div class="group-title">Görünüm</div>
+      <div class="group-title">Appearance</div>
       <div class="row">
-        <label for="theme">Tema</label>
+        <label for="theme">Theme</label>
         <select id="theme" data-key="theme">
-          <option value="light">Açık (gri)</option>
-          <option value="dark">Koyu</option>
-          <option value="auto">Sisteme uy</option>
+          <option value="light">Light (grey)</option>
+          <option value="dark">Dark</option>
+          <option value="auto">Follow system</option>
         </select>
       </div>
       <div class="row">
-        <label for="font">Yazı tipi</label>
+        <label for="font">Font</label>
         <select id="font" data-key="font">
           <option value="lato">Lato</option>
-          <option value="system">Sistem yazı tipi</option>
-          <option value="theme">Temanın yazı tipi (değiştirme)</option>
+          <option value="system">System font</option>
+          <option value="theme">Theme font (unchanged)</option>
         </select>
       </div>
     </section>
 
     <section class="group">
-      <div class="group-title">Sayfa</div>
-      <label class="toggle"><input type="checkbox" data-key="fullWidth"><span>Tam genişlik</span><small>830px sınırını kaldırır</small></label>
-      <label class="toggle"><input type="checkbox" data-key="hideHero"><span>Başlık görselini gizle</span><small>Ders ve panel başlığındaki fotoğraf</small></label>
-      <label class="toggle"><input type="checkbox" data-key="hideFooter"><span>Altbilgiyi gizle</span></label>
-      <label class="toggle"><input type="checkbox" data-key="compact"><span>Sıkışık yerleşim</span><small>Daha az boşluk, daha çok içerik</small></label>
-      <label class="toggle"><input type="checkbox" data-key="simplifyNav"><span>Üst menüyü sadeleştir</span><small>Tema menülerini gizler, Panel ve Derslerim ekler</small></label>
-      <label class="toggle"><input type="checkbox" data-key="brandText"><span>Logo yerine metin</span></label>
+      <div class="group-title">Page</div>
+      <label class="toggle"><input type="checkbox" data-key="fullWidth"><span>Full width</span><small>Removes the 830px width cap</small></label>
+      <label class="toggle"><input type="checkbox" data-key="hideHero"><span>Hide header photo</span><small>The stock photo behind page titles and on the home page</small></label>
+      <label class="toggle"><input type="checkbox" data-key="hideFooter"><span>Hide footer</span></label>
+      <label class="toggle"><input type="checkbox" data-key="compact"><span>Compact layout</span><small>Less whitespace, more content</small></label>
+      <label class="toggle"><input type="checkbox" data-key="simplifyNav"><span>Simplify top menu</span><small>Hides the theme's extra menus and adds My courses</small></label>
+      <label class="toggle"><input type="checkbox" data-key="brandText"><span>Text instead of logo</span></label>
     </section>
 
     <section class="group">
-      <div class="group-title">Ders içeriği</div>
-      <label class="toggle"><input type="checkbox" data-key="colorIcons"><span>İkonları renklendir</span><small>Ödev, kaynak, forum vb. amaca göre renk</small></label>
-      <label class="toggle"><input type="checkbox" data-key="indexIcons"><span>Sol dizine ikon ekle</span></label>
-      <label class="toggle"><input type="checkbox" data-key="smartTitles"><span>Ders adlarını ayrıştır</span><small>"KOD | Ad DÖNEM | Eğitmen" kalıbını satırlara böler</small></label>
+      <div class="group-title">Courses</div>
+      <label class="toggle"><input type="checkbox" data-key="courseList"><span>Single-column course list</span><small>My courses as one row per course, with the course image</small></label>
+      <label class="toggle"><input type="checkbox" data-key="allCourses"><span>All courses on the home page</span><small>Lifts the 20-course limit of the home page list</small></label>
+      <label class="toggle"><input type="checkbox" data-key="colorIcons"><span>Colour activity icons</span><small>Assignments, resources, forums ... by purpose</small></label>
+      <label class="toggle"><input type="checkbox" data-key="indexIcons"><span>Icons in the course index</span></label>
+      <label class="toggle"><input type="checkbox" data-key="smartTitles"><span>Split course titles</span><small>Shows "CODE | Name TERM | Teacher" on separate lines</small></label>
     </section>
   </main>
 
   <footer class="foot">
-    <button type="button" id="reset" class="link">Varsayılanlara dön</button>
+    <a href="../guide/guide.html" target="_blank" class="link">User guide</a>
+    <button type="button" id="reset" class="link">Reset to defaults</button>
     <span id="status" class="status" aria-live="polite"></span>
   </footer>
 
