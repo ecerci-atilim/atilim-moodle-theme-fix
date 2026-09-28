@@ -1,0 +1,184 @@
+/* ------------------------------------------------------------------
+   Tablolar: katılımcılar, not defteri, raporlar, sayfalama, filtreler.
+   ------------------------------------------------------------------ */
+
+html[data-atm] .table,
+html[data-atm] .generaltable,
+html[data-atm] table.flexible {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .table th,
+html[data-atm] .table td,
+html[data-atm] .generaltable th,
+html[data-atm] .generaltable td {
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  vertical-align: middle !important;
+}
+html[data-atm-compact="1"] .table th,
+html[data-atm-compact="1"] .table td,
+html[data-atm-compact="1"] .generaltable th,
+html[data-atm-compact="1"] .generaltable td {
+  padding: 0.4rem 0.6rem !important;
+}
+html[data-atm] .table thead th,
+html[data-atm] .generaltable thead th {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+  border-bottom: 2px solid var(--atm-border) !important;
+}
+html[data-atm] .table thead th a,
+html[data-atm] .generaltable thead th a {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .table-striped tbody tr:nth-of-type(odd),
+html[data-atm] .generaltable tbody tr:nth-of-type(even) {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] .table-hover tbody tr:hover,
+html[data-atm] .generaltable tbody tr:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .table .text-muted {
+  color: var(--atm-muted) !important;
+}
+
+/* katılımcılar: filtre alanı */
+html[data-atm] .filter-group,
+html[data-atm] [data-region="filter-group"] {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .filter-group .bg-white,
+html[data-atm] [data-region="filter-group"] .bg-white {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .userinitials {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+}
+
+/* sayfalama, harf çubuğu */
+html[data-atm] .pagination .page-link,
+html[data-atm] .initialbar .page-link {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .pagination .page-link:hover,
+html[data-atm] .initialbar .page-link:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .pagination .page-item.active .page-link,
+html[data-atm] .initialbar .page-item.active .page-link {
+  background-color: var(--atm-selected) !important;
+  border-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .pagination .page-item.disabled .page-link {
+  color: var(--atm-muted) !important;
+  background-color: var(--atm-surface-2) !important;
+}
+
+/* not defteri (grader report) */
+html[data-atm] .gradeparent {
+  background-color: var(--atm-surface) !important;
+  border-radius: var(--atm-radius-lg);
+}
+html[data-atm] .gradereport-grader-table,
+html[data-atm] .path-grade .gradereport-grader-table th,
+html[data-atm] .path-grade .gradereport-grader-table td {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .gradereport-grader-table thead th,
+html[data-atm] .gradereport-grader-table th.header,
+html[data-atm] .gradereport-grader-table .heading,
+html[data-atm] .gradereport-grader-table tr.heading th {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .gradereport-grader-table tr.userrow:hover td,
+html[data-atm] .gradereport-grader-table tr.userrow:hover th {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .gradereport-grader-table .avg td,
+html[data-atm] .gradereport-grader-table .avg th,
+html[data-atm] .gradereport-grader-table tr.lastrow td,
+html[data-atm] .gradereport-grader-table tr.lastrow th {
+  background-color: var(--atm-surface-2) !important;
+  font-weight: 700;
+}
+html[data-atm] .gradereport-grader-table .user .userpicture {
+  border-radius: 50%;
+}
+html[data-atm] .gradereport-grader-table td.overridden {
+  background-color: rgba(255, 193, 7, 0.18) !important;
+}
+html[data-atm] .gradereport-grader-table td.excluded {
+  background-color: rgba(108, 117, 125, 0.18) !important;
+}
+html[data-atm] .gradereport-grader-table td.gradecell input,
+html[data-atm] .gradereport-grader-table td.gradecell select {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .gradereport-grader-table .gradeitemheader,
+html[data-atm] .gradereport-grader-table .gradeitemheader a {
+  color: var(--atm-link) !important;
+}
+html[data-atm] #user-grades .sticky-footer,
+html[data-atm] .stickyfooter,
+html[data-atm] #sticky-footer.sticky-footer-content {
+  background-color: var(--atm-surface-2) !important;
+  border-top: 1px solid var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+
+/* kullanıcı not raporu (öğrenci görünümü) */
+html[data-atm] .user-grade,
+html[data-atm] .path-grade-report-user .user-grade td,
+html[data-atm] .path-grade-report-user .user-grade th {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .path-grade-report-user .user-grade .category,
+html[data-atm] .path-grade-report-user .user-grade tr.category th,
+html[data-atm] .path-grade-report-user .user-grade tr.category td {
+  background-color: var(--atm-surface-2) !important;
+  font-weight: 700;
+}
+html[data-atm] .path-grade-report-user .user-grade .column-itemname .gradeitemheader {
+  color: var(--atm-text) !important;
+}
+
+/* takvim tablosu */
+html[data-atm] .calendarmonth,
+html[data-atm] .calendarmonth th,
+html[data-atm] .calendarmonth td {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .calendarmonth td.today {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .calendarmonth td.today .day-number-circle .day-number {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+
+/* yeniden kullanılabilir: sabit ilk sütun / başlık */
+html[data-atm] .table-responsive {
+  scrollbar-width: thin;
+  scrollbar-color: var(--atm-border) transparent;
+}

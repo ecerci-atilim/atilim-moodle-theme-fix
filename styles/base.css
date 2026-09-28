@@ -1,0 +1,169 @@
+/* ------------------------------------------------------------------
+   Temel: renk paleti (CSS değişkenleri), yazı tipi, ortak parçalar.
+   Bütün renkler burada tanımlanır; diğer dosyalar yalnızca var() kullanır.
+   Koyu palet dark.css'te aynı değişkenleri yeniden tanımlar.
+   ------------------------------------------------------------------ */
+
+:root {
+  color-scheme: light;
+
+  /* zeminler: koyudan açığa doğru katmanlar */
+  --atm-bg: #e3e3e3;            /* sayfa zemini */
+  --atm-bg-2: #d5d5d5;          /* ikincil zemin: sol panel, başlık şeridi */
+  --atm-bg-3: #c7c7c7;          /* üçüncül zemin: bölüm kutuları */
+  --atm-surface: #f3f3f3;       /* kartlar, satırlar, formlar */
+  --atm-surface-2: #e9e9e9;     /* kart içi ikincil alan */
+  --atm-hover: #e9eefd;         /* satır üzerine gelince */
+  --atm-selected: #223675;      /* seçili öğe zemini */
+  --atm-on-selected: #ffffff;
+
+  /* metin */
+  --atm-text: #1d2125;
+  --atm-text-2: #3f444b;
+  --atm-muted: #666c75;
+  --atm-link: #223675;
+  --atm-link-hover: #3d57ad;
+  --atm-accent: #223675;        /* metin vurgusu: aktif sekme, ikon, başlık */
+
+  /* çizgiler */
+  --atm-border: #a9a9a9;
+  --atm-border-strong: #6f6f6f;
+
+  /* marka */
+  --atm-primary: #223675;       /* dolgu: navbar, düğme, seçili satır */
+  --atm-primary-2: #3d57ad;
+  --atm-on-primary: #ffffff;
+  --atm-secondary: #0579d8;
+  --atm-focus: rgba(61, 87, 173, 0.25);
+  --atm-warning: #ffc107;
+  --atm-danger: #c0392b;
+  --atm-success: #1a9a5a;
+
+  /* etkinlik amaçları (Moodle "purpose") */
+  --atm-p-assessment: #c62f74;
+  --atm-p-content: #2a6fcb;
+  --atm-p-collaboration: #6f42c1;
+  --atm-p-communication: #1a9a5a;
+  --atm-p-interactivecontent: #e0851b;
+  --atm-p-administration: #6c757d;
+  --atm-p-other: #5a6268;
+  --atm-p-interface: #5a6268;
+
+  /* biçim */
+  --atm-radius: 6px;
+  --atm-radius-lg: 10px;
+  --atm-shadow: 0 1px 3px rgba(0, 0, 0, 0.10);
+  --atm-shadow-lg: 0 4px 14px rgba(0, 0, 0, 0.16);
+  --atm-transition: 0.15s ease-in-out;
+
+  --atm-font: 'Lato', 'Segoe UI', system-ui, -apple-system, Roboto, 'Helvetica Neue', Arial, sans-serif;
+  --atm-font-mono: ui-monospace, 'Cascadia Mono', Consolas, 'Courier New', monospace;
+}
+
+html[data-atm-font="system"] {
+  --atm-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+}
+
+/* yazı tipi: ikon fontlarına (.fa, .icon) dokunma */
+html[data-atm] body,
+html[data-atm] .btn,
+html[data-atm] input,
+html[data-atm] select,
+html[data-atm] textarea,
+html[data-atm] button,
+html[data-atm] h1, html[data-atm] h2, html[data-atm] h3,
+html[data-atm] h4, html[data-atm] h5, html[data-atm] h6,
+html[data-atm] .h1, html[data-atm] .h2, html[data-atm] .h3,
+html[data-atm] .h4, html[data-atm] .h5, html[data-atm] .h6,
+html[data-atm] .navbar,
+html[data-atm] .dropdown-menu,
+html[data-atm] .card-title,
+html[data-atm] .instancename,
+html[data-atm] .page-header-headings,
+html[data-atm] .courseindex,
+html[data-atm] .tooltip,
+html[data-atm] .popover,
+html[data-atm] table {
+  font-family: var(--atm-font) !important;
+}
+
+html[data-atm] pre,
+html[data-atm] code,
+html[data-atm] kbd,
+html[data-atm] samp {
+  font-family: var(--atm-font-mono) !important;
+}
+
+html[data-atm] body {
+  background-color: var(--atm-bg) !important;
+  color: var(--atm-text);
+  -webkit-font-smoothing: antialiased;
+}
+
+html[data-atm] a {
+  color: var(--atm-link);
+}
+html[data-atm] a:hover {
+  color: var(--atm-link-hover);
+}
+
+html[data-atm] .text-primary {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .text-muted,
+html[data-atm] .muted {
+  color: var(--atm-muted) !important;
+}
+
+html[data-atm] :focus-visible {
+  outline: 2px solid var(--atm-primary-2) !important;
+  outline-offset: 2px;
+}
+
+/* Ortak: ayrıştırılmış ders başlığı (features.js smartTitles) */
+html[data-atm] .atm-ct { display: none; }
+html[data-atm-smart-titles="1"] .atm-ct { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; max-width: 100%; }
+html[data-atm-smart-titles="1"] .atm-ct-orig { display: none !important; }
+
+html[data-atm] .atm-ct-code {
+  display: inline-block;
+  font-weight: 700;
+  letter-spacing: 0.02em;
+  color: var(--atm-accent);
+  background: var(--atm-surface-2);
+  border: 1px solid var(--atm-border);
+  border-radius: 4px;
+  padding: 0 6px;
+  line-height: 1.5;
+  font-size: 0.85em;
+  white-space: nowrap;
+}
+html[data-atm] .atm-ct-name {
+  font-weight: 600;
+  line-height: 1.25;
+  color: inherit;
+}
+html[data-atm] .atm-ct-meta {
+  display: inline-flex;
+  flex-wrap: wrap;
+  gap: 4px 10px;
+  font-size: 0.8em;
+  font-weight: 400;
+  color: var(--atm-muted);
+}
+html[data-atm] .atm-ct-term + .atm-ct-inst::before {
+  content: '\00b7\00a0';
+}
+
+/* satır içi (breadcrumb, listeler) */
+html[data-atm-smart-titles="1"] .atm-ct-inline {
+  flex-direction: row;
+  align-items: center;
+  gap: 6px;
+}
+html[data-atm-smart-titles="1"] .atm-ct-inline .atm-ct-name {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}

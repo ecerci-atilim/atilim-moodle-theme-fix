@@ -1,0 +1,279 @@
+/* ------------------------------------------------------------------
+   Sol çekmece: ders dizini (course index). Bölüm başlıkları ile
+   etkinlikler ayrılır, etkinliklere ikon ve girinti gelir.
+   ------------------------------------------------------------------ */
+
+html[data-atm] .drawer {
+  background-color: var(--atm-bg-2) !important;
+  border-color: var(--atm-border) !important;
+  box-shadow: none !important;
+}
+html[data-atm] .drawer-left {
+  border-right: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .drawer-right {
+  border-left: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .drawer .drawercontent {
+  background-color: transparent !important;
+}
+
+/* çekmece başlığı */
+html[data-atm] .drawerheader {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.35rem;
+  width: 100%;
+  min-height: 56px !important;
+  padding: 0.5rem 0.6rem !important;
+  background-color: var(--atm-bg-2) !important;
+  border-bottom: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .drawerheader .courseindexheading {
+  flex: 1 1 auto;
+  min-width: 0;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 0.92rem !important;
+  line-height: 1.25 !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .drawerheader .courseindexheading .atm-index-title {
+  display: block;
+  color: var(--atm-text) !important;
+  text-decoration: none !important;
+  min-width: 0;
+}
+html[data-atm] .drawerheader .courseindexheading .atm-index-title:hover .atm-ct-name {
+  color: var(--atm-link-hover) !important;
+  text-decoration: underline;
+}
+html[data-atm] .drawerheader .courseindexheading .atm-ct {
+  gap: 1px;
+  width: 100%;
+}
+html[data-atm] .drawerheader .courseindexheading .atm-ct-name {
+  display: block;
+  width: 100%;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  font-size: 0.88rem;
+}
+/* akıllı başlık kapalıysa ham metni tek satıra sığdır */
+html[data-atm-smart-titles="0"] .drawerheader .courseindexheading {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+html[data-atm-smart-titles="0"] .drawerheader .courseindexheading .atm-index-title {
+  display: none !important;
+}
+html[data-atm-smart-titles="1"] .drawerheader .courseindexheading .atm-ct-orig {
+  display: none !important;
+}
+
+html[data-atm] .drawerheader .drawerheadercontent {
+  margin-left: auto !important;
+}
+html[data-atm] .drawerheader .drawertoggle,
+html[data-atm] .drawerheader .drawerheadercontent .btn {
+  flex-shrink: 0;
+  background-color: transparent !important;
+  color: var(--atm-accent) !important;
+  border: 0 !important;
+  border-radius: 50% !important;
+  width: 32px !important;
+  height: 32px !important;
+  margin: 0 !important;
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+html[data-atm] .drawerheader .drawertoggle:hover,
+html[data-atm] .drawerheader .drawerheadercontent .btn:hover {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .drawerheader .drawertoggle .icon,
+html[data-atm] .drawerheader .drawerheadercontent .btn .icon {
+  color: inherit !important;
+  margin: 0 !important;
+}
+
+/* çekmece açma düğmeleri (sayfa kenarındaki) */
+html[data-atm] .drawer-toggler .btn {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border: 0 !important;
+  border-radius: 0 var(--atm-radius) var(--atm-radius) 0 !important;
+  box-shadow: var(--atm-shadow) !important;
+  opacity: 0.9;
+}
+html[data-atm] .drawer-toggler .btn:hover {
+  background-color: var(--atm-primary-2) !important;
+  opacity: 1;
+}
+html[data-atm] .drawer-right-toggle .btn {
+  border-radius: var(--atm-radius) 0 0 var(--atm-radius) !important;
+}
+html[data-atm] .drawer-toggler .btn .icon {
+  color: inherit !important;
+}
+
+/* dizin gövdesi */
+html[data-atm] .drawer-left .drawercontent .courseindex {
+  background-color: transparent !important;
+  padding: 0.35rem 0.4rem !important;
+}
+html[data-atm] .courseindex-section {
+  background-color: transparent !important;
+  border: 0 !important;
+  margin: 0 0 0.35rem !important;
+  padding: 0 !important;
+}
+
+/* bölüm başlığı satırı */
+html[data-atm] .courseindex-item.courseindex-section-title {
+  background-color: var(--atm-bg-3) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+  padding: 4px 6px !important;
+  margin: 0 !important;
+  font-weight: 700 !important;
+  font-size: 0.82rem !important;
+  letter-spacing: 0.01em;
+  color: var(--atm-text) !important;
+  position: sticky;
+  top: 0;
+  z-index: 2;
+}
+html[data-atm] .courseindex-item.courseindex-section-title .courseindex-link {
+  color: var(--atm-text) !important;
+  font-weight: 700 !important;
+}
+html[data-atm] .courseindex-item.courseindex-section-title:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .courseindex-item.courseindex-section-title .courseindex-chevron,
+html[data-atm] .courseindex-item.courseindex-section-title .courseindex-chevron .icon {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .courseindex-section.pageitem > .courseindex-section-title,
+html[data-atm] .courseindex-item.courseindex-section-title.pageitem {
+  background-color: var(--atm-selected) !important;
+  border-color: var(--atm-selected) !important;
+}
+html[data-atm] .courseindex-item.courseindex-section-title.pageitem .courseindex-link,
+html[data-atm] .courseindex-item.courseindex-section-title.pageitem .icon,
+html[data-atm] .courseindex-section.pageitem > .courseindex-section-title .courseindex-link,
+html[data-atm] .courseindex-section.pageitem > .courseindex-section-title .icon {
+  color: var(--atm-on-selected) !important;
+}
+
+/* bölüm içeriği: girinti ve ince çizgi */
+html[data-atm] .courseindex-sectioncontent {
+  margin: 2px 0 0 10px !important;
+  padding: 0 0 0 6px !important;
+  border-left: 2px solid var(--atm-border) !important;
+}
+
+/* etkinlik satırı */
+html[data-atm] .courseindex-item[data-for="cm"] {
+  display: flex !important;
+  align-items: center !important;
+  gap: 6px;
+  border-radius: var(--atm-radius) !important;
+  margin: 1px 0 !important;
+  padding: 3px 6px !important;
+  font-size: 0.86rem !important;
+  line-height: 1.3 !important;
+  color: var(--atm-text) !important;
+  transition: background-color var(--atm-transition);
+}
+html[data-atm-compact="0"] .courseindex-item[data-for="cm"] {
+  padding: 5px 8px !important;
+  font-size: 0.9rem !important;
+}
+html[data-atm] .courseindex-item[data-for="cm"] .courseindex-link {
+  color: var(--atm-text) !important;
+  font-weight: 400 !important;
+  flex: 1 1 auto;
+  min-width: 0;
+}
+html[data-atm] .courseindex-item[data-for="cm"]:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .courseindex-item[data-for="cm"]:hover .courseindex-link {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm] .courseindex-item[data-for="cm"].pageitem,
+html[data-atm] .courseindex-item[data-for="cm"][aria-selected="true"] {
+  background-color: var(--atm-selected) !important;
+}
+html[data-atm] .courseindex-item[data-for="cm"].pageitem .courseindex-link,
+html[data-atm] .courseindex-item[data-for="cm"].pageitem .icon,
+html[data-atm] .courseindex-item[data-for="cm"][aria-selected="true"] .courseindex-link,
+html[data-atm] .courseindex-item[data-for="cm"][aria-selected="true"] .icon {
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .courseindex-item .completioninfo {
+  order: 3;
+  margin: 0 !important;
+  flex-shrink: 0;
+}
+html[data-atm] .courseindex-item .courseindex-locked {
+  order: 4;
+  flex-shrink: 0;
+}
+html[data-atm] .courseindex-item .courseindex-locked .icon {
+  color: var(--atm-muted) !important;
+  font-size: 0.8rem;
+}
+
+/* eklenen ikon */
+html[data-atm] .atm-ci-icon {
+  display: none;
+  flex-shrink: 0;
+  width: 20px !important;
+  height: 20px !important;
+  padding: 3px !important;
+  border-radius: 4px !important;
+  order: 0;
+}
+html[data-atm-index-icons="1"] .atm-ci-icon {
+  display: inline-flex !important;
+  align-items: center;
+  justify-content: center;
+}
+html[data-atm] .atm-ci-icon .activityicon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+html[data-atm-color-icons="0"] .atm-ci-icon {
+  background-color: transparent !important;
+}
+html[data-atm-color-icons="0"] .atm-ci-icon .activityicon {
+  filter: none !important;
+  opacity: 0.7;
+}
+
+/* gizli / kısıtlı etkinlikler soluk */
+html[data-atm] .courseindex-item.dimmed .courseindex-link,
+html[data-atm] .courseindex-item[data-for="cm"].dimmed {
+  opacity: 0.6;
+}
+
+/* çekmece kaydırma çubuğu ince */
+html[data-atm] .drawercontent {
+  scrollbar-width: thin;
+  scrollbar-color: var(--atm-border) transparent;
+}
+
+/* sağ çekmece (bloklar) */
+html[data-atm] #theme_boost-drawers-blocks .block {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+}

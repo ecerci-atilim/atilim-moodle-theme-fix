@@ -1,0 +1,156 @@
+/* ------------------------------------------------------------------
+   Üst çubuk: marka, birincil menü, kullanıcı menüsü, düzenleme anahtarı.
+   ------------------------------------------------------------------ */
+
+html[data-atm] .navbar.fixed-top {
+  background-color: var(--atm-primary) !important;
+  border-bottom: 0 !important;
+  box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), var(--atm-shadow) !important;
+}
+
+/* marka */
+html[data-atm-brand-text="1"] .navbar-brand img.logo {
+  display: none !important;
+}
+html[data-atm] .navbar-brand .atm-brand {
+  display: none;
+  color: var(--atm-on-primary) !important;
+  font-weight: 700 !important;
+  font-size: 1.05rem !important;
+  letter-spacing: 0.01em;
+  white-space: nowrap;
+}
+html[data-atm-brand-text="1"] .navbar-brand .atm-brand {
+  display: inline;
+}
+html[data-atm] .navbar-brand {
+  padding-right: 0.5rem !important;
+}
+
+/* birincil menü */
+html[data-atm] .primary-navigation .nav-link,
+html[data-atm] .navbar-light .navbar-nav .nav-link {
+  color: rgba(255, 255, 255, 0.85) !important;
+  font-weight: 600;
+  border-radius: var(--atm-radius);
+  transition: background-color var(--atm-transition), color var(--atm-transition);
+}
+html[data-atm] .primary-navigation .nav-link:hover,
+html[data-atm] .primary-navigation .nav-link:focus,
+html[data-atm] .primary-navigation .nav-link.active,
+html[data-atm] .primary-navigation .nav-link[aria-current] {
+  background-color: var(--atm-primary-2) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .primary-navigation .navbar-nav .nav-link.active::after,
+html[data-atm] .primary-navigation .navbar-nav .nav-link[aria-current]::after {
+  display: none !important;
+}
+
+/* tema menülerini gizle (Instructor, Student, FAQ, ...) */
+html[data-atm-simplify-nav="1"] .primary-navigation .atm-nav-extra,
+html[data-atm-simplify-nav="1"] .primary-navigation .dropdownmoremenu .dropdown-item.atm-nav-extra {
+  display: none !important;
+}
+html[data-atm] .primary-navigation .atm-nav-added {
+  display: none;
+}
+html[data-atm-simplify-nav="1"] .primary-navigation .atm-nav-added {
+  display: list-item;
+}
+
+/* navbar açılır menüleri koyu */
+html[data-atm] .navbar .dropdown-menu {
+  background-color: var(--atm-primary) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
+  border-radius: var(--atm-radius) !important;
+  box-shadow: var(--atm-shadow-lg) !important;
+}
+html[data-atm] .navbar .dropdown-menu .dropdown-item,
+html[data-atm] .navbar .dropdown-menu .dropdown-item a,
+html[data-atm] .navbar .dropdown-menu .dropdown-divider {
+  color: rgba(255, 255, 255, 0.9) !important;
+  border-color: rgba(255, 255, 255, 0.15) !important;
+}
+html[data-atm] .navbar .dropdown-menu .dropdown-item:hover,
+html[data-atm] .navbar .dropdown-menu .dropdown-item:focus,
+html[data-atm] .navbar .dropdown-menu .dropdown-item.active {
+  background-color: var(--atm-primary-2) !important;
+  color: var(--atm-on-primary) !important;
+}
+
+/* kullanıcı alanı: bildirim, mesaj, avatar */
+html[data-atm] #usernavigation .nav-link,
+html[data-atm] #usernavigation .popover-region-toggle,
+html[data-atm] #usernavigation .btn,
+html[data-atm] #usernavigation .icon,
+html[data-atm] #usernavigation .usertext,
+html[data-atm] #usernavigation .login,
+html[data-atm] #usernavigation .login a,
+html[data-atm] #usernavigation .dropdown-toggle::after {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+html[data-atm] #usernavigation .popover-region-toggle:hover .icon,
+html[data-atm] #usernavigation .nav-link:hover {
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] #usernavigation .divider,
+html[data-atm] #usernavigation .usermenu .divider {
+  border-color: rgba(255, 255, 255, 0.2) !important;
+}
+html[data-atm] #usernavigation .login a:hover {
+  text-decoration: underline !important;
+}
+html[data-atm] #usernavigation .userinitials {
+  background-color: var(--atm-primary-2) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .langmenu .dropdown-toggle {
+  color: rgba(255, 255, 255, 0.9) !important;
+}
+
+/* bildirim / mesaj açılır kutuları: açık zemin (koyu menüden ayrı) */
+html[data-atm] .popover-region-container {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .popover-region-header-container {
+  background-color: var(--atm-surface-2) !important;
+  border-bottom-color: var(--atm-border) !important;
+}
+html[data-atm] .popover-region-header-text {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .popover-region-content .content-item-container {
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .popover-region-content .content-item-container:hover,
+html[data-atm] .popover-region-content .content-item-container.unread {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .popover-region-footer-container {
+  background-color: var(--atm-surface-2) !important;
+  border-top-color: var(--atm-border) !important;
+}
+html[data-atm] .popover-region .count-container {
+  background-color: var(--atm-danger) !important;
+  color: #fff !important;
+}
+
+/* düzenleme modu anahtarı */
+html[data-atm] .editmode-switch-form label,
+html[data-atm] label[for$="-editingswitch"] {
+  color: var(--atm-on-primary) !important;
+  font-weight: 600 !important;
+}
+html[data-atm] .editmode-switch-form .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--atm-secondary) !important;
+  border-color: var(--atm-secondary) !important;
+}
+
+/* birincil çekmece (mobil menü) */
+html[data-atm] #theme_boost-drawers-primary {
+  background-color: var(--atm-bg-2) !important;
+}

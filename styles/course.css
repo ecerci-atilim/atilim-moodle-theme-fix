@@ -1,0 +1,259 @@
+/* ------------------------------------------------------------------
+   Ders sayfası: bölümler, etkinlik kartları, ikon renkleri, gezinme.
+   ------------------------------------------------------------------ */
+
+/* bölüm kutusu */
+html[data-atm] .course-section .section-item {
+  background-color: var(--atm-bg-3) !important;
+  border: 1px solid var(--atm-border-strong) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  padding: 0.6rem 0.9rem !important;
+  box-shadow: none !important;
+}
+html[data-atm] .course-section {
+  margin-bottom: 0.75rem !important;
+}
+html[data-atm-compact="1"] .course-section {
+  margin-bottom: 0.5rem !important;
+}
+
+/* bölüm başlığı (görüntüleme modu) */
+html[data-atm] .course-section-header {
+  padding: 0.15rem 0 !important;
+}
+html[data-atm] .course-section-header .sectionname,
+html[data-atm] .course-section-header .sectionname a,
+html[data-atm] .course-section-header h3 {
+  font-size: 1.15rem !important;
+  font-weight: 700 !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-compact="1"] .course-section-header .sectionname,
+html[data-atm-compact="1"] .course-section-header h3 {
+  font-size: 1.05rem !important;
+}
+html[data-atm] .course-section-header .icons-collapse-expand {
+  background-color: transparent !important;
+  color: var(--atm-accent) !important;
+  width: 28px !important;
+  height: 28px !important;
+  border-radius: 50% !important;
+  margin-right: 0.5rem !important;
+}
+html[data-atm] .course-section-header .icons-collapse-expand:hover {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .course-section-header .icons-collapse-expand .icon {
+  color: inherit !important;
+  padding: 0 !important;
+}
+html[data-atm] .course-section-header .badge {
+  background-color: var(--atm-secondary) !important;
+  color: #fff !important;
+  font-weight: 600 !important;
+}
+html[data-atm] .course-section .section-summary,
+html[data-atm] .course-section .summarytext {
+  color: var(--atm-text-2) !important;
+  font-size: 0.92rem;
+}
+
+/* "Collapse all" bağlantısı */
+html[data-atm] .course-content .collapsible-actions .collapseall,
+html[data-atm] .course-content .collapsible-actions .expandall,
+html[data-atm] .course-content [data-toggle="toggleall"] {
+  color: var(--atm-link) !important;
+  font-size: 0.85rem;
+  font-weight: 600;
+}
+
+/* etkinlik satırı */
+html[data-atm] li.activity {
+  border-top: 0 !important;
+  margin: 0 !important;
+  padding: 0 !important;
+}
+html[data-atm] li.activity + li.activity {
+  margin-top: 4px !important;
+}
+html[data-atm] .activity-item {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid transparent !important;
+  border-left: 4px solid var(--atm-p-other) !important;
+  border-radius: var(--atm-radius) !important;
+  padding: 0.55rem 0.75rem !important;
+  transition: background-color var(--atm-transition), border-color var(--atm-transition);
+}
+html[data-atm-compact="1"] .activity-item {
+  padding: 0.35rem 0.6rem !important;
+}
+html[data-atm] .activity-item:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .activity-item.activityinline {
+  background: transparent !important;
+  border-left-color: transparent !important;
+}
+html[data-atm] li.activity[data-atm-purpose="assessment"] .activity-item { border-left-color: var(--atm-p-assessment) !important; }
+html[data-atm] li.activity[data-atm-purpose="content"] .activity-item { border-left-color: var(--atm-p-content) !important; }
+html[data-atm] li.activity[data-atm-purpose="collaboration"] .activity-item { border-left-color: var(--atm-p-collaboration) !important; }
+html[data-atm] li.activity[data-atm-purpose="communication"] .activity-item { border-left-color: var(--atm-p-communication) !important; }
+html[data-atm] li.activity[data-atm-purpose="interactivecontent"] .activity-item { border-left-color: var(--atm-p-interactivecontent) !important; }
+html[data-atm] li.activity[data-atm-purpose="administration"] .activity-item { border-left-color: var(--atm-p-administration) !important; }
+
+/* etkinlik adı */
+html[data-atm] .activity-item .activityname a,
+html[data-atm] .activity-item .activityname .instancename {
+  color: var(--atm-link) !important;
+  font-weight: 600 !important;
+  font-size: 0.95rem !important;
+}
+html[data-atm] .activity-item .activityname a:hover {
+  color: var(--atm-link-hover) !important;
+  text-decoration: underline;
+}
+html[data-atm] .activity-item .accesshide {
+  display: none !important;
+}
+html[data-atm] .activity-item .resourcelinkdetails,
+html[data-atm] .activity-item .activityname .accesshide + .resourcelinkdetails {
+  color: var(--atm-muted) !important;
+  font-size: 0.72rem !important;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  background: var(--atm-surface-2);
+  border: 1px solid var(--atm-border);
+  border-radius: 3px;
+  padding: 0 4px;
+  margin-left: 6px;
+}
+html[data-atm] .activity-item .activity-altcontent,
+html[data-atm] .activity-item .activity-description {
+  color: var(--atm-text-2) !important;
+  border-top: 1px solid var(--atm-border) !important;
+  margin-top: 0.35rem;
+  padding-top: 0.35rem;
+  font-size: 0.9rem;
+}
+html[data-atm] .activity-item .activity-dates,
+html[data-atm] .activity-item .activity-information {
+  color: var(--atm-muted) !important;
+  font-size: 0.82rem;
+}
+
+/* ---------------- ikonlar ---------------- */
+
+html[data-atm] .activityiconcontainer {
+  border-radius: var(--atm-radius) !important;
+  background-color: var(--atm-surface-2) !important;
+  transition: transform var(--atm-transition), filter var(--atm-transition);
+}
+html[data-atm] .activityiconcontainer.smaller {
+  width: 30px !important;
+  height: 30px !important;
+  padding: 5px !important;
+}
+html[data-atm-compact="1"] .activityiconcontainer.smaller {
+  width: 26px !important;
+  height: 26px !important;
+  padding: 4px !important;
+}
+html[data-atm] .activityiconcontainer .activityicon {
+  width: 100% !important;
+  height: 100% !important;
+  object-fit: contain;
+}
+
+/* amaca göre renk: zemin renkli, ikon beyaz */
+html[data-atm-color-icons="1"] .activityiconcontainer.assessment { background-color: var(--atm-p-assessment) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.content { background-color: var(--atm-p-content) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.collaboration { background-color: var(--atm-p-collaboration) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.communication { background-color: var(--atm-p-communication) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.interactivecontent { background-color: var(--atm-p-interactivecontent) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.administration { background-color: var(--atm-p-administration) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer.interface,
+html[data-atm-color-icons="1"] .activityiconcontainer.other { background-color: var(--atm-p-other) !important; }
+html[data-atm-color-icons="1"] .activityiconcontainer .activityicon,
+html[data-atm-color-icons="1"] .activityiconcontainer .icon {
+  filter: brightness(0) invert(1) !important;
+}
+html[data-atm-color-icons="0"] .activityiconcontainer .activityicon {
+  filter: none !important;
+}
+html[data-atm] .activity-item:hover .activityiconcontainer,
+html[data-atm] .courseindex-item:hover .activityiconcontainer {
+  transform: scale(1.08);
+}
+
+/* ayraç */
+html[data-atm] .divider hr {
+  border-top: 2px dashed var(--atm-primary-2) !important;
+  opacity: 0.7;
+}
+
+/* etkinlik altındaki önceki/sonraki */
+html[data-atm] .activity-navigation .btn {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-color: var(--atm-primary) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .activity-navigation .btn:hover {
+  background-color: var(--atm-primary-2) !important;
+  border-color: var(--atm-primary-2) !important;
+}
+html[data-atm] .activity-navigation .custom-select {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+
+/* tamamlanma düğmeleri ve kısıtlama bilgisi */
+html[data-atm] .completion-dropdown .btn,
+html[data-atm] .completion-dropdown .btn .icon {
+  color: var(--atm-accent) !important;
+  font-weight: 600;
+}
+html[data-atm] .completion-dropdown .btn:hover {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm] .completion-dialog {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-radius: var(--atm-radius);
+}
+html[data-atm] .completion-dialog strong,
+html[data-atm] .completion-dialog span {
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .completion-dialog img.icon {
+  filter: brightness(0) invert(1);
+}
+html[data-atm] .availabilityinfo {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border-radius: var(--atm-radius);
+  font-size: 0.85rem;
+}
+html[data-atm] .availabilityinfo .showmore-button,
+html[data-atm] .editavailability a.btn,
+html[data-atm] .editavailability a.btn .icon {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .activity-actions .action-menu .dropdown-toggle .icon {
+  color: var(--atm-accent) !important;
+}
+
+/* etkinlik sayfasında (mod/*) başlık altı açıklama */
+html[data-atm] .path-mod .activity-header:not(:empty) {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  padding: 0.75rem 1rem !important;
+  margin-bottom: 0.75rem !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .path-mod .activity-header .activity-description {
+  color: var(--atm-text-2) !important;
+}

@@ -1,15 +1,48 @@
 {
   "manifest_version": 3,
-  "name": "Atilim Moodle UI Overlay",
-  "version": "2.0.0",
-  "permissions": [
-    "storage"
-  ],
+  "name": "Atılım Moodle UI Fix",
+  "version": "3.0.0",
+  "description": "moodle.atilim.edu.tr için daha sade, okunaklı ve kullanışlı bir arayüz. Öğrenci ve eğitmen görünümlerinin ikisini de düzeltir.",
+  "permissions": ["storage"],
+  "icons": {
+    "16": "icons/icon16.png",
+    "48": "icons/icon48.png",
+    "128": "icons/icon128.png"
+  },
+  "action": {
+    "default_popup": "popup/popup.html",
+    "default_title": "Atılım Moodle UI Fix"
+  },
   "content_scripts": [
     {
       "matches": ["https://moodle.atilim.edu.tr/*"],
-      "css": ["overlay.css"],
-      "js": ["content.js"]
+      "run_at": "document_start",
+      "css": [
+        "fonts/lato.css",
+        "styles/base.css",
+        "styles/layout.css",
+        "styles/navbar.css",
+        "styles/dashboard.css",
+        "styles/course.css",
+        "styles/courseindex.css",
+        "styles/activity.css",
+        "styles/forms.css",
+        "styles/tables.css",
+        "styles/messages.css",
+        "styles/editmode.css",
+        "styles/dark.css"
+      ],
+      "js": [
+        "content/settings.js",
+        "content/features.js",
+        "content/main.js"
+      ]
+    }
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["fonts/*.woff2"],
+      "matches": ["https://moodle.atilim.edu.tr/*"]
     }
   ]
 }

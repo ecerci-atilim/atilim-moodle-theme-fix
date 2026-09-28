@@ -1,0 +1,111 @@
+/* ------------------------------------------------------------------
+   Mesaj çekmecesi ve bildirimler.
+   ------------------------------------------------------------------ */
+
+html[data-atm] [data-region="message-drawer"] {
+  background-color: var(--atm-bg-2) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] .header-container,
+html[data-atm] [data-region="message-drawer"] .header-container [data-region^="view-"] {
+  background-color: var(--atm-surface-2) !important;
+  border-bottom-color: var(--atm-border) !important;
+}
+html[data-atm] [data-region="message-drawer"] .header-container a,
+html[data-atm] [data-region="message-drawer"] .header-container .icon,
+html[data-atm] [data-region="message-drawer"] .header-container h1,
+html[data-atm] [data-region="message-drawer"] .header-container h2,
+html[data-atm] [data-region="message-drawer"] .header-container .font-weight-bold {
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] .header-container .form-control {
+  border-color: var(--atm-border) !important;
+}
+
+html[data-atm] [data-region="message-drawer"] .overview-section-toggle {
+  background-color: var(--atm-primary) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] [data-region="message-drawer"] .overview-section-toggle:hover {
+  background-color: var(--atm-primary-2) !important;
+}
+html[data-atm] [data-region="message-drawer"] .overview-section-toggle .font-weight-bold,
+html[data-atm] [data-region="message-drawer"] .overview-section-toggle small,
+html[data-atm] [data-region="message-drawer"] .overview-section-toggle .icon {
+  color: var(--atm-on-primary) !important;
+}
+
+html[data-atm] [data-region="message-drawer"] .list-group-item {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] .list-group-item:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] [data-region="message-drawer"] .list-group-item strong,
+html[data-atm] [data-region="message-drawer"] .list-group-item p {
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] .list-group-item small,
+html[data-atm] [data-region="message-drawer"] .list-group-item .text-muted {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] [data-region="message-drawer"] .list-group-item.active {
+  background-color: var(--atm-selected) !important;
+  border-color: var(--atm-selected) !important;
+}
+html[data-atm] [data-region="message-drawer"] .list-group-item.active strong,
+html[data-atm] [data-region="message-drawer"] .list-group-item.active p,
+html[data-atm] [data-region="message-drawer"] .list-group-item.active small,
+html[data-atm] [data-region="message-drawer"] .list-group-item.active .text-muted {
+  color: var(--atm-on-selected) !important;
+}
+
+html[data-atm] [data-region="message-drawer"] .nav-pills .nav-link {
+  color: var(--atm-link) !important;
+}
+html[data-atm] [data-region="message-drawer"] .nav-pills .nav-link.active {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+
+/* konuşma görünümü */
+html[data-atm] [data-region="message-drawer"] [data-region="content-message-container"] {
+  background-color: var(--atm-bg-2) !important;
+}
+html[data-atm] [data-region="message-drawer"] .message .tail,
+html[data-atm] [data-region="message-drawer"] .message {
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] .message.send {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] [data-region="message-drawer"] .message.send .text-muted,
+html[data-atm] [data-region="message-drawer"] .message.send .tail {
+  color: rgba(255, 255, 255, 0.85) !important;
+}
+html[data-atm] [data-region="message-drawer"] .message.received {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] [data-region="message-drawer"] [data-region="send-message-txt"] {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] [data-region="message-drawer"] [data-action="send-message"] .icon,
+html[data-atm] [data-region="message-drawer"] [data-action="toggle-emoji-picker"] .icon {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] [data-region="message-drawer"] [data-region="footer-container"] {
+  background-color: var(--atm-surface-2) !important;
+  border-top-color: var(--atm-border) !important;
+}
+html[data-atm] [data-region="message-drawer"] .badge.bg-primary,
+html[data-atm] [data-region="message-drawer"] .badge-primary {
+  background-color: var(--atm-primary-2) !important;
+}
+html[data-atm] [data-region="message-drawer"] .bg-light {
+  background-color: var(--atm-surface-2) !important;
+}

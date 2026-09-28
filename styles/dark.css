@@ -1,0 +1,285 @@
+/* ------------------------------------------------------------------
+   Koyu tema. Önce paleti yeniden tanımlar; sonra Bootstrap / Moodle'ın
+   sabit beyaz zeminli parçalarını değişkenlere bağlar.
+   ------------------------------------------------------------------ */
+
+html[data-atm-theme="dark"] {
+  color-scheme: dark;
+
+  --atm-bg: #15171c;
+  --atm-bg-2: #1b1e25;
+  --atm-bg-3: #22262f;
+  --atm-surface: #262a34;
+  --atm-surface-2: #2d323d;
+  --atm-hover: #333a4b;
+  --atm-selected: #3d57ad;
+  --atm-on-selected: #ffffff;
+
+  --atm-text: #e6e8ec;
+  --atm-text-2: #c3c7cf;
+  --atm-muted: #9aa0ab;
+  --atm-link: #9fb4ff;
+  --atm-link-hover: #c3d0ff;
+  --atm-accent: #9fb4ff;
+
+  --atm-border: #3a404c;
+  --atm-border-strong: #4a5162;
+
+  --atm-primary: #1c2b5e;
+  --atm-primary-2: #3d57ad;
+  --atm-on-primary: #ffffff;
+  --atm-secondary: #3b8fe0;
+  --atm-focus: rgba(159, 180, 255, 0.35);
+  --atm-warning: #f5c542;
+  --atm-danger: #e5645a;
+  --atm-success: #3ec27e;
+
+  --atm-p-assessment: #d9468b;
+  --atm-p-content: #3f86e5;
+  --atm-p-collaboration: #8d63d9;
+  --atm-p-communication: #2fb56f;
+  --atm-p-interactivecontent: #ee9a3a;
+  --atm-p-administration: #8a939e;
+  --atm-p-other: #7b838e;
+  --atm-p-interface: #7b838e;
+
+  --atm-shadow: 0 1px 3px rgba(0, 0, 0, 0.5);
+  --atm-shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.55);
+}
+
+/* metin ve zemin varsayılanları */
+html[data-atm-theme="dark"] body,
+html[data-atm-theme="dark"] #page,
+html[data-atm-theme="dark"] #page-content,
+html[data-atm-theme="dark"] #region-main,
+html[data-atm-theme="dark"] #region-main-box,
+html[data-atm-theme="dark"] .main-inner {
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] h1, html[data-atm-theme="dark"] h2, html[data-atm-theme="dark"] h3,
+html[data-atm-theme="dark"] h4, html[data-atm-theme="dark"] h5, html[data-atm-theme="dark"] h6,
+html[data-atm-theme="dark"] .h1, html[data-atm-theme="dark"] .h2, html[data-atm-theme="dark"] .h3,
+html[data-atm-theme="dark"] .h4, html[data-atm-theme="dark"] .h5, html[data-atm-theme="dark"] .h6,
+html[data-atm-theme="dark"] p, html[data-atm-theme="dark"] li, html[data-atm-theme="dark"] dd, html[data-atm-theme="dark"] dt {
+  color: var(--atm-text);
+}
+html[data-atm-theme="dark"] .text-dark,
+html[data-atm-theme="dark"] .text-body,
+html[data-atm-theme="dark"] .text-black-50 {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm-theme="dark"] .text-secondary {
+  color: var(--atm-muted) !important;
+}
+html[data-atm-theme="dark"] .text-white {
+  color: #fff !important;
+}
+html[data-atm-theme="dark"] .bg-white,
+html[data-atm-theme="dark"] .bg-light,
+html[data-atm-theme="dark"] .bg-gray,
+html[data-atm-theme="dark"] .bg-gray-100,
+html[data-atm-theme="dark"] .bg-gray-200 {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm-theme="dark"] .border,
+html[data-atm-theme="dark"] .border-top,
+html[data-atm-theme="dark"] .border-bottom,
+html[data-atm-theme="dark"] .border-left,
+html[data-atm-theme="dark"] .border-right {
+  border-color: var(--atm-border) !important;
+}
+
+/* navbar: koyu temada biraz daha koyu ve çizgili */
+html[data-atm-theme="dark"] .navbar.fixed-top {
+  background-color: #111a3d !important;
+  border-bottom: 1px solid var(--atm-border) !important;
+}
+html[data-atm-theme="dark"] .navbar .dropdown-menu {
+  background-color: #1a2452 !important;
+}
+
+/* içerik (kullanıcı tarafından yazılan HTML) */
+html[data-atm-theme="dark"] .no-overflow,
+html[data-atm-theme="dark"] .summarytext,
+html[data-atm-theme="dark"] .activity-description,
+html[data-atm-theme="dark"] .course-description-item,
+html[data-atm-theme="dark"] .text_to_html,
+html[data-atm-theme="dark"] .box.generalbox,
+html[data-atm-theme="dark"] .forumpost .content,
+html[data-atm-theme="dark"] .post-content-container {
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .no-overflow *[style*="color: rgb(0, 0, 0)"],
+html[data-atm-theme="dark"] .no-overflow *[style*="color:#000"],
+html[data-atm-theme="dark"] .no-overflow *[style*="color: #000"],
+html[data-atm-theme="dark"] .no-overflow font[color="#000000"] {
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color: rgb(255, 255, 255)"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color:#fff"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color: #fff"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background: white"] {
+  background-color: transparent !important;
+}
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color: rgb(255, 255, 0)"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color: yellow"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color:#ffff00"],
+html[data-atm-theme="dark"] .no-overflow *[style*="background-color: #ffff00"] {
+  background-color: #6b5d00 !important;
+  color: #fff !important;
+}
+html[data-atm-theme="dark"] .no-overflow table,
+html[data-atm-theme="dark"] .no-overflow td,
+html[data-atm-theme="dark"] .no-overflow th {
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .no-overflow img:not(.icon):not(.activityicon):not(.userpicture) {
+  opacity: 0.92;
+}
+
+/* formlar ve seçim öğeleri */
+html[data-atm-theme="dark"] .custom-select,
+html[data-atm-theme="dark"] select {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] option {
+  background-color: var(--atm-surface);
+  color: var(--atm-text);
+}
+html[data-atm-theme="dark"] .custom-control-label::before {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm-theme="dark"] .custom-switch .custom-control-label::after {
+  background-color: var(--atm-text-2) !important;
+}
+html[data-atm-theme="dark"] .custom-switch .custom-control-input:checked ~ .custom-control-label::after {
+  background-color: #fff !important;
+}
+html[data-atm-theme="dark"] .btn-light,
+html[data-atm-theme="dark"] .btn-outline-light {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .btn-icon,
+html[data-atm-theme="dark"] .btn-icon .icon {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm-theme="dark"] .btn-icon:hover .icon {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm-theme="dark"] .close,
+html[data-atm-theme="dark"] .btn-close {
+  color: var(--atm-text) !important;
+  text-shadow: none !important;
+}
+
+/* listeler, uyarılar, rozetler */
+html[data-atm-theme="dark"] .list-group-item {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .alert-info {
+  background-color: #1e3550 !important;
+  border-color: #2b4a70 !important;
+  color: #cfe3ff !important;
+}
+html[data-atm-theme="dark"] .alert-warning {
+  background-color: #4a3d12 !important;
+  border-color: #6b5a1c !important;
+  color: #ffe8a3 !important;
+}
+html[data-atm-theme="dark"] .alert-danger {
+  background-color: #4c1f1d !important;
+  border-color: #6e2c29 !important;
+  color: #ffc9c4 !important;
+}
+html[data-atm-theme="dark"] .alert-success {
+  background-color: #17402b !important;
+  border-color: #23603f !important;
+  color: #b8f0cf !important;
+}
+html[data-atm-theme="dark"] .alert-secondary,
+html[data-atm-theme="dark"] .alert-light {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .badge-light,
+html[data-atm-theme="dark"] .badge.bg-light {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .badge-info,
+html[data-atm-theme="dark"] .badge.bg-info {
+  background-color: #2b4a70 !important;
+  color: #cfe3ff !important;
+}
+html[data-atm-theme="dark"] .badge-warning,
+html[data-atm-theme="dark"] .badge.bg-warning {
+  background-color: #6b5a1c !important;
+  color: #ffe8a3 !important;
+}
+
+/* açılır menü ve modal arka planı */
+html[data-atm-theme="dark"] .modal-backdrop {
+  background-color: #000 !important;
+  opacity: 0.7 !important;
+}
+html[data-atm-theme="dark"] .modal-content {
+  box-shadow: var(--atm-shadow-lg) !important;
+}
+
+/* ikonlar: siyah ikon fontları okunur olsun */
+html[data-atm-theme="dark"] .icon:not(.activityicon):not(.text-primary):not(.text-danger):not(.text-success):not(.text-warning) {
+  color: inherit;
+}
+html[data-atm-theme="dark"] img.icon:not(.activityicon) {
+  filter: invert(0.85) hue-rotate(180deg);
+}
+html[data-atm-theme="dark"] .userpicture {
+  filter: none;
+}
+
+/* ders kartlarındaki desen görseli: koyuda solgun */
+html[data-atm-theme="dark"] .course-card .card-img-top {
+  opacity: 0.8;
+}
+
+/* kod blokları */
+html[data-atm-theme="dark"] pre,
+html[data-atm-theme="dark"] code {
+  background-color: #1a1d24 !important;
+  color: #e6e8ec !important;
+  border-color: var(--atm-border) !important;
+}
+
+/* kaydırma çubukları */
+html[data-atm-theme="dark"] * {
+  scrollbar-color: #4a5162 #1b1e25;
+}
+
+/* seçim rengi */
+html[data-atm-theme="dark"] ::selection {
+  background: #3d57ad;
+  color: #fff;
+}
+
+/* Stream'e özel kalıntılar */
+html[data-atm-theme="dark"] .course-head,
+html[data-atm-theme="dark"] .course-head .page-header-headings h1 {
+  color: var(--atm-text) !important;
+}
+html[data-atm-theme="dark"] .completion-meter .circle {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm-theme="dark"] .completion-meter .circle .inner {
+  color: var(--atm-link) !important;
+}
+html[data-atm-theme="dark"] .atm-ct-code {
+  background: var(--atm-surface-2);
+  color: var(--atm-link);
+}

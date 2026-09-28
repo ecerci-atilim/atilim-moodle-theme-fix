@@ -1,0 +1,92 @@
+:root {
+  color-scheme: light dark;
+  --bg: #f4f4f4;
+  --surface: #ffffff;
+  --text: #1d2125;
+  --muted: #666c75;
+  --border: #d0d0d0;
+  --primary: #223675;
+  --primary-2: #3d57ad;
+}
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1b1e25;
+    --surface: #262a34;
+    --text: #e6e8ec;
+    --muted: #9aa0ab;
+    --border: #3a404c;
+    --primary: #3d57ad;
+    --primary-2: #9fb4ff;
+  }
+}
+
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body {
+  width: 320px;
+  background: var(--bg);
+  color: var(--text);
+  font: 13px/1.4 'Segoe UI', system-ui, -apple-system, Roboto, sans-serif;
+}
+
+.head {
+  background: #223675;
+  color: #fff;
+  padding: 12px 14px;
+}
+.brand { display: flex; align-items: center; gap: 10px; }
+.logo {
+  width: 30px; height: 30px; border-radius: 8px;
+  background: #fff;
+  position: relative;
+  flex-shrink: 0;
+}
+.logo::before, .logo::after {
+  content: ''; position: absolute; left: 7px; right: 7px; height: 3px; border-radius: 2px; background: #223675;
+}
+.logo::before { top: 9px; box-shadow: 0 6px 0 #223675; }
+.logo::after { top: 21px; }
+.title { font-weight: 700; font-size: 14px; }
+.sub { font-size: 11px; opacity: 0.8; }
+
+main { padding: 6px 10px 2px; }
+
+.group {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 8px 10px;
+  margin: 8px 0;
+}
+.group-title {
+  font-size: 11px; font-weight: 700; text-transform: uppercase; letter-spacing: 0.06em;
+  color: var(--muted); margin-bottom: 6px;
+}
+.row {
+  display: flex; align-items: center; justify-content: space-between; gap: 10px;
+  padding: 4px 0;
+}
+.row label { font-weight: 600; }
+select {
+  background: var(--bg); color: var(--text);
+  border: 1px solid var(--border); border-radius: 6px; padding: 4px 6px; font: inherit;
+  min-width: 140px;
+}
+
+.toggle {
+  display: grid; grid-template-columns: 20px 1fr; column-gap: 8px; align-items: center;
+  padding: 5px 0; cursor: pointer;
+}
+.toggle input { margin: 0; width: 16px; height: 16px; accent-color: var(--primary); }
+.toggle span { font-weight: 600; }
+.toggle small { grid-column: 2; color: var(--muted); font-size: 11px; }
+
+.foot {
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 6px 12px 10px;
+}
+.link {
+  background: none; border: 0; color: var(--primary-2); cursor: pointer; font: inherit; padding: 0;
+  text-decoration: underline;
+}
+.status { color: var(--muted); font-size: 11px; }

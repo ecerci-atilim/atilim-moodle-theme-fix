@@ -1,0 +1,190 @@
+/* ------------------------------------------------------------------
+   Düzenleme modu (eğitmen): bölüm başlıkları, etkinlik ekleme,
+   toplu işlem çubuğu, blok ekleme, sürükle bırak.
+   ------------------------------------------------------------------ */
+
+/* düzenleme modunda bölüm başlığı belirgin */
+html[data-atm] body.editing .course-section .course-section-header {
+  background-color: var(--atm-primary) !important;
+  border-radius: var(--atm-radius) !important;
+  margin-bottom: 6px;
+  padding: 4px 6px !important;
+}
+html[data-atm] body.editing .course-section .course-section-header:hover {
+  background-color: var(--atm-primary-2) !important;
+}
+html[data-atm] body.editing .course-section .course-section-header .sectionname,
+html[data-atm] body.editing .course-section .course-section-header .sectionname a,
+html[data-atm] body.editing .course-section .course-section-header h3,
+html[data-atm] body.editing .course-section .course-section-header .btn,
+html[data-atm] body.editing .course-section .course-section-header .icon,
+html[data-atm] body.editing .course-section .course-section-header .text-nowrap,
+html[data-atm] body.editing .course-section .course-section-header .icons-collapse-expand {
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] body.editing .course-section .course-section-header .icons-collapse-expand:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+}
+html[data-atm] body.editing .course-section .course-section-header .badge {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  color: var(--atm-on-primary) !important;
+}
+
+/* etkinlik ekle düğmesi */
+html[data-atm] .course-content .section-modchooser,
+html[data-atm] .course-content .section-modchooser-link,
+html[data-atm] .course-content .section-modchooser .btn,
+html[data-atm] .course-content .add-content .btn,
+html[data-atm] .course-content [data-action="open-chooser"] {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-color: var(--atm-primary) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .course-content .section-modchooser:hover,
+html[data-atm] .course-content .section-modchooser-link:hover,
+html[data-atm] .course-content .section-modchooser .btn:hover,
+html[data-atm] .course-content [data-action="open-chooser"]:hover {
+  background-color: var(--atm-primary-2) !important;
+  border-color: var(--atm-primary-2) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .course-content .section-modchooser .icon,
+html[data-atm] .course-content [data-action="open-chooser"] .icon {
+  color: inherit !important;
+}
+html[data-atm] .course-content .changenumsections .btn,
+html[data-atm] .course-content [data-action="addSection"],
+html[data-atm] .course-content .add-section .btn {
+  color: var(--atm-accent) !important;
+  border-color: var(--atm-border) !important;
+  background-color: var(--atm-surface) !important;
+}
+
+/* etkinlik eylem menüsü (üç nokta) */
+html[data-atm] .activity-actions .btn,
+html[data-atm] .activity-actions .btn .icon,
+html[data-atm] .section-actions .btn .icon {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .activity-actions .btn:hover .icon,
+html[data-atm] .section-actions .btn:hover .icon {
+  color: var(--atm-accent) !important;
+}
+
+/* sürükleme tutamağı */
+html[data-atm] .activity-item .dragicon,
+html[data-atm] .course-section-header .dragicon,
+html[data-atm] [data-for="cmDragHandle"] {
+  color: var(--atm-muted) !important;
+}
+
+/* toplu seçim kutuları */
+html[data-atm] .bulkselect input[type="checkbox"],
+html[data-atm] input[data-bulkcheckbox] {
+  accent-color: var(--atm-primary);
+}
+html[data-atm] .bulkEnable,
+html[data-atm] [data-action="bulkEnable"] {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border: 0 !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .bulkEnable:hover,
+html[data-atm] [data-action="bulkEnable"]:hover {
+  background-color: var(--atm-primary-2) !important;
+}
+
+/* toplu işlem çubuğu (alttaki sabit şerit) */
+html[data-atm] #sticky-footer,
+html[data-atm] .sticky-footer {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-top: 2px solid var(--atm-primary-2) !important;
+}
+html[data-atm] #sticky-footer button[data-for="bulkaction"] {
+  border-radius: var(--atm-radius);
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] #sticky-footer button[data-for="bulkaction"]:hover {
+  background-color: var(--atm-primary-2) !important;
+}
+html[data-atm] #sticky-footer .form-check-label,
+html[data-atm] #sticky-footer .bulkaction-name,
+html[data-atm] #sticky-footer .bulkaction-icon i,
+html[data-atm] #sticky-footer .bulkcancel i,
+html[data-atm] #sticky-footer .bulkcount,
+html[data-atm] #sticky-footer .icon {
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] #sticky-footer .form-check-input {
+  border: 1px solid var(--atm-on-primary);
+}
+html[data-atm] #sticky-footer .form-check-input:checked {
+  background-color: var(--atm-primary-2);
+}
+html[data-atm] #sticky-footer .bulkcancel .btn:hover {
+  background-color: rgba(255, 255, 255, 0.2) !important;
+  border-radius: 50%;
+}
+
+/* blok ekleme */
+html[data-atm] .add_block_button .block-add,
+html[data-atm] [data-key="addblock"] .btn {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border: 0 !important;
+  border-radius: var(--atm-radius) !important;
+  text-decoration: none !important;
+}
+html[data-atm] .add_block_button .block-add:hover,
+html[data-atm] [data-key="addblock"] .btn:hover {
+  background-color: var(--atm-primary-2) !important;
+}
+
+/* satır içi ad düzenleme */
+html[data-atm] .inplaceeditable .quickeditlink,
+html[data-atm] .inplaceeditable .quickediticon .icon {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] .inplaceeditable:hover .quickediticon .icon {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .inplaceeditable input.form-control {
+  background-color: var(--atm-surface) !important;
+}
+
+/* gizli / kısıtlı etkinlik uyarı rozetleri */
+html[data-atm] .activity-item .badge-info,
+html[data-atm] .activity-item .badge.bg-info,
+html[data-atm] .section-item .badge-info {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border: 1px solid var(--atm-border);
+}
+html[data-atm] .activity-item.dimmed,
+html[data-atm] .activity-item .dimmed,
+html[data-atm] .activity-item .dimmed_text {
+  opacity: 0.85;
+}
+html[data-atm] .activity-item .dimmed a,
+html[data-atm] .activity-item .dimmed_text a {
+  color: var(--atm-muted) !important;
+}
+
+/* sürükleme hedefi ve taşıma menüsü */
+html[data-atm] .course-content .dropready,
+html[data-atm] .course-content .dropup,
+html[data-atm] .course-content .dropdown-menu .dropdown-item.dropready {
+  border-color: var(--atm-primary-2) !important;
+}
+html[data-atm] .course-content .activity-item.dragging {
+  opacity: 0.5;
+}
+
+/* ayarlar sayfasındaki yönetim menüsü (course/admin) */
+html[data-atm] .path-course #region-main .card,
+html[data-atm] #page-course-admin .card {
+  background-color: var(--atm-surface) !important;
+}

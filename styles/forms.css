@@ -1,0 +1,366 @@
+/* ------------------------------------------------------------------
+   Düğmeler, formlar, açılır menüler, modal pencereler, etkinlik seçici.
+   ------------------------------------------------------------------ */
+
+/* düğmeler */
+html[data-atm] .btn {
+  border-radius: var(--atm-radius) !important;
+  transition: background-color var(--atm-transition), border-color var(--atm-transition), color var(--atm-transition);
+}
+html[data-atm] .btn-primary,
+html[data-atm] .mform .form-submit input[type="submit"],
+html[data-atm] .mform #id_saveanddisplay,
+html[data-atm] .mform #id_saveandreturn,
+html[data-atm] .enrolusersbutton input[type="submit"],
+html[data-atm] .singlebutton .btn-primary {
+  background-color: var(--atm-primary) !important;
+  border-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .btn-primary:hover,
+html[data-atm] .btn-primary:focus,
+html[data-atm] .btn-primary:active,
+html[data-atm] .mform .form-submit input[type="submit"]:hover,
+html[data-atm] .mform #id_saveanddisplay:hover,
+html[data-atm] .mform #id_saveandreturn:hover,
+html[data-atm] .enrolusersbutton input[type="submit"]:hover {
+  background-color: var(--atm-primary-2) !important;
+  border-color: var(--atm-primary-2) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .btn-secondary {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .btn-secondary:hover,
+html[data-atm] .btn-secondary:focus {
+  background-color: var(--atm-hover) !important;
+  border-color: var(--atm-primary-2) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .btn-outline-primary {
+  color: var(--atm-accent) !important;
+  border-color: var(--atm-primary) !important;
+  background-color: transparent !important;
+}
+html[data-atm] .btn-outline-primary:hover {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .btn-outline-secondary {
+  color: var(--atm-text-2) !important;
+  border-color: var(--atm-border) !important;
+  background-color: transparent !important;
+}
+html[data-atm] .btn-outline-secondary:hover {
+  background-color: var(--atm-hover) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .btn-link {
+  color: var(--atm-link) !important;
+}
+html[data-atm] .btn-link:hover {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm] .mform .btn-cancel input[type="submit"],
+html[data-atm] .btn-cancel {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .mform .btn-cancel input[type="submit"]:hover {
+  background-color: var(--atm-hover) !important;
+}
+
+/* form alanları */
+html[data-atm] .form-control,
+html[data-atm] .custom-select,
+html[data-atm] select,
+html[data-atm] textarea,
+html[data-atm] input[type="text"],
+html[data-atm] input[type="search"],
+html[data-atm] input[type="email"],
+html[data-atm] input[type="number"],
+html[data-atm] input[type="password"],
+html[data-atm] input[type="url"] {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  border-radius: var(--atm-radius) !important;
+  transition: border-color var(--atm-transition), box-shadow var(--atm-transition);
+}
+html[data-atm] .form-control:focus,
+html[data-atm] .custom-select:focus,
+html[data-atm] select:focus,
+html[data-atm] textarea:focus,
+html[data-atm] input:focus {
+  border-color: var(--atm-primary-2) !important;
+  box-shadow: 0 0 0 3px var(--atm-focus) !important;
+  outline: none !important;
+}
+html[data-atm] .form-control::placeholder {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] .input-group-text {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .custom-control-input:checked ~ .custom-control-label::before {
+  background-color: var(--atm-primary) !important;
+  border-color: var(--atm-primary) !important;
+}
+html[data-atm] .custom-control-label::before,
+html[data-atm] .form-check-input {
+  border-color: var(--atm-border-strong) !important;
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] .form-check-input:checked {
+  background-color: var(--atm-primary) !important;
+  border-color: var(--atm-primary) !important;
+}
+html[data-atm] label,
+html[data-atm] .col-form-label,
+html[data-atm] legend {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .form-text,
+html[data-atm] .form-control-feedback {
+  color: var(--atm-muted) !important;
+}
+
+/* mform: katlanabilir bölümler */
+html[data-atm] .mform .collapsible .fheader,
+html[data-atm] .mform fieldset legend a,
+html[data-atm] .mform .fcontainer > legend {
+  color: var(--atm-accent) !important;
+  font-weight: 700 !important;
+}
+html[data-atm] .mform .collapsible .ftoggler,
+html[data-atm] .mform fieldset.collapsible > legend {
+  padding: 6px 10px;
+  background-color: var(--atm-surface-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .mform .fcontainer {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-top: 0 !important;
+  border-radius: 0 0 var(--atm-radius) var(--atm-radius);
+  padding: 1rem 1.25rem;
+  margin-bottom: 0.75rem;
+}
+html[data-atm] .collapsible-actions .collapseexpand {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-accent) !important;
+  padding: 4px 10px;
+  border-radius: var(--atm-radius);
+  border: 1px solid var(--atm-border);
+  text-decoration: none !important;
+  font-weight: 600;
+}
+html[data-atm] .mform .fitem {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .mform .felement .text-muted {
+  color: var(--atm-muted) !important;
+}
+
+/* genel açılır menüler (navbar dışı) */
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+  box-shadow: var(--atm-shadow-lg) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item .icon {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item:hover,
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item:focus {
+  background-color: var(--atm-hover) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item.active,
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item[aria-selected="true"],
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item[aria-current="true"] {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item.active .icon,
+html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) .dropdown-item[aria-selected="true"] .icon {
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .dropdown-divider {
+  border-top-color: var(--atm-border) !important;
+}
+html[data-atm] .dropdown-header {
+  color: var(--atm-muted) !important;
+}
+
+/* zengin açılır liste (seçenek listesi) */
+html[data-atm] .mform .dropdown button[data-for="dropdowndialog_button"] {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .choicelist .dropdown-item-outline {
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .choicelist .dropdown-item-outline.selected {
+  background-color: var(--atm-selected) !important;
+  border-color: var(--atm-selected) !important;
+}
+html[data-atm] .choicelist .dropdown-item-outline.selected a,
+html[data-atm] .choicelist .dropdown-item-outline.selected .font-weight-bold,
+html[data-atm] .choicelist .dropdown-item-outline.selected .icon {
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .choicelist .dropdown-item-outline.selected .option-description {
+  color: rgba(255, 255, 255, 0.8) !important;
+}
+html[data-atm] .choicelist .dropdown-item-outline:not(.selected):hover {
+  background-color: var(--atm-hover) !important;
+}
+
+/* modal */
+html[data-atm] .modal-content {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .modal-header {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-bottom: 0 !important;
+  border-radius: var(--atm-radius-lg) var(--atm-radius-lg) 0 0 !important;
+}
+html[data-atm] .modal-header .modal-title,
+html[data-atm] .modal-header .close,
+html[data-atm] .modal-header .btn-close {
+  color: var(--atm-on-primary) !important;
+  text-shadow: none !important;
+  opacity: 0.9;
+}
+html[data-atm] .modal-body {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .modal-footer {
+  background-color: var(--atm-surface-2) !important;
+  border-top: 1px solid var(--atm-border) !important;
+}
+
+/* etkinlik seçici (Add an activity or resource) */
+html[data-atm] .modchoosercontainer .nav-tabs .nav-link {
+  color: var(--atm-text-2) !important;
+  border-color: transparent !important;
+  border-bottom: 3px solid transparent !important;
+}
+html[data-atm] .modchoosercontainer .nav-tabs .nav-link.active {
+  color: var(--atm-accent) !important;
+  background-color: transparent !important;
+  border-bottom-color: var(--atm-primary) !important;
+}
+html[data-atm] .modchoosercontainer .nav-tabs {
+  border-bottom-color: var(--atm-border) !important;
+}
+html[data-atm] .modchoosercontainer .tab-content {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] .modchoosercontainer .option.card {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  transition: transform var(--atm-transition), box-shadow var(--atm-transition);
+}
+html[data-atm] .modchoosercontainer .option.card:hover,
+html[data-atm] .modchoosercontainer .option.card:focus-within {
+  transform: translateY(-2px);
+  box-shadow: var(--atm-shadow-lg);
+  border-color: var(--atm-primary-2) !important;
+}
+html[data-atm] .modchoosercontainer .option .optionname {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .modchoosercontainer .optionaction:hover {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm] .modchoosercontainer .optionaction[data-favourited="true"] {
+  color: var(--atm-warning) !important;
+}
+html[data-atm] .modchoosercontainer .searchbar .form-control {
+  border-color: var(--atm-border) !important;
+}
+
+/* sekmeler (genel) */
+html[data-atm] .nav-tabs {
+  border-bottom-color: var(--atm-border) !important;
+}
+html[data-atm] .nav-tabs .nav-link {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .nav-tabs .nav-link.active {
+  color: var(--atm-accent) !important;
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) var(--atm-border) var(--atm-surface) !important;
+}
+html[data-atm] .nav-pills .nav-link {
+  color: var(--atm-link) !important;
+}
+html[data-atm] .nav-pills .nav-link.active {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+
+/* rozetler */
+html[data-atm] .badge-primary,
+html[data-atm] .badge.bg-primary {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+}
+html[data-atm] .badge-secondary,
+html[data-atm] .badge.bg-secondary {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border: 1px solid var(--atm-border);
+}
+
+/* ipuçları */
+html[data-atm] .tooltip-inner {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .popover {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .popover-header {
+  background-color: var(--atm-surface-2) !important;
+  border-bottom-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .popover-body {
+  color: var(--atm-text) !important;
+}
+
+/* editör (TinyMCE / Atto) çerçevesi */
+html[data-atm] .editor_atto_toolbar,
+html[data-atm] .tox .tox-toolbar,
+html[data-atm] .tox .tox-toolbar__primary,
+html[data-atm] .tox .tox-menubar {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] .editor_atto_content_wrap,
+html[data-atm] .tox .tox-edit-area__iframe {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] .tox-tinymce {
+  border-color: var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}

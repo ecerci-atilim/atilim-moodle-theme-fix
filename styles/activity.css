@@ -1,0 +1,151 @@
+/* ------------------------------------------------------------------
+   Etkinlik sayfaları: forum, ödev, kaynak, kitap vb.
+   ------------------------------------------------------------------ */
+
+/* forum tartışma listesi */
+html[data-atm] .discussion-list,
+html[data-atm] .forum-discussion-list {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  overflow: hidden;
+}
+html[data-atm] .discussion-list thead th,
+html[data-atm] .forum-discussion-list thead th {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border-bottom: 1px solid var(--atm-border) !important;
+  font-weight: 700 !important;
+  font-size: 0.85rem !important;
+}
+html[data-atm] .discussion-list thead th a,
+html[data-atm] .forum-discussion-list thead th a {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .discussion-list tbody tr,
+html[data-atm] .forum-discussion-list tbody tr {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .discussion-list tbody tr:nth-of-type(even),
+html[data-atm] .forum-discussion-list tbody tr:nth-of-type(even) {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] .discussion-list tbody tr:hover,
+html[data-atm] .forum-discussion-list tbody tr:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .discussion-list td,
+html[data-atm] .forum-discussion-list td {
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+  vertical-align: middle !important;
+}
+html[data-atm-compact="1"] .discussion-list td,
+html[data-atm-compact="1"] .forum-discussion-list td {
+  padding: 0.45rem 0.6rem !important;
+}
+html[data-atm] .discussion-list .author-info,
+html[data-atm] .discussion-list .text-muted,
+html[data-atm] .forum-discussion-list .text-muted {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] .discussion-list a[data-type="favorite-toggle"] .icon,
+html[data-atm] a[data-type="favorite-toggle"] .icon {
+  color: var(--atm-warning) !important;
+  text-shadow: none !important;
+  opacity: 0.9;
+}
+html[data-atm] .discussion-list .pinned .icon,
+html[data-atm] .discussion-list .fa-map-pin {
+  color: var(--atm-secondary) !important;
+}
+
+/* forum gönderisi */
+html[data-atm] .forumpost,
+html[data-atm] .forum-post-container .post {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .forumpost .header,
+html[data-atm] .forum-post-container .post .header {
+  background-color: var(--atm-surface-2) !important;
+  border-bottom: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .forumpost .post-content-container,
+html[data-atm] .forumpost .posting {
+  color: var(--atm-text) !important;
+}
+html[data-atm] #id_advancedadddiscussion,
+html[data-atm] .forum-discussion-list + .p-3 a {
+  color: var(--atm-link) !important;
+  font-weight: 600;
+}
+
+/* ödev: durum tablosu */
+html[data-atm] .path-mod-assign .submissionstatustable .generaltable,
+html[data-atm] .path-mod-assign .gradingsummary .generaltable {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] .path-mod-assign .submissionstatussubmitted,
+html[data-atm] .path-mod-assign .submissionstatus {
+  border-radius: var(--atm-radius);
+}
+html[data-atm] .path-mod-assign .latesubmission,
+html[data-atm] .path-mod-assign .overdue {
+  background-color: rgba(192, 57, 43, 0.15) !important;
+  color: var(--atm-danger) !important;
+}
+html[data-atm] .path-mod-assign .earlysubmission,
+html[data-atm] .path-mod-assign .submissionstatussubmitted {
+  background-color: rgba(26, 154, 90, 0.15) !important;
+}
+
+/* kaynak / sayfa / kitap içeriği */
+html[data-atm] .path-mod-resource .resourcecontent,
+html[data-atm] .path-mod-page .box.generalbox,
+html[data-atm] .path-mod-book .book_content,
+html[data-atm] .path-mod-book #mod_book-chapter {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border-radius: var(--atm-radius-lg);
+}
+html[data-atm] .path-mod-book .block_book_toc,
+html[data-atm] .path-mod-book .book_toc {
+  background-color: var(--atm-surface) !important;
+}
+
+/* quiz */
+html[data-atm] .path-mod-quiz .que {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .path-mod-quiz .que .info {
+  background-color: var(--atm-surface-2) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .path-mod-quiz #mod_quiz_navblock .qnbutton {
+  border-radius: 4px;
+}
+html[data-atm] .path-mod-quiz .quizattemptsummary,
+html[data-atm] .path-mod-quiz .quizinfo {
+  color: var(--atm-text) !important;
+}
+
+/* Turnitin ve harici araç sayfaları */
+html[data-atm] .path-mod-turnitintooltwo .box,
+html[data-atm] .path-mod-lti .box {
+  background-color: var(--atm-surface) !important;
+}
+
+/* genel: etkinlik içindeki "generalbox" ve uyarılar */
+html[data-atm] .path-mod .box.generalbox,
+html[data-atm] .path-mod .generalbox {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}

@@ -1,0 +1,224 @@
+/* ------------------------------------------------------------------
+   Sayfa iskeleti: genişlik, başlık şeridi, hero görseli, altbilgi.
+   ------------------------------------------------------------------ */
+
+html[data-atm] #page,
+html[data-atm] #page-wrapper,
+html[data-atm] #page.drawers,
+html[data-atm] #page .main-inner,
+html[data-atm] #topofscroll {
+  background-color: var(--atm-bg) !important;
+}
+
+/* tam genişlik: Boost'un 830px "limitedwidth" kısıtını kaldır */
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner,
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .secondary-navigation,
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .tertiary-navigation,
+html[data-atm-full-width="1"] body.limitedwidth #page-header .header-maxwidth,
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers #page-header,
+html[data-atm-full-width="1"] body.limitedwidth .activity-header,
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner .container,
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner .container-fluid {
+  max-width: none !important;
+}
+html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner {
+  width: auto !important;
+}
+
+/* hero / carousel / başlık görseli */
+html[data-atm-hide-hero="1"] #herocarousel,
+html[data-atm-hide-hero="1"] .carousel.slide {
+  display: none !important;
+}
+html[data-atm-hide-hero="1"] .course-head {
+  background-image: none !important;
+}
+
+html[data-atm] .course-head {
+  min-height: 0 !important;
+  background-color: var(--atm-bg-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  padding: 0.75rem 1rem !important;
+  margin-bottom: 0.75rem !important;
+  box-shadow: none !important;
+}
+html[data-atm] .course-head .page-context-header {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0 !important;
+}
+html[data-atm] .course-head .page-header-headings h1 {
+  background: none !important;
+  color: var(--atm-text) !important;
+  padding: 0 !important;
+  margin: 0 !important;
+  font-size: 1.35rem !important;
+  font-weight: 700 !important;
+  line-height: 1.3 !important;
+  text-shadow: none !important;
+}
+html[data-atm-smart-titles="1"] .course-head .page-header-headings h1 .atm-ct-code {
+  font-size: 0.8em;
+}
+html[data-atm-smart-titles="1"] .course-head .page-header-headings h1 .atm-ct-name {
+  font-size: 1em;
+}
+html[data-atm] .course-head .breadcrumb {
+  background: transparent !important;
+  padding: 0 !important;
+  margin: 0.35rem 0 0 !important;
+  font-size: 0.85rem !important;
+}
+html[data-atm] .course-head .breadcrumb a,
+html[data-atm] .course-head .breadcrumb-item,
+html[data-atm] .course-head .breadcrumb-item + .breadcrumb-item::before {
+  color: var(--atm-text-2) !important;
+  text-shadow: none !important;
+}
+html[data-atm] .course-head .breadcrumb a:hover {
+  color: var(--atm-link-hover) !important;
+}
+
+/* etkinlik sayfası başlığındaki büyük ikon */
+html[data-atm] .page-header-image .activityiconcontainer {
+  width: 44px !important;
+  height: 44px !important;
+  border-radius: var(--atm-radius) !important;
+  margin-right: 0.75rem;
+}
+
+/* ders tamamlanma yüzdesi (Stream'in dairesi) */
+html[data-atm] .completion-meter .circle {
+  width: 48px !important;
+  height: 48px !important;
+  border-radius: 50%;
+  background-color: var(--atm-surface) !important;
+  border: 4px solid var(--atm-border) !important;
+  box-shadow: none !important;
+}
+html[data-atm] .completion-meter .circle .inner {
+  color: var(--atm-accent) !important;
+  font-size: 0.8rem !important;
+  font-weight: 700 !important;
+}
+html[data-atm] .completion-meter .circle::before,
+html[data-atm] .completion-meter .circle::after {
+  border-color: var(--atm-primary) !important;
+}
+
+/* altbilgi */
+html[data-atm-hide-footer="1"] #page-footer,
+html[data-atm-hide-footer="1"] .footer-credits {
+  display: none !important;
+}
+html[data-atm] #page-footer {
+  background-color: var(--atm-bg-2) !important;
+  color: var(--atm-text-2) !important;
+}
+
+/* ikincil menü (Course / Participants / Grades ...) */
+html[data-atm] .secondary-navigation {
+  margin-bottom: 0.5rem !important;
+}
+html[data-atm] .secondary-navigation .navigation {
+  background-color: transparent !important;
+  border-bottom: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .secondary-navigation .navigation .nav-tabs {
+  background-color: transparent !important;
+  border-bottom: 0 !important;
+}
+html[data-atm] .secondary-navigation .nav-tabs .nav-link {
+  color: var(--atm-text-2) !important;
+  border: 0 !important;
+  border-bottom: 3px solid transparent !important;
+  border-radius: 0 !important;
+  padding: 0.5rem 0.9rem !important;
+  font-weight: 600;
+  background: transparent !important;
+}
+html[data-atm] .secondary-navigation .nav-tabs .nav-link:hover {
+  color: var(--atm-link-hover) !important;
+  border-bottom-color: var(--atm-border) !important;
+}
+html[data-atm] .secondary-navigation .nav-tabs .nav-link.active {
+  color: var(--atm-accent) !important;
+  border-bottom-color: var(--atm-primary) !important;
+}
+
+/* üçüncül menü (Grader report seçicisi vb.) */
+html[data-atm] .tertiary-navigation {
+  background: transparent !important;
+}
+html[data-atm] .tertiary-navigation.full-width-bottom-border::after,
+html[data-atm] .tertiary-navigation.full-width-bottom-border {
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .tertiary-navigation-selector .dropdown-toggle {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .tertiary-navigation-selector .dropdown-menu .dropdown-item[aria-selected="true"] {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .tertiary-navigation-selector .dropdown-menu .dropdown-item:not([aria-selected="true"]):hover {
+  background-color: var(--atm-hover) !important;
+  color: var(--atm-text) !important;
+}
+
+/* Stream'in sağ alttaki yüzen düğmeleri: daha küçük, daha sessiz */
+html[data-atm] #back-to-top {
+  background-color: var(--atm-primary) !important;
+  color: var(--atm-on-primary) !important;
+  opacity: 0.75;
+  width: 36px !important;
+  height: 36px !important;
+  border-radius: 50% !important;
+  box-shadow: var(--atm-shadow) !important;
+}
+html[data-atm] #back-to-top:hover {
+  opacity: 1;
+}
+
+/* genel kartlar / bloklar */
+html[data-atm] .card,
+html[data-atm] .block,
+html[data-atm] .block .card-body,
+html[data-atm] .box.generalbox {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .card {
+  border-radius: var(--atm-radius-lg) !important;
+}
+html[data-atm] .block .card-title,
+html[data-atm] .block h5 {
+  color: var(--atm-accent) !important;
+  font-weight: 700 !important;
+}
+html[data-atm] .bg-white {
+  background-color: var(--atm-surface) !important;
+}
+html[data-atm] .bg-light {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] hr {
+  border-top-color: var(--atm-border) !important;
+}
+
+/* uyarılar */
+html[data-atm] .alert {
+  border-radius: var(--atm-radius) !important;
+}
+
+/* ana sayfa (site index) ders listesi */
+html[data-atm] #frontpage-course-list .coursebox,
+html[data-atm] .course_category_tree .category {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}

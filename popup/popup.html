@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="utf-8">
+  <title>Atılım Moodle UI Fix</title>
+  <link rel="stylesheet" href="popup.css">
+</head>
+<body>
+  <header class="head">
+    <div class="brand">
+      <span class="logo" aria-hidden="true"></span>
+      <div>
+        <div class="title">Atılım Moodle UI Fix</div>
+        <div class="sub" id="version"></div>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="group">
+      <div class="group-title">Görünüm</div>
+      <div class="row">
+        <label for="theme">Tema</label>
+        <select id="theme" data-key="theme">
+          <option value="light">Açık (gri)</option>
+          <option value="dark">Koyu</option>
+          <option value="auto">Sisteme uy</option>
+        </select>
+      </div>
+      <div class="row">
+        <label for="font">Yazı tipi</label>
+        <select id="font" data-key="font">
+          <option value="lato">Lato</option>
+          <option value="system">Sistem yazı tipi</option>
+        </select>
+      </div>
+    </section>
+
+    <section class="group">
+      <div class="group-title">Sayfa</div>
+      <label class="toggle"><input type="checkbox" data-key="fullWidth"><span>Tam genişlik</span><small>830px sınırını kaldırır</small></label>
+      <label class="toggle"><input type="checkbox" data-key="hideHero"><span>Başlık görselini gizle</span><small>Ders ve panel başlığındaki fotoğraf</small></label>
+      <label class="toggle"><input type="checkbox" data-key="hideFooter"><span>Altbilgiyi gizle</span></label>
+      <label class="toggle"><input type="checkbox" data-key="compact"><span>Sıkışık yerleşim</span><small>Daha az boşluk, daha çok içerik</small></label>
+      <label class="toggle"><input type="checkbox" data-key="simplifyNav"><span>Üst menüyü sadeleştir</span><small>Tema menülerini gizler, Panel ve Derslerim ekler</small></label>
+      <label class="toggle"><input type="checkbox" data-key="brandText"><span>Logo yerine metin</span></label>
+    </section>
+
+    <section class="group">
+      <div class="group-title">Ders içeriği</div>
+      <label class="toggle"><input type="checkbox" data-key="colorIcons"><span>İkonları renklendir</span><small>Ödev, kaynak, forum vb. amaca göre renk</small></label>
+      <label class="toggle"><input type="checkbox" data-key="indexIcons"><span>Sol dizine ikon ekle</span></label>
+      <label class="toggle"><input type="checkbox" data-key="smartTitles"><span>Ders adlarını ayrıştır</span><small>"KOD | Ad DÖNEM | Eğitmen" kalıbını satırlara böler</small></label>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <button type="button" id="reset" class="link">Varsayılanlara dön</button>
+    <span id="status" class="status" aria-live="polite"></span>
+  </footer>
+
+  <script src="popup.js"></script>
+</body>
+</html>

@@ -1,0 +1,154 @@
+/* ------------------------------------------------------------------
+   Panel ve Derslerim: ders kartları, filtreler, son erişilenler.
+   ------------------------------------------------------------------ */
+
+/* filtre satırı */
+html[data-atm] .block_myoverview [data-region="filter"] .btn,
+html[data-atm] .block_myoverview [data-region="filter"] .form-control {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .block_myoverview .dropdown-menu {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .block_myoverview .dropdown-menu .dropdown-item {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .block_myoverview .dropdown-menu .dropdown-item:hover,
+html[data-atm] .block_myoverview .dropdown-menu .dropdown-item.active,
+html[data-atm] .block_myoverview .dropdown-menu .dropdown-item[aria-current="true"] {
+  background-color: var(--atm-hover) !important;
+  color: var(--atm-text) !important;
+}
+
+/* kart ızgarası: daha sık */
+html[data-atm-compact="1"] .block_myoverview .card-grid {
+  --bs-gutter-x: 0.75rem;
+}
+html[data-atm-compact="1"] .block_myoverview .card-grid .col {
+  padding: 0.35rem !important;
+}
+
+/* kart */
+html[data-atm] .course-card {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius-lg) !important;
+  box-shadow: var(--atm-shadow);
+  overflow: hidden;
+  transition: box-shadow var(--atm-transition), transform var(--atm-transition), border-color var(--atm-transition);
+}
+html[data-atm] .course-card:hover {
+  box-shadow: var(--atm-shadow-lg);
+  border-color: var(--atm-primary-2) !important;
+}
+
+/* desenli görsel alanı: sadece ince bir renk şeridi kalsın */
+html[data-atm-compact="1"] .course-card .card-img-top {
+  height: 8px !important;
+  min-height: 0 !important;
+  border-radius: 0 !important;
+}
+html[data-atm-compact="1"] .course-card > a[tabindex="-1"] {
+  display: block;
+  line-height: 0;
+}
+
+html[data-atm] .course-card .card-body {
+  padding: 0.75rem 0.9rem 0.5rem !important;
+}
+html[data-atm] .course-card .card-footer {
+  background: transparent !important;
+  padding: 0 0.4rem 0.3rem !important;
+}
+html[data-atm] .course-card .coursename {
+  color: var(--atm-text) !important;
+  text-decoration: none !important;
+}
+html[data-atm] .course-card .coursename:hover .atm-ct-name,
+html[data-atm] .course-card .coursename:hover .multiline {
+  color: var(--atm-link-hover) !important;
+}
+html[data-atm] .course-card .categoryname {
+  color: var(--atm-muted) !important;
+  font-size: 0.8rem !important;
+}
+
+/* zengin başlık için kesmeyi kaldır */
+html[data-atm-smart-titles="1"] .course-card .text-truncate,
+html[data-atm-smart-titles="1"] .course-card .coursename,
+html[data-atm-smart-titles="1"] .course-card .multiline {
+  white-space: normal !important;
+  overflow: visible !important;
+}
+html[data-atm-smart-titles="1"] .course-card .atm-ct {
+  gap: 4px;
+  margin-bottom: 4px;
+}
+html[data-atm-smart-titles="1"] .course-card .atm-ct-name {
+  font-size: 0.98rem;
+}
+html[data-atm-smart-titles="1"] .course-card .atm-ct-meta {
+  font-size: 0.78rem;
+}
+
+/* kart menüsü ve yıldız */
+html[data-atm] .course-card .coursemenubtn .icon,
+html[data-atm] .course-card .coursemenubtn {
+  color: var(--atm-muted) !important;
+}
+html[data-atm] .course-card .coursemenubtn:hover .icon {
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .course-card [data-region="is-favourite"] .icon {
+  color: var(--atm-warning) !important;
+}
+html[data-atm] .course-card .dropdown-menu {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .course-card .dropdown-menu .dropdown-item {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .course-card .dropdown-menu .dropdown-item:hover {
+  background-color: var(--atm-hover) !important;
+}
+
+/* ilerleme çubuğu (varsa) */
+html[data-atm] .course-card .progress {
+  background-color: var(--atm-surface-2) !important;
+  height: 6px !important;
+}
+html[data-atm] .course-card .progress-bar {
+  background-color: var(--atm-primary-2) !important;
+}
+
+/* liste görünümü */
+html[data-atm] .course-listitem {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .course-listitem:hover {
+  background-color: var(--atm-hover) !important;
+}
+
+/* sayfalama */
+html[data-atm] .block_myoverview .paged-content-page-container {
+  background: transparent !important;
+}
+
+/* "Request a course" düğmesi */
+html[data-atm] .course-request .btn {
+  margin: 0 !important;
+}
+
+/* Timeline / Calendar blokları */
+html[data-atm] .block_timeline .list-group-item,
+html[data-atm] .block_calendar_month .calendarmonth td {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
