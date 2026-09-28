@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Üst çubuk: marka, birincil menü, kullanıcı menüsü, düzenleme anahtarı.
+   Top bar: brand, primary menu, user menu, edit-mode switch.
    ------------------------------------------------------------------ */
 
 html[data-atm] .navbar.fixed-top {
@@ -8,7 +8,7 @@ html[data-atm] .navbar.fixed-top {
   box-shadow: 0 1px 0 rgba(255, 255, 255, 0.08), var(--atm-shadow) !important;
 }
 
-/* marka */
+/* brand */
 html[data-atm-brand-text="1"] .navbar-brand img.logo {
   display: none !important;
 }
@@ -27,7 +27,7 @@ html[data-atm] .navbar-brand {
   padding-right: 0.5rem !important;
 }
 
-/* birincil menü */
+/* primary menu */
 html[data-atm] .primary-navigation .nav-link,
 html[data-atm] .navbar-light .navbar-nav .nav-link {
   color: rgba(255, 255, 255, 0.85) !important;
@@ -47,7 +47,7 @@ html[data-atm] .primary-navigation .navbar-nav .nav-link[aria-current]::after {
   display: none !important;
 }
 
-/* tema menülerini gizle (Instructor, Student, FAQ, ...) */
+/* hide the theme's custom menus (Instructor, Student, FAQ, ...) */
 html[data-atm-simplify-nav="1"] .primary-navigation .atm-nav-extra,
 html[data-atm-simplify-nav="1"] .primary-navigation .dropdownmoremenu .dropdown-item.atm-nav-extra {
   display: none !important;
@@ -59,7 +59,7 @@ html[data-atm-simplify-nav="1"] .primary-navigation .atm-nav-added {
   display: list-item;
 }
 
-/* navbar açılır menüleri koyu */
+/* navbar dropdowns use the dark brand colour */
 html[data-atm] .navbar .dropdown-menu {
   background-color: var(--atm-primary) !important;
   border: 1px solid rgba(255, 255, 255, 0.15) !important;
@@ -79,7 +79,7 @@ html[data-atm] .navbar .dropdown-menu .dropdown-item.active {
   color: var(--atm-on-primary) !important;
 }
 
-/* kullanıcı alanı: bildirim, mesaj, avatar */
+/* user area: notifications, messages, avatar */
 html[data-atm] #usernavigation .nav-link,
 html[data-atm] #usernavigation .popover-region-toggle,
 html[data-atm] #usernavigation .btn,
@@ -109,7 +109,7 @@ html[data-atm] .langmenu .dropdown-toggle {
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* bildirim / mesaj açılır kutuları: açık zemin (koyu menüden ayrı) */
+/* notification / message popovers: surface colour, not the dark menu colour */
 html[data-atm] .popover-region-container {
   background-color: var(--atm-surface) !important;
   border-color: var(--atm-border) !important;
@@ -139,7 +139,7 @@ html[data-atm] .popover-region .count-container {
   color: #fff !important;
 }
 
-/* düzenleme modu anahtarı */
+/* edit mode switch */
 html[data-atm] .editmode-switch-form label,
 html[data-atm] label[for$="-editingswitch"] {
   color: var(--atm-on-primary) !important;
@@ -150,7 +150,7 @@ html[data-atm] .editmode-switch-form .custom-control-input:checked ~ .custom-con
   border-color: var(--atm-secondary) !important;
 }
 
-/* birincil çekmece (mobil menü) */
+/* primary drawer (mobile menu) */
 html[data-atm] #theme_boost-drawers-primary {
   background-color: var(--atm-bg-2) !important;
 }

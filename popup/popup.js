@@ -1,5 +1,5 @@
-/* Ayar penceresi: chrome.storage.sync'teki "settings" nesnesini okur/yazar.
-   Anahtar adları content/settings.js'teki DEFAULTS ile birebir aynıdır. */
+/* Settings popup: reads and writes the "settings" object in
+   chrome.storage.sync. Keys must match DEFAULTS in content/settings.js. */
 (function () {
   'use strict';
 
@@ -61,7 +61,7 @@
 
   try {
     document.getElementById('version').textContent = 'v' + chrome.runtime.getManifest().version;
-  } catch (e) { /* yoksay */ }
+  } catch (e) { /* ignore */ }
 
   chrome.storage.sync.get(KEY, function (data) {
     if (!chrome.runtime.lastError && data && data[KEY]) {

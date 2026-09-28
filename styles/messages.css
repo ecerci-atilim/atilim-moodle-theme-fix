@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Mesaj çekmecesi ve bildirimler.
+   Messaging drawer and notifications.
    ------------------------------------------------------------------ */
 
 html[data-atm] [data-region="message-drawer"] {
@@ -70,7 +70,7 @@ html[data-atm] [data-region="message-drawer"] .nav-pills .nav-link.active {
   color: var(--atm-on-selected) !important;
 }
 
-/* konuşma görünümü */
+/* conversation view */
 html[data-atm] [data-region="message-drawer"] [data-region="content-message-container"] {
   background-color: var(--atm-bg-2) !important;
 }

@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------
-   Etkinlik sayfaları: forum, ödev, kaynak, kitap vb.
+   Activity pages: forum, assignment, resource, book, quiz, etc.
    ------------------------------------------------------------------ */
 
-/* forum tartışma listesi */
+/* forum discussion list */
 html[data-atm] .discussion-list,
 html[data-atm] .forum-discussion-list {
   background-color: var(--atm-surface) !important;
@@ -61,7 +61,7 @@ html[data-atm] .discussion-list .fa-map-pin {
   color: var(--atm-secondary) !important;
 }
 
-/* forum gönderisi */
+/* forum post */
 html[data-atm] .forumpost,
 html[data-atm] .forum-post-container .post {
   background-color: var(--atm-surface) !important;
@@ -84,7 +84,7 @@ html[data-atm] .forum-discussion-list + .p-3 a {
   font-weight: 600;
 }
 
-/* ödev: durum tablosu */
+/* assignment: status table */
 html[data-atm] .path-mod-assign .submissionstatustable .generaltable,
 html[data-atm] .path-mod-assign .gradingsummary .generaltable {
   background-color: var(--atm-surface) !important;
@@ -103,7 +103,7 @@ html[data-atm] .path-mod-assign .submissionstatussubmitted {
   background-color: rgba(26, 154, 90, 0.15) !important;
 }
 
-/* kaynak / sayfa / kitap içeriği */
+/* resource / page / book content */
 html[data-atm] .path-mod-resource .resourcecontent,
 html[data-atm] .path-mod-page .box.generalbox,
 html[data-atm] .path-mod-book .book_content,
@@ -136,16 +136,108 @@ html[data-atm] .path-mod-quiz .quizinfo {
   color: var(--atm-text) !important;
 }
 
-/* Turnitin ve harici araç sayfaları */
+/* Turnitin and external tool pages */
 html[data-atm] .path-mod-turnitintooltwo .box,
 html[data-atm] .path-mod-lti .box {
   background-color: var(--atm-surface) !important;
 }
 
-/* genel: etkinlik içindeki "generalbox" ve uyarılar */
+/* generic: "generalbox" containers inside activities */
 html[data-atm] .path-mod .box.generalbox,
 html[data-atm] .path-mod .generalbox {
   background-color: var(--atm-surface) !important;
   border-color: var(--atm-border) !important;
   color: var(--atm-text) !important;
+}
+
+/* jQuery UI tabs and widgets (Turnitin and other third-party plugins) */
+html[data-atm] .ui-widget,
+html[data-atm] .ui-widget-content {
+  background: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+  font-family: inherit !important;
+}
+html[data-atm] .ui-widget-header,
+html[data-atm] .ui-tabs .ui-tabs-nav {
+  background: var(--atm-surface-2) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .ui-state-default,
+html[data-atm] .ui-widget-content .ui-state-default,
+html[data-atm] .ui-widget-header .ui-state-default {
+  background: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .ui-state-default a,
+html[data-atm] .ui-state-default a:link,
+html[data-atm] .ui-state-default a:visited {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .ui-state-active,
+html[data-atm] .ui-widget-content .ui-state-active,
+html[data-atm] .ui-widget-header .ui-state-active {
+  background: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .ui-state-active a,
+html[data-atm] .ui-state-active a:link {
+  color: var(--atm-accent) !important;
+}
+
+/* DataTables (Turnitin submission inbox) */
+html[data-atm] table.dataTable,
+html[data-atm] table.dataTable thead th,
+html[data-atm] table.dataTable thead td,
+html[data-atm] table.dataTable tbody tr,
+html[data-atm] table.dataTable tbody td {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] table.dataTable thead th,
+html[data-atm] table.dataTable thead th div {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] table.dataTable tbody tr.odd > td {
+  background-color: var(--atm-surface-2) !important;
+}
+html[data-atm] table.dataTable tbody tr:hover > td {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .dataTables_wrapper .dataTables_info,
+html[data-atm] .dataTables_wrapper .dataTables_length,
+html[data-atm] .dataTables_wrapper .dataTables_filter,
+html[data-atm] .dataTables_wrapper label {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .dataTables_wrapper .dataTables_paginate .paginate_button {
+  background: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .dataTables_wrapper .dataTables_paginate .paginate_button.current,
+html[data-atm] .dataTables_wrapper .dataTables_paginate .paginate_button:hover:not(.disabled) {
+  background: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .dataTables_wrapper .dataTables_paginate .paginate_button.disabled {
+  color: var(--atm-muted) !important;
+  opacity: 0.6;
+}
+html[data-atm] .dataTables_wrapper input,
+html[data-atm] .dataTables_wrapper select {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .mod_turnitintooltwo_listbar,
+html[data-atm] .mod_turnitintooltwo_listbar-container {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
 }

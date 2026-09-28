@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
-   Sol çekmece: ders dizini (course index). Bölüm başlıkları ile
-   etkinlikler ayrılır, etkinliklere ikon ve girinti gelir.
+   Left drawer: the course index. Section titles are separated from
+   activities, and activities get an icon and indentation.
    ------------------------------------------------------------------ */
 
 html[data-atm] .drawer {
@@ -18,7 +18,7 @@ html[data-atm] .drawer .drawercontent {
   background-color: transparent !important;
 }
 
-/* çekmece başlığı */
+/* drawer header */
 html[data-atm] .drawerheader {
   display: flex !important;
   align-items: center !important;
@@ -60,7 +60,7 @@ html[data-atm] .drawerheader .courseindexheading .atm-ct-name {
   white-space: nowrap;
   font-size: 0.88rem;
 }
-/* akıllı başlık kapalıysa ham metni tek satıra sığdır */
+/* with smart titles off, keep the raw title on one line */
 html[data-atm-smart-titles="0"] .drawerheader .courseindexheading {
   white-space: nowrap;
   overflow: hidden;
@@ -101,7 +101,7 @@ html[data-atm] .drawerheader .drawerheadercontent .btn .icon {
   margin: 0 !important;
 }
 
-/* çekmece açma düğmeleri (sayfa kenarındaki) */
+/* drawer toggles on the page edge */
 html[data-atm] .drawer-toggler .btn {
   background-color: var(--atm-primary) !important;
   color: var(--atm-on-primary) !important;
@@ -121,7 +121,7 @@ html[data-atm] .drawer-toggler .btn .icon {
   color: inherit !important;
 }
 
-/* dizin gövdesi */
+/* index body */
 html[data-atm] .drawer-left .drawercontent .courseindex {
   background-color: transparent !important;
   padding: 0.35rem 0.4rem !important;
@@ -133,7 +133,7 @@ html[data-atm] .courseindex-section {
   padding: 0 !important;
 }
 
-/* bölüm başlığı satırı */
+/* section title row */
 html[data-atm] .courseindex-item.courseindex-section-title {
   background-color: var(--atm-bg-3) !important;
   border: 1px solid var(--atm-border) !important;
@@ -171,14 +171,14 @@ html[data-atm] .courseindex-section.pageitem > .courseindex-section-title .icon 
   color: var(--atm-on-selected) !important;
 }
 
-/* bölüm içeriği: girinti ve ince çizgi */
+/* section content: indentation and a thin guide line */
 html[data-atm] .courseindex-sectioncontent {
   margin: 2px 0 0 10px !important;
   padding: 0 0 0 6px !important;
   border-left: 2px solid var(--atm-border) !important;
 }
 
-/* etkinlik satırı */
+/* activity row */
 html[data-atm] .courseindex-item[data-for="cm"] {
   display: flex !important;
   align-items: center !important;
@@ -231,7 +231,7 @@ html[data-atm] .courseindex-item .courseindex-locked .icon {
   font-size: 0.8rem;
 }
 
-/* eklenen ikon */
+/* injected icon */
 html[data-atm] .atm-ci-icon {
   display: none;
   flex-shrink: 0;
@@ -259,19 +259,19 @@ html[data-atm-color-icons="0"] .atm-ci-icon .activityicon {
   opacity: 0.7;
 }
 
-/* gizli / kısıtlı etkinlikler soluk */
+/* hidden / restricted activities are dimmed */
 html[data-atm] .courseindex-item.dimmed .courseindex-link,
 html[data-atm] .courseindex-item[data-for="cm"].dimmed {
   opacity: 0.6;
 }
 
-/* çekmece kaydırma çubuğu ince */
+/* thin drawer scrollbar */
 html[data-atm] .drawercontent {
   scrollbar-width: thin;
   scrollbar-color: var(--atm-border) transparent;
 }
 
-/* sağ çekmece (bloklar) */
+/* right drawer (blocks) */
 html[data-atm] #theme_boost-drawers-blocks .block {
   background-color: var(--atm-surface) !important;
   border: 1px solid var(--atm-border) !important;

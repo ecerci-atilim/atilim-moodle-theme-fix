@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------
-   Düğmeler, formlar, açılır menüler, modal pencereler, etkinlik seçici.
+   Buttons, forms, dropdowns, modals, the activity chooser, editors.
    ------------------------------------------------------------------ */
 
-/* düğmeler */
+/* buttons */
 html[data-atm] .btn {
   border-radius: var(--atm-radius) !important;
   transition: background-color var(--atm-transition), border-color var(--atm-transition), color var(--atm-transition);
@@ -73,7 +73,7 @@ html[data-atm] .mform .btn-cancel input[type="submit"]:hover {
   background-color: var(--atm-hover) !important;
 }
 
-/* form alanları */
+/* form fields */
 html[data-atm] .form-control,
 html[data-atm] .custom-select,
 html[data-atm] select,
@@ -130,7 +130,7 @@ html[data-atm] .form-control-feedback {
   color: var(--atm-muted) !important;
 }
 
-/* mform: katlanabilir bölümler */
+/* mform: collapsible sections */
 html[data-atm] .mform .collapsible .fheader,
 html[data-atm] .mform fieldset legend a,
 html[data-atm] .mform .fcontainer > legend {
@@ -168,7 +168,7 @@ html[data-atm] .mform .felement .text-muted {
   color: var(--atm-muted) !important;
 }
 
-/* genel açılır menüler (navbar dışı) */
+/* generic dropdowns (outside the navbar) */
 html[data-atm] .dropdown-menu:not(.navbar .dropdown-menu) {
   background-color: var(--atm-surface) !important;
   border: 1px solid var(--atm-border) !important;
@@ -204,7 +204,7 @@ html[data-atm] .dropdown-header {
   color: var(--atm-muted) !important;
 }
 
-/* zengin açılır liste (seçenek listesi) */
+/* rich choice list dropdown */
 html[data-atm] .mform .dropdown button[data-for="dropdowndialog_button"] {
   color: var(--atm-text) !important;
 }
@@ -255,7 +255,7 @@ html[data-atm] .modal-footer {
   border-top: 1px solid var(--atm-border) !important;
 }
 
-/* etkinlik seçici (Add an activity or resource) */
+/* activity chooser (Add an activity or resource) */
 html[data-atm] .modchoosercontainer .nav-tabs .nav-link {
   color: var(--atm-text-2) !important;
   border-color: transparent !important;
@@ -296,7 +296,7 @@ html[data-atm] .modchoosercontainer .searchbar .form-control {
   border-color: var(--atm-border) !important;
 }
 
-/* sekmeler (genel) */
+/* tabs (generic) */
 html[data-atm] .nav-tabs {
   border-bottom-color: var(--atm-border) !important;
 }
@@ -316,7 +316,7 @@ html[data-atm] .nav-pills .nav-link.active {
   color: var(--atm-on-selected) !important;
 }
 
-/* rozetler */
+/* badges */
 html[data-atm] .badge-primary,
 html[data-atm] .badge.bg-primary {
   background-color: var(--atm-primary) !important;
@@ -329,7 +329,7 @@ html[data-atm] .badge.bg-secondary {
   border: 1px solid var(--atm-border);
 }
 
-/* ipuçları */
+/* tooltips and popovers */
 html[data-atm] .tooltip-inner {
   background-color: var(--atm-primary) !important;
   color: var(--atm-on-primary) !important;
@@ -349,7 +349,80 @@ html[data-atm] .popover-body {
   color: var(--atm-text) !important;
 }
 
-/* editör (TinyMCE / Atto) çerçevesi */
+/* icon-only buttons (form section toggles, search submit) */
+/* :where() keeps this at low specificity so component rules still win */
+html[data-atm] :where(.btn-icon) {
+  background-color: transparent !important;
+  color: var(--atm-accent) !important;
+}
+html[data-atm] .ftoggler .btn-icon,
+html[data-atm] .fheader.btn-icon {
+  background-color: var(--atm-surface-2) !important;
+  border: 1px solid var(--atm-border) !important;
+}
+html[data-atm] .btn-submit,
+html[data-atm] .search-icon.btn {
+  background-color: var(--atm-surface-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .btn-submit:hover,
+html[data-atm] .search-icon.btn:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .btn-submit .icon,
+html[data-atm] .search-icon.btn .icon {
+  color: inherit !important;
+}
+
+/* Atto editor (the site's default editor; a contenteditable div, no iframe) */
+html[data-atm] .editor_atto {
+  border-color: var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .editor_atto_toolbar {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .editor_atto_toolbar .atto_group {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .editor_atto_toolbar button {
+  background-color: transparent !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .editor_atto_toolbar button:hover {
+  background-color: var(--atm-hover) !important;
+}
+html[data-atm] .editor_atto_toolbar button.highlight,
+html[data-atm] .editor_atto_toolbar button[aria-pressed="true"] {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .editor_atto_toolbar button .icon {
+  color: inherit !important;
+}
+html[data-atm] .editor_atto_content,
+html[data-atm] .editor_atto_content_wrap {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .editor_atto_menu,
+html[data-atm] .atto_menu .dropdown-menu,
+html[data-atm] .moodle-dialogue-base .moodle-dialogue-wrap {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border-color: var(--atm-border) !important;
+}
+html[data-atm] .moodle-dialogue-base .moodle-dialogue-hd {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text) !important;
+}
+
+/* editor chrome (TinyMCE / Atto) */
 html[data-atm] .editor_atto_toolbar,
 html[data-atm] .tox .tox-toolbar,
 html[data-atm] .tox .tox-toolbar__primary,

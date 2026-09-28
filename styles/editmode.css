@@ -1,9 +1,9 @@
 /* ------------------------------------------------------------------
-   Düzenleme modu (eğitmen): bölüm başlıkları, etkinlik ekleme,
-   toplu işlem çubuğu, blok ekleme, sürükle bırak.
+   Edit mode (teachers): section headers, add-activity buttons,
+   bulk-edit footer, add block, drag and drop.
    ------------------------------------------------------------------ */
 
-/* düzenleme modunda bölüm başlığı belirgin */
+/* section headers stand out in edit mode */
 html[data-atm] body.editing .course-section .course-section-header {
   background-color: var(--atm-primary) !important;
   border-radius: var(--atm-radius) !important;
@@ -30,7 +30,7 @@ html[data-atm] body.editing .course-section .course-section-header .badge {
   color: var(--atm-on-primary) !important;
 }
 
-/* etkinlik ekle düğmesi */
+/* add activity button */
 html[data-atm] .course-content .section-modchooser,
 html[data-atm] .course-content .section-modchooser-link,
 html[data-atm] .course-content .section-modchooser .btn,
@@ -61,7 +61,7 @@ html[data-atm] .course-content .add-section .btn {
   background-color: var(--atm-surface) !important;
 }
 
-/* etkinlik eylem menüsü (üç nokta) */
+/* activity action menu (kebab) */
 html[data-atm] .activity-actions .btn,
 html[data-atm] .activity-actions .btn .icon,
 html[data-atm] .section-actions .btn .icon {
@@ -72,14 +72,14 @@ html[data-atm] .section-actions .btn:hover .icon {
   color: var(--atm-accent) !important;
 }
 
-/* sürükleme tutamağı */
+/* drag handle */
 html[data-atm] .activity-item .dragicon,
 html[data-atm] .course-section-header .dragicon,
 html[data-atm] [data-for="cmDragHandle"] {
   color: var(--atm-muted) !important;
 }
 
-/* toplu seçim kutuları */
+/* bulk-select checkboxes */
 html[data-atm] .bulkselect input[type="checkbox"],
 html[data-atm] input[data-bulkcheckbox] {
   accent-color: var(--atm-primary);
@@ -96,7 +96,7 @@ html[data-atm] [data-action="bulkEnable"]:hover {
   background-color: var(--atm-primary-2) !important;
 }
 
-/* toplu işlem çubuğu (alttaki sabit şerit) */
+/* bulk-edit footer (sticky bar at the bottom) */
 html[data-atm] #sticky-footer,
 html[data-atm] .sticky-footer {
   background-color: var(--atm-primary) !important;
@@ -129,7 +129,7 @@ html[data-atm] #sticky-footer .bulkcancel .btn:hover {
   border-radius: 50%;
 }
 
-/* blok ekleme */
+/* add block */
 html[data-atm] .add_block_button .block-add,
 html[data-atm] [data-key="addblock"] .btn {
   background-color: var(--atm-primary) !important;
@@ -143,7 +143,7 @@ html[data-atm] [data-key="addblock"] .btn:hover {
   background-color: var(--atm-primary-2) !important;
 }
 
-/* satır içi ad düzenleme */
+/* inline name editing */
 html[data-atm] .inplaceeditable .quickeditlink,
 html[data-atm] .inplaceeditable .quickediticon .icon {
   color: var(--atm-muted) !important;
@@ -155,7 +155,7 @@ html[data-atm] .inplaceeditable input.form-control {
   background-color: var(--atm-surface) !important;
 }
 
-/* gizli / kısıtlı etkinlik uyarı rozetleri */
+/* hidden / restricted badges */
 html[data-atm] .activity-item .badge-info,
 html[data-atm] .activity-item .badge.bg-info,
 html[data-atm] .section-item .badge-info {
@@ -173,7 +173,7 @@ html[data-atm] .activity-item .dimmed_text a {
   color: var(--atm-muted) !important;
 }
 
-/* sürükleme hedefi ve taşıma menüsü */
+/* drop targets and move menu */
 html[data-atm] .course-content .dropready,
 html[data-atm] .course-content .dropup,
 html[data-atm] .course-content .dropdown-menu .dropdown-item.dropready {
@@ -183,7 +183,7 @@ html[data-atm] .course-content .activity-item.dragging {
   opacity: 0.5;
 }
 
-/* ayarlar sayfasındaki yönetim menüsü (course/admin) */
+/* course administration page cards */
 html[data-atm] .path-course #region-main .card,
 html[data-atm] #page-course-admin .card {
   background-color: var(--atm-surface) !important;

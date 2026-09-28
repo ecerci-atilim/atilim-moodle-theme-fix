@@ -1,6 +1,6 @@
 /* ------------------------------------------------------------------
-   Koyu tema. Önce paleti yeniden tanımlar; sonra Bootstrap / Moodle'ın
-   sabit beyaz zeminli parçalarını değişkenlere bağlar.
+   Dark theme. First redefines the palette, then rebinds the Bootstrap /
+   Moodle / Stream pieces that hard-code a white background.
    ------------------------------------------------------------------ */
 
 html[data-atm-theme="dark"] {
@@ -47,7 +47,7 @@ html[data-atm-theme="dark"] {
   --atm-shadow-lg: 0 6px 18px rgba(0, 0, 0, 0.55);
 }
 
-/* metin ve zemin varsayılanları */
+/* text and background defaults */
 html[data-atm-theme="dark"] body,
 html[data-atm-theme="dark"] #page,
 html[data-atm-theme="dark"] #page-content,
@@ -89,7 +89,7 @@ html[data-atm-theme="dark"] .border-right {
   border-color: var(--atm-border) !important;
 }
 
-/* navbar: koyu temada biraz daha koyu ve çizgili */
+/* navbar: slightly darker, with a bottom border */
 html[data-atm-theme="dark"] .navbar.fixed-top {
   background-color: #111a3d !important;
   border-bottom: 1px solid var(--atm-border) !important;
@@ -98,7 +98,7 @@ html[data-atm-theme="dark"] .navbar .dropdown-menu {
   background-color: #1a2452 !important;
 }
 
-/* içerik (kullanıcı tarafından yazılan HTML) */
+/* user-authored HTML */
 html[data-atm-theme="dark"] .no-overflow,
 html[data-atm-theme="dark"] .summarytext,
 html[data-atm-theme="dark"] .activity-description,
@@ -109,36 +109,34 @@ html[data-atm-theme="dark"] .forumpost .content,
 html[data-atm-theme="dark"] .post-content-container {
   color: var(--atm-text) !important;
 }
-html[data-atm-theme="dark"] .no-overflow *[style*="color: rgb(0, 0, 0)"],
-html[data-atm-theme="dark"] .no-overflow *[style*="color:#000"],
-html[data-atm-theme="dark"] .no-overflow *[style*="color: #000"],
-html[data-atm-theme="dark"] .no-overflow font[color="#000000"] {
+/* Contrast fixes computed by features.js (darkContent). The marks stay on
+   the elements after switching to light, so every rule is scoped to dark.
+   "html[..][data-atm] body" lifts specificity above the generic table and
+   content rules so a mark always wins. */
+html[data-atm-theme="dark"][data-atm] body [data-atm-fg="dark"] {
+  color: #1d2125 !important;
+}
+html[data-atm-theme="dark"][data-atm] body a[data-atm-fg="dark"],
+html[data-atm-theme="dark"][data-atm] body [data-atm-fg="dark"] a {
+  color: #1c3d9c !important;
+}
+html[data-atm-theme="dark"][data-atm] body [data-atm-fg="light"] {
   color: var(--atm-text) !important;
 }
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color: rgb(255, 255, 255)"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color:#fff"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color: #fff"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background: white"] {
-  background-color: transparent !important;
+html[data-atm-theme="dark"][data-atm] body a[data-atm-fg="light"] {
+  color: var(--atm-link) !important;
 }
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color: rgb(255, 255, 0)"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color: yellow"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color:#ffff00"],
-html[data-atm-theme="dark"] .no-overflow *[style*="background-color: #ffff00"] {
-  background-color: #6b5d00 !important;
-  color: #fff !important;
-}
+/* only the borders: text colour inside authored tables is handled above */
 html[data-atm-theme="dark"] .no-overflow table,
 html[data-atm-theme="dark"] .no-overflow td,
 html[data-atm-theme="dark"] .no-overflow th {
   border-color: var(--atm-border) !important;
-  color: var(--atm-text) !important;
 }
 html[data-atm-theme="dark"] .no-overflow img:not(.icon):not(.activityicon):not(.userpicture) {
   opacity: 0.92;
 }
 
-/* formlar ve seçim öğeleri */
+/* forms and selects */
 html[data-atm-theme="dark"] .custom-select,
 html[data-atm-theme="dark"] select {
   background-color: var(--atm-surface) !important;
@@ -163,6 +161,10 @@ html[data-atm-theme="dark"] .btn-outline-light {
   border-color: var(--atm-border) !important;
   color: var(--atm-text) !important;
 }
+/* plain .btn without a colour variant (Bootstrap gives it dark text) */
+html[data-atm-theme="dark"] .btn:not(:is(.btn-primary, .btn-secondary, .btn-success, .btn-danger, .btn-warning, .btn-info, .btn-light, .btn-dark, .btn-link, [class*="btn-outline"])) {
+  color: var(--atm-text) !important;
+}
 html[data-atm-theme="dark"] .btn-icon,
 html[data-atm-theme="dark"] .btn-icon .icon {
   color: var(--atm-text-2) !important;
@@ -176,7 +178,7 @@ html[data-atm-theme="dark"] .btn-close {
   text-shadow: none !important;
 }
 
-/* listeler, uyarılar, rozetler */
+/* lists, alerts, badges */
 html[data-atm-theme="dark"] .list-group-item {
   background-color: var(--atm-surface) !important;
   border-color: var(--atm-border) !important;
@@ -224,7 +226,7 @@ html[data-atm-theme="dark"] .badge.bg-warning {
   color: #ffe8a3 !important;
 }
 
-/* açılır menü ve modal arka planı */
+/* modal backdrop */
 html[data-atm-theme="dark"] .modal-backdrop {
   background-color: #000 !important;
   opacity: 0.7 !important;
@@ -233,7 +235,7 @@ html[data-atm-theme="dark"] .modal-content {
   box-shadow: var(--atm-shadow-lg) !important;
 }
 
-/* ikonlar: siyah ikon fontları okunur olsun */
+/* icons: keep dark image icons readable */
 html[data-atm-theme="dark"] .icon:not(.activityicon):not(.text-primary):not(.text-danger):not(.text-success):not(.text-warning) {
   color: inherit;
 }
@@ -244,12 +246,24 @@ html[data-atm-theme="dark"] .userpicture {
   filter: none;
 }
 
-/* ders kartlarındaki desen görseli: koyuda solgun */
+/* Moodle dims hidden/restricted items with mix-blend-mode: multiply, which
+   only works on a light background; on a dark one it turns them black.
+   Use opacity instead. */
+html[data-atm-theme="dark"] :is(.hiddenactivity, .dimmed, .dimmed_text, .isrestricted) :is(.activityiconcontainer, .badge, .activityicon, img),
+html[data-atm-theme="dark"] :is(.activityiconcontainer, .badge).dimmed {
+  mix-blend-mode: normal !important;
+}
+html[data-atm-theme="dark"] .hiddenactivity .activityiconcontainer,
+html[data-atm-theme="dark"] .courseindex-item.dimmed .atm-ci-icon {
+  opacity: 0.55;
+}
+
+/* course card pattern strip: muted in dark */
 html[data-atm-theme="dark"] .course-card .card-img-top {
   opacity: 0.8;
 }
 
-/* kod blokları */
+/* code blocks */
 html[data-atm-theme="dark"] pre,
 html[data-atm-theme="dark"] code {
   background-color: #1a1d24 !important;
@@ -257,18 +271,18 @@ html[data-atm-theme="dark"] code {
   border-color: var(--atm-border) !important;
 }
 
-/* kaydırma çubukları */
+/* scrollbars */
 html[data-atm-theme="dark"] * {
   scrollbar-color: #4a5162 #1b1e25;
 }
 
-/* seçim rengi */
+/* selection colour */
 html[data-atm-theme="dark"] ::selection {
   background: #3d57ad;
   color: #fff;
 }
 
-/* Stream'e özel kalıntılar */
+/* Stream-specific leftovers */
 html[data-atm-theme="dark"] .course-head,
 html[data-atm-theme="dark"] .course-head .page-header-headings h1 {
   color: var(--atm-text) !important;

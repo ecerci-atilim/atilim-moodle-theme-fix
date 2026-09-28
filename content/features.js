@@ -1,7 +1,7 @@
 /*
- * DOM'a dokunan özellikler. Her özellik idempotent: aynı sayfada defalarca
- * çağrılabilir, işaretlediği öğeleri ikinci kez ellemez. main.js bunları
- * hem yüklemede hem her DOM değişikliğinde (debounce ile) çalıştırır.
+ * Features that touch the DOM. Every feature is idempotent: it can run many
+ * times on the same page and never re-processes an element it already
+ * marked. main.js runs them on load and after every (debounced) DOM change.
  */
 (function () {
   'use strict';
@@ -10,7 +10,7 @@
   const F = (ATM.features = {});
 
   /* ------------------------------------------------------------------ */
-  /* Yardımcılar                                                         */
+  /* Helpers                                                             */
   /* ------------------------------------------------------------------ */
 
   function on(key) { return !!ATM.settings[key]; }
@@ -19,14 +19,16 @@
 
   function t(tr, en) { return isTurkish() ? tr : en; }
 
-  // Ders id'si: body sınıfı "course-1225" en güvenilir kaynak. course-1 site.
+  // Course id: the body class "course-1225" is the most reliable source.
+  // course-1 is the site itself, not a course.
   ATM.courseId = function () {
     const m = document.body && document.body.className.match(/\bcourse-(\d+)\b/);
     if (!m || m[1] === '1') return null;
     return m[1];
   };
 
-  // Tema adı ve revizyonu: stylesheet URL'sinden (content script M.cfg'yi göremez).
+  // Theme name and revision, read from the stylesheet URL (a content script
+  // cannot see the page's M.cfg object).
   let themeInfo = null;
   function getThemeInfo() {
     if (themeInfo) return themeInfo;
@@ -36,7 +38,8 @@
     return themeInfo;
   }
 
-  // Modül adı -> Moodle "purpose" (Boost bu bilgiyle ikonları renklendirir).
+  // Module name -> Moodle "purpose" group (Boost colours icons by purpose).
+  // Also used to fix third-party modules that Stream files under "other".
   const PURPOSE = {
     assign: 'assessment', quiz: 'assessment', workshop: 'assessment', turnitintooltwo: 'assessment',
     lesson: 'interactivecontent', h5pactivity: 'interactivecontent', scorm: 'interactivecontent', hvp: 'interactivecontent',
@@ -64,7 +67,7 @@
   }
 
   /* ------------------------------------------------------------------ */
-  /* 1. Navbar: logo yerine metin                                        */
+  /* 1. Navbar: text instead of the logo image                           */
   /* ------------------------------------------------------------------ */
 
   F.brandText = function () {
@@ -77,28 +80,32 @@
   };
 
   /* ------------------------------------------------------------------ */
-  /* 2. Navbar: tema menülerini işaretle, Derslerim linki ekle           */
+  /* 2. Navbar: flag the theme's custom menus, add Dashboard/My courses  */
   /* ------------------------------------------------------------------ */
 
+  // Primary menu links that stay visible; everything else (the theme's
+  // dropdown-only menus such as Instructor, Student, FAQ) is flagged and
+  // hidden by navbar.css.
   const KEEP_NAV = [/^\/?$/, /^\/my\/?$/, /^\/my\/courses\.php/, /^\/calendar\//, /^\/course\/index\.php/];
 
   F.simplifyNav = function () {
     const nav = document.querySelector('.primary-navigation .moremenu ul.navbar-nav, .primary-navigation ul.navbar-nav');
     if (!nav) return;
+    let changed = false;
 
     nav.querySelectorAll('li.nav-item:not([data-atm-nav])').forEach(function (li) {
       li.setAttribute('data-atm-nav', '1');
       const a = li.querySelector('a.nav-link');
       if (!a) return;
-      if (li.classList.contains('dropdownmoremenu')) return; // "More" taşma menüsü
+      if (li.classList.contains('dropdownmoremenu')) return; // the "More" overflow menu itself
       let path;
       try { path = new URL(a.getAttribute('href') || '#', location.origin); } catch (e) { return; }
       const samePage = a.getAttribute('href') === '#' || path.origin !== location.origin;
       const keep = !samePage && KEEP_NAV.some(function (re) { return re.test(path.pathname); });
-      if (!keep) li.classList.add('atm-nav-extra');
+      if (!keep) { li.classList.add('atm-nav-extra'); changed = true; }
     });
 
-    // Taşma menüsündeki kopyalar da işaretlensin.
+    // Copies that Moodle already moved into the "More" dropdown.
     nav.querySelectorAll('.dropdownmoremenu .dropdown-item:not([data-atm-nav])').forEach(function (a) {
       a.setAttribute('data-atm-nav', '1');
       const href = a.getAttribute('href') || '#';
@@ -130,11 +137,16 @@
         else nav.appendChild(li);
         anchor = li;
       });
+      changed = true;
     }
+
+    // Moodle's "more menu" measured the bar before our edits; a resize event
+    // makes it re-run its overflow logic so "More" does not wrap to a new row.
+    if (changed) window.dispatchEvent(new Event('resize'));
   };
 
   /* ------------------------------------------------------------------ */
-  /* 3. Ders başlıklarını ayrıştır: "KOD | Ad DÖNEM | Eğitmen"           */
+  /* 3. Parse course titles: "CODE | Name TERM | Instructor"             */
   /* ------------------------------------------------------------------ */
 
   const TERM_RE = /\s*\b(\d{2}-?\d{2}\s?[A-ZİÜÖŞÇĞ])\b\s*$/; // 2526G, 2627F, 24-25Y
@@ -197,8 +209,9 @@
     return root;
   }
 
-  // Orijinal metni saklayıp yanına zengin sürümü ekler; CSS hangisinin
-  // görüneceğine karar verir (ayar kapatılınca orijinal geri gelir).
+  // Keeps the original text in a hidden wrapper and appends the parsed
+  // version next to it; CSS decides which one is visible, so switching the
+  // setting off brings the original back without a reload.
   function enrich(el, info, opts) {
     if (!el || el.getAttribute('data-atm-rich')) return;
     el.setAttribute('data-atm-rich', '1');
@@ -233,7 +246,8 @@
   F.smartTitles = function () {
     if (!document.body) return;
 
-    // a) Derslerim / panel kartları
+    // a) Course cards on Dashboard / My courses. Moodle shortens long names
+    //    ("Özgür ..."), so parse the full name from the title attribute.
     document.querySelectorAll('.course-card .coursename .multiline:not([data-atm-rich])').forEach(function (ml) {
       const visible = ml.querySelector('[aria-hidden="true"]') || ml;
       const sr = ml.querySelector('.sr-only');
@@ -246,7 +260,7 @@
       if (card) card.classList.add('atm-rich-card');
     });
 
-    // b) Liste görünümü ve "son erişilen dersler" gibi diğer listeler
+    // b) List view and other course lists
     document.querySelectorAll('.course-listitem .coursename .multiline:not([data-atm-rich]), [data-region="recentlyaccessedcourses-view"] .coursename:not([data-atm-rich])').forEach(function (el) {
       const visible = el.querySelector('[aria-hidden="true"]') || el;
       const info = ATM.parseCourseTitle(visible.textContent);
@@ -260,20 +274,20 @@
     const info = ATM.currentCourseInfo();
     if (!info) return;
 
-    // c) Ders sayfası başlığı (h1)
+    // c) Course page heading (h1)
     if (document.body.classList.contains('path-course-view')) {
       const h1 = document.querySelector('#page-header .page-header-headings h1:not([data-atm-rich])');
       if (h1 && ATM.parseCourseTitle(h1.textContent)) enrich(h1, ATM.parseCourseTitle(h1.textContent));
     }
 
-    // d) Breadcrumb'daki ders linki: kısa biçim
+    // d) Course link in the breadcrumb: short form
     document.querySelectorAll('.breadcrumb a[href*="/course/view.php?id=' + cid + '"]:not([data-atm-rich])').forEach(function (a) {
       const i = ATM.parseCourseTitle(a.textContent);
       if (i) enrich(a, i, { inline: true, short: true });
       else a.setAttribute('data-atm-rich', '0');
     });
 
-    // e) Sol dizin başlığı: zengin biçim + derse link
+    // e) Course index drawer heading: parsed title that links to the course
     const heading = document.querySelector('#theme_boost-drawers-courseindex .courseindexheading:not([data-atm-rich])');
     if (heading) {
       const i = ATM.parseCourseTitle(heading.textContent);
@@ -294,7 +308,8 @@
       heading.appendChild(link);
     }
 
-    // f) Sekme başlığı: "Grader report | EE209 | Laboratory | ... | Anasayfa" -> "Grader report · EE209"
+    // f) Tab title: "Grader report | EE209 | Laboratory | ... | Anasayfa"
+    //    becomes "Grader report · EE209 · Laboratory".
     if (!document.documentElement.getAttribute('data-atm-title-done')) {
       document.documentElement.setAttribute('data-atm-title-done', '1');
       let title = document.title.replace(/\s*\|\s*Anasayfa\s*$/i, '').replace(/^Course:\s*/i, '');
@@ -309,13 +324,15 @@
   };
 
   /* ------------------------------------------------------------------ */
-  /* 4. Ders dizinine (sol panel) ikon ekle                              */
+  /* 4. Icons in the course index drawer                                 */
   /* ------------------------------------------------------------------ */
 
-  let iconCache = null;      // chrome.storage.local'dan: { cmid: {src, purpose} }
+  let iconCache = null;      // from chrome.storage.local: { cmid: {src, purpose} }
   let iconCacheCourse = null;
   let iconCacheDirty = false;
 
+  // Icons as rendered on the course page itself; this is the only place
+  // where file-type icons (pdf, docx) are visible, so they are cached.
   function liveIconMap() {
     const map = {};
     document.querySelectorAll('li.activity[data-id]').forEach(function (li) {
@@ -338,10 +355,10 @@
       chrome.storage.local.get('atm_icons_' + cid, function (data) {
         if (!chrome.runtime.lastError && data && data['atm_icons_' + cid]) {
           iconCache = data['atm_icons_' + cid];
-          iconCacheDirty = true; // yeni gelen cache ile eksik ikonları tamamla
+          iconCacheDirty = true; // upgrade generic icons once the cache arrives
         }
       });
-    } catch (e) { /* yoksay */ }
+    } catch (e) { /* extension context gone (e.g. after an update) */ }
   }
 
   let saveTimer = null;
@@ -352,7 +369,7 @@
         const obj = {};
         obj['atm_icons_' + cid] = map;
         chrome.storage.local.set(obj);
-      } catch (e) { /* yoksay */ }
+      } catch (e) { /* ignore */ }
     }, 800);
   }
 
@@ -363,7 +380,6 @@
 
     const live = liveIconMap();
     if (Object.keys(live).length) {
-      // Ders sayfasındayız: dosya türü ikonları (pdf, docx) buradan öğrenilir.
       const merged = Object.assign({}, iconCache || {}, live);
       if (JSON.stringify(merged) !== JSON.stringify(iconCache)) {
         iconCache = merged;
@@ -371,8 +387,7 @@
       }
     }
 
-    const items = document.querySelectorAll('.courseindex-item[data-for="cm"]');
-    items.forEach(function (li) {
+    document.querySelectorAll('.courseindex-item[data-for="cm"]').forEach(function (li) {
       const existing = li.querySelector('.atm-ci-icon');
       const cmid = li.getAttribute('data-id');
       const link = li.querySelector('a.courseindex-link');
@@ -380,12 +395,12 @@
       const m = (link.getAttribute('href') || '').match(/\/mod\/([a-z0-9_]+)\//);
       const modname = m ? m[1] : null;
       const data = live[cmid] || (iconCache && iconCache[cmid]) || null;
+      // Without cached data fall back to the module's generic icon.
       const src = data ? data.src : (modname ? modIconUrl(modname) : null);
       const purpose = (data && data.purpose) || (modname && PURPOSE[modname]) || 'other';
       if (!src) return;
 
       if (existing) {
-        // Cache sonradan geldiyse daha iyi ikonla değiştir.
         const img = existing.querySelector('img');
         if (iconCacheDirty && img && img.getAttribute('src') !== src) {
           img.setAttribute('src', src);
@@ -411,7 +426,7 @@
   };
 
   /* ------------------------------------------------------------------ */
-  /* 5. Etkinlik satırlarını amacına göre işaretle (CSS :has yedeği)     */
+  /* 5. Tag activity rows with their purpose (drives the coloured edge)  */
   /* ------------------------------------------------------------------ */
 
   F.tagActivities = function () {
@@ -430,7 +445,137 @@
   };
 
   /* ------------------------------------------------------------------ */
-  /* Çalıştırma sırası                                                   */
+  /* 6. Hide activity header boxes that only hold screen-reader text     */
+  /* ------------------------------------------------------------------ */
+
+  F.emptyHeaders = function () {
+    document.querySelectorAll('.activity-header').forEach(function (h) {
+      const visible = [].some.call(h.children, function (c) {
+        if (c.classList.contains('sr-only')) return false;
+        return c.textContent.trim() !== '' || !!c.querySelector('img, button, input, a, iframe, video');
+      });
+      if (visible) h.removeAttribute('data-atm-empty');
+      else if (!h.hasAttribute('data-atm-empty')) h.setAttribute('data-atm-empty', '1');
+    });
+  };
+
+  /* ------------------------------------------------------------------ */
+  /* 7. Dark theme: fix contrast inside teacher-authored HTML            */
+  /* ------------------------------------------------------------------ */
+
+  // Teachers paint their own colours (a yellow table, navy text). On a dark
+  // page two things break: our light text lands on their light background,
+  // and their dark text lands on our dark background. For every text element
+  // inside authored content we compute the contrast and flip the text colour
+  // only when the clash is caused by the theme:
+  //   author background + theme text   -> data-atm-fg="dark"
+  //   theme background  + author text  -> data-atm-fg="light"
+  // Author text on an author background is left exactly as written.
+  // The marks are inert in light mode (dark.css scopes them to dark).
+
+  const CONTENT_SELECTOR = [
+    '.no-overflow', '.summarytext', '.activity-altcontent', '.activity-description',
+    '.post-content-container', '.text_to_html', '.course-description-item',
+    '.box.generalbox', '.block .content', '[data-region="post-content"]',
+    '.editor_atto_content', '.contentwithoutlink', '.book_content', '.que .content'
+  ].join(',');
+
+  let checked = new WeakSet();
+  let checkedTheme = null;
+
+  function parseColor(c) {
+    const m = c && c.match(/rgba?\(([^)]+)\)/);
+    if (!m) return null;
+    const p = m[1].split(/[\s,/]+/).filter(Boolean).map(Number);
+    return { r: p[0], g: p[1], b: p[2], a: p.length > 3 ? p[3] : 1 };
+  }
+
+  function luminance(c) {
+    function ch(v) { v /= 255; return v <= 0.03928 ? v / 12.92 : Math.pow((v + 0.055) / 1.055, 2.4); }
+    return 0.2126 * ch(c.r) + 0.7152 * ch(c.g) + 0.0722 * ch(c.b);
+  }
+
+  function contrast(a, b) {
+    const l1 = luminance(a), l2 = luminance(b);
+    return (Math.max(l1, l2) + 0.05) / (Math.min(l1, l2) + 0.05);
+  }
+
+  // Nearest ancestor-or-self with an opaque background.
+  function backgroundOf(el) {
+    for (let x = el; x && x.nodeType === 1; x = x.parentElement) {
+      const c = parseColor(getComputedStyle(x).backgroundColor);
+      if (c && c.a > 0.5) return { color: c, el: x };
+    }
+    return { color: { r: 21, g: 23, b: 28, a: 1 }, el: document.documentElement };
+  }
+
+  // True when the author set a text colour on el or on an ancestor that is
+  // still inside the content container.
+  function authorColored(el, container) {
+    for (let x = el; x && x !== container.parentElement; x = x.parentElement) {
+      if ((x.style && x.style.color) || (x.tagName === 'FONT' && x.getAttribute('color'))) return true;
+      if (x === container) break;
+    }
+    return false;
+  }
+
+  function hasOwnText(el) {
+    for (let n = el.firstChild; n; n = n.nextSibling) {
+      if (n.nodeType === 3 && n.textContent.trim()) return true;
+    }
+    return false;
+  }
+
+  // Marks computed under one theme are meaningless under another, so a theme
+  // change clears them and everything is measured again.
+  function resetDarkContent() {
+    document.querySelectorAll('[data-atm-fg]').forEach(function (el) { el.removeAttribute('data-atm-fg'); });
+    document.querySelectorAll('[data-atm-content]').forEach(function (el) { el.removeAttribute('data-atm-content'); });
+    checked = new WeakSet();
+  }
+
+  F.darkContent = function () {
+    const theme = ATM.resolvedTheme();
+    if (theme !== checkedTheme) {
+      if (checkedTheme !== null) resetDarkContent();
+      checkedTheme = theme;
+    }
+    if (theme !== 'dark') return;
+    // Colour transitions would make getComputedStyle report a value halfway
+    // between the old and the new theme; switch them off while measuring.
+    const html = document.documentElement;
+    html.setAttribute('data-atm-measuring', '1');
+    try {
+      measureContent();
+    } finally {
+      html.removeAttribute('data-atm-measuring');
+    }
+  };
+
+  function measureContent() {
+    document.querySelectorAll(CONTENT_SELECTOR).forEach(function (container) {
+      if (container.closest('[data-atm-content]') && !container.hasAttribute('data-atm-content')) return; // nested
+      container.setAttribute('data-atm-content', '1');
+      const nodes = [container].concat([].slice.call(container.querySelectorAll('*')));
+      nodes.forEach(function (el) {
+        if (checked.has(el)) return;
+        checked.add(el);
+        if (!hasOwnText(el)) return;
+        const cs = getComputedStyle(el);
+        const fg = parseColor(cs.color);
+        if (!fg) return;
+        const bg = backgroundOf(el);
+        if (contrast(fg, bg.color) >= 3) return;
+        const authorBg = bg.el !== container && container.contains(bg.el);
+        const authorFg = authorColored(el, container);
+        if (authorBg && !authorFg) el.setAttribute('data-atm-fg', 'dark');
+        else if (!authorBg && authorFg) el.setAttribute('data-atm-fg', 'light');
+      });
+    });
+  }
+
+  /* ------------------------------------------------------------------ */
+  /* Run order                                                           */
   /* ------------------------------------------------------------------ */
 
   ATM.runFeatures = function () {
@@ -440,7 +585,9 @@
       ['simplifyNav', F.simplifyNav],
       ['smartTitles', F.smartTitles],
       ['indexIcons', F.indexIcons],
-      [null, F.tagActivities]
+      [null, F.tagActivities],
+      [null, F.emptyHeaders],
+      [null, F.darkContent]
     ];
     steps.forEach(function (step) {
       if (step[0] && !on(step[0])) return;

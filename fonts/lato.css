@@ -1,4 +1,5 @@
-/* Lato, latin + latin-ext (Turkish characters), bundled locally. */
+/* Lato 400/400 italic/700, latin + latin-ext subsets (covers Turkish),
+   bundled so the extension never calls Google Fonts. */
 @font-face {
   font-family: 'Lato';
   font-style: italic;

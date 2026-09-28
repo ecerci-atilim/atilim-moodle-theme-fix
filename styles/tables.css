@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Tablolar: katılımcılar, not defteri, raporlar, sayfalama, filtreler.
+   Tables: participants, gradebook, reports, paging, filters.
    ------------------------------------------------------------------ */
 
 html[data-atm] .table,
@@ -47,7 +47,7 @@ html[data-atm] .table .text-muted {
   color: var(--atm-muted) !important;
 }
 
-/* katılımcılar: filtre alanı */
+/* participants: filter area */
 html[data-atm] .filter-group,
 html[data-atm] [data-region="filter-group"] {
   background-color: var(--atm-surface-2) !important;
@@ -64,7 +64,7 @@ html[data-atm] .userinitials {
   color: var(--atm-text-2) !important;
 }
 
-/* sayfalama, harf çubuğu */
+/* paging and initials bar */
 html[data-atm] .pagination .page-link,
 html[data-atm] .initialbar .page-link {
   background-color: var(--atm-surface) !important;
@@ -86,7 +86,7 @@ html[data-atm] .pagination .page-item.disabled .page-link {
   background-color: var(--atm-surface-2) !important;
 }
 
-/* not defteri (grader report) */
+/* gradebook (grader report) */
 html[data-atm] .gradeparent {
   background-color: var(--atm-surface) !important;
   border-radius: var(--atm-radius-lg);
@@ -143,7 +143,7 @@ html[data-atm] #sticky-footer.sticky-footer-content {
   color: var(--atm-text) !important;
 }
 
-/* kullanıcı not raporu (öğrenci görünümü) */
+/* user grade report (student view) */
 html[data-atm] .user-grade,
 html[data-atm] .path-grade-report-user .user-grade td,
 html[data-atm] .path-grade-report-user .user-grade th {
@@ -161,7 +161,7 @@ html[data-atm] .path-grade-report-user .user-grade .column-itemname .gradeitemhe
   color: var(--atm-text) !important;
 }
 
-/* takvim tablosu */
+/* calendar table */
 html[data-atm] .calendarmonth,
 html[data-atm] .calendarmonth th,
 html[data-atm] .calendarmonth td {
@@ -177,8 +177,17 @@ html[data-atm] .calendarmonth td.today .day-number-circle .day-number {
   color: var(--atm-on-primary) !important;
 }
 
-/* yeniden kullanılabilir: sabit ilk sütun / başlık */
+/* scroll containers */
 html[data-atm] .table-responsive {
   scrollbar-width: thin;
   scrollbar-color: var(--atm-border) transparent;
+}
+
+/* gradebook search widgets (initials / user / group selectors) */
+html[data-atm] .initialswidget,
+html[data-atm] .comboboxsearch > .btn,
+html[data-atm] .comboboxsearch .dropdown-toggle {
+  background-color: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+  border: 1px solid var(--atm-border) !important;
 }

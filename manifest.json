@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Atılım Moodle UI Fix",
-  "version": "3.0.0",
+  "version": "3.1.0",
   "description": "moodle.atilim.edu.tr için daha sade, okunaklı ve kullanışlı bir arayüz. Öğrenci ve eğitmen görünümlerinin ikisini de düzeltir.",
   "permissions": ["storage"],
   "icons": {

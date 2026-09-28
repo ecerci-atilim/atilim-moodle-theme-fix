@@ -1,5 +1,5 @@
 /* ------------------------------------------------------------------
-   Sayfa iskeleti: genişlik, başlık şeridi, hero görseli, altbilgi.
+   Page skeleton: width, header strip, hero image, footer.
    ------------------------------------------------------------------ */
 
 html[data-atm] #page,
@@ -10,7 +10,17 @@ html[data-atm] #topofscroll {
   background-color: var(--atm-bg) !important;
 }
 
-/* tam genişlik: Boost'un 830px "limitedwidth" kısıtını kaldır */
+/* Stream paints the main region white on every page; let the page colour
+   show through instead (sections, cards and forms carry their own surface). */
+html[data-atm] #page-content,
+html[data-atm] #region-main-box,
+html[data-atm] #region-main,
+html[data-atm] [role="main"] {
+  background-color: transparent !important;
+  box-shadow: none !important;
+}
+
+/* full width: lift Boost's 830px "limitedwidth" cap */
 html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner,
 html[data-atm-full-width="1"] body.limitedwidth #page.drawers .secondary-navigation,
 html[data-atm-full-width="1"] body.limitedwidth #page.drawers .tertiary-navigation,
@@ -25,9 +35,10 @@ html[data-atm-full-width="1"] body.limitedwidth #page.drawers .main-inner {
   width: auto !important;
 }
 
-/* hero / carousel / başlık görseli */
-html[data-atm-hide-hero="1"] #herocarousel,
-html[data-atm-hide-hero="1"] .carousel.slide {
+/* hero carousel and header photo */
+/* Only the site-home hero. Never a generic .carousel: the user menu
+   (#usermenu-carousel) is a Bootstrap carousel too. */
+html[data-atm-hide-hero="1"] #herocarousel {
   display: none !important;
 }
 html[data-atm-hide-hero="1"] .course-head {
@@ -80,7 +91,7 @@ html[data-atm] .course-head .breadcrumb a:hover {
   color: var(--atm-link-hover) !important;
 }
 
-/* etkinlik sayfası başlığındaki büyük ikon */
+/* large icon in the activity page header */
 html[data-atm] .page-header-image .activityiconcontainer {
   width: 44px !important;
   height: 44px !important;
@@ -88,7 +99,7 @@ html[data-atm] .page-header-image .activityiconcontainer {
   margin-right: 0.75rem;
 }
 
-/* ders tamamlanma yüzdesi (Stream'in dairesi) */
+/* course completion percentage (Stream's circle) */
 html[data-atm] .completion-meter .circle {
   width: 48px !important;
   height: 48px !important;
@@ -98,6 +109,7 @@ html[data-atm] .completion-meter .circle {
   box-shadow: none !important;
 }
 html[data-atm] .completion-meter .circle .inner {
+  background-color: var(--atm-surface) !important;
   color: var(--atm-accent) !important;
   font-size: 0.8rem !important;
   font-weight: 700 !important;
@@ -107,7 +119,7 @@ html[data-atm] .completion-meter .circle::after {
   border-color: var(--atm-primary) !important;
 }
 
-/* altbilgi */
+/* footer */
 html[data-atm-hide-footer="1"] #page-footer,
 html[data-atm-hide-footer="1"] .footer-credits {
   display: none !important;
@@ -117,7 +129,7 @@ html[data-atm] #page-footer {
   color: var(--atm-text-2) !important;
 }
 
-/* ikincil menü (Course / Participants / Grades ...) */
+/* secondary navigation (Course / Participants / Grades ...) */
 html[data-atm] .secondary-navigation {
   margin-bottom: 0.5rem !important;
 }
@@ -147,7 +159,7 @@ html[data-atm] .secondary-navigation .nav-tabs .nav-link.active {
   border-bottom-color: var(--atm-primary) !important;
 }
 
-/* üçüncül menü (Grader report seçicisi vb.) */
+/* tertiary navigation (grader report selector etc.) */
 html[data-atm] .tertiary-navigation {
   background: transparent !important;
 }
@@ -170,7 +182,7 @@ html[data-atm] .tertiary-navigation-selector .dropdown-menu .dropdown-item:not([
   color: var(--atm-text) !important;
 }
 
-/* Stream'in sağ alttaki yüzen düğmeleri: daha küçük, daha sessiz */
+/* Stream's floating buttons at the bottom right: smaller and quieter */
 html[data-atm] #back-to-top {
   background-color: var(--atm-primary) !important;
   color: var(--atm-on-primary) !important;
@@ -184,7 +196,7 @@ html[data-atm] #back-to-top:hover {
   opacity: 1;
 }
 
-/* genel kartlar / bloklar */
+/* generic cards / blocks */
 html[data-atm] .card,
 html[data-atm] .block,
 html[data-atm] .block .card-body,
@@ -211,12 +223,18 @@ html[data-atm] hr {
   border-top-color: var(--atm-border) !important;
 }
 
-/* uyarılar */
+/* activity pages: hide the header box when it only holds screen-reader text
+   (features.js sets data-atm-empty) */
+html[data-atm] .activity-header[data-atm-empty] {
+  display: none !important;
+}
+
+/* alerts */
 html[data-atm] .alert {
   border-radius: var(--atm-radius) !important;
 }
 
-/* ana sayfa (site index) ders listesi */
+/* site home course list */
 html[data-atm] #frontpage-course-list .coursebox,
 html[data-atm] .course_category_tree .category {
   background-color: var(--atm-surface) !important;

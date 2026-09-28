@@ -1,7 +1,7 @@
 /*
- * Giriş noktası. document_start'ta yüklenir; body hazır olunca özellikleri
- * çalıştırır ve DOM değişikliklerini tek bir debounce'lu observer ile izler
- * (Moodle ders dizinini ve etkinlik kartlarını sık sık yeniden çizer).
+ * Entry point. Loaded at document_start; once the body exists it runs the
+ * features and watches the DOM with a single debounced observer (Moodle
+ * re-renders the course index and activity cards frequently).
  */
 (function () {
   'use strict';
@@ -25,7 +25,7 @@
     ATM.ready.then(ATM.runFeatures);
 
     const observer = new MutationObserver(function (mutations) {
-      // Kendi eklediğimiz düğümler yeni bir tur tetiklemesin.
+      // Nodes we inserted ourselves must not trigger another round.
       for (let i = 0; i < mutations.length; i++) {
         const target = mutations[i].target;
         if (target && target.nodeType === 1 && target.closest && target.closest('.atm-ct, .atm-ci-icon, .atm-brand')) continue;
@@ -35,12 +35,9 @@
     });
     observer.observe(document.body, { childList: true, subtree: true });
 
-    document.addEventListener('atm:settings', schedule);
-
-    // Ayar değişikliğinde sekme başlığını yeniden kur.
     document.addEventListener('atm:settings', function () {
-      if (!ATM.settings.smartTitles) return;
-      document.documentElement.removeAttribute('data-atm-title-done');
+      // Rebuild the tab title when smart titles are (re)enabled.
+      if (ATM.settings.smartTitles) document.documentElement.removeAttribute('data-atm-title-done');
       schedule();
     });
   }

@@ -1,36 +1,36 @@
 /* ------------------------------------------------------------------
-   Temel: renk paleti (CSS değişkenleri), yazı tipi, ortak parçalar.
-   Bütün renkler burada tanımlanır; diğer dosyalar yalnızca var() kullanır.
-   Koyu palet dark.css'te aynı değişkenleri yeniden tanımlar.
+   Base: colour palette (CSS custom properties), font, shared pieces.
+   Every colour is defined here; the other files only use var().
+   The dark palette in dark.css redefines the same variables.
    ------------------------------------------------------------------ */
 
 :root {
   color-scheme: light;
 
-  /* zeminler: koyudan açığa doğru katmanlar */
-  --atm-bg: #e3e3e3;            /* sayfa zemini */
-  --atm-bg-2: #d5d5d5;          /* ikincil zemin: sol panel, başlık şeridi */
-  --atm-bg-3: #c7c7c7;          /* üçüncül zemin: bölüm kutuları */
-  --atm-surface: #f3f3f3;       /* kartlar, satırlar, formlar */
-  --atm-surface-2: #e9e9e9;     /* kart içi ikincil alan */
-  --atm-hover: #e9eefd;         /* satır üzerine gelince */
-  --atm-selected: #223675;      /* seçili öğe zemini */
+  /* backgrounds, layered from darker to lighter */
+  --atm-bg: #e3e3e3;            /* page background */
+  --atm-bg-2: #d5d5d5;          /* secondary: drawers, header strip */
+  --atm-bg-3: #c7c7c7;          /* tertiary: section boxes */
+  --atm-surface: #f3f3f3;       /* cards, rows, form fields */
+  --atm-surface-2: #e9e9e9;     /* secondary area inside a card */
+  --atm-hover: #e9eefd;         /* row hover */
+  --atm-selected: #223675;      /* selected item background */
   --atm-on-selected: #ffffff;
 
-  /* metin */
+  /* text */
   --atm-text: #1d2125;
   --atm-text-2: #3f444b;
   --atm-muted: #666c75;
   --atm-link: #223675;
   --atm-link-hover: #3d57ad;
-  --atm-accent: #223675;        /* metin vurgusu: aktif sekme, ikon, başlık */
+  --atm-accent: #223675;        /* text accent: active tab, icons, headings */
 
-  /* çizgiler */
+  /* borders */
   --atm-border: #a9a9a9;
   --atm-border-strong: #6f6f6f;
 
-  /* marka */
-  --atm-primary: #223675;       /* dolgu: navbar, düğme, seçili satır */
+  /* brand */
+  --atm-primary: #223675;       /* fills: navbar, buttons, selected rows */
   --atm-primary-2: #3d57ad;
   --atm-on-primary: #ffffff;
   --atm-secondary: #0579d8;
@@ -39,7 +39,7 @@
   --atm-danger: #c0392b;
   --atm-success: #1a9a5a;
 
-  /* etkinlik amaçları (Moodle "purpose") */
+  /* activity purposes (Moodle "purpose" groups) */
   --atm-p-assessment: #c62f74;
   --atm-p-content: #2a6fcb;
   --atm-p-collaboration: #6f42c1;
@@ -49,7 +49,7 @@
   --atm-p-other: #5a6268;
   --atm-p-interface: #5a6268;
 
-  /* biçim */
+  /* shape */
   --atm-radius: 6px;
   --atm-radius-lg: 10px;
   --atm-shadow: 0 1px 3px rgba(0, 0, 0, 0.10);
@@ -64,26 +64,22 @@ html[data-atm-font="system"] {
   --atm-font: system-ui, -apple-system, 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
 }
 
-/* yazı tipi: ikon fontlarına (.fa, .icon) dokunma */
-html[data-atm] body,
-html[data-atm] .btn,
-html[data-atm] input,
-html[data-atm] select,
-html[data-atm] textarea,
-html[data-atm] button,
-html[data-atm] h1, html[data-atm] h2, html[data-atm] h3,
-html[data-atm] h4, html[data-atm] h5, html[data-atm] h6,
-html[data-atm] .h1, html[data-atm] .h2, html[data-atm] .h3,
-html[data-atm] .h4, html[data-atm] .h5, html[data-atm] .h6,
-html[data-atm] .navbar,
-html[data-atm] .dropdown-menu,
-html[data-atm] .card-title,
-html[data-atm] .instancename,
-html[data-atm] .page-header-headings,
-html[data-atm] .courseindex,
-html[data-atm] .tooltip,
-html[data-atm] .popover,
-html[data-atm] table {
+/* font: applied to every element, because Stream sets Nunito directly on
+   a, span, p, strong, label, div ... so inheritance from body cannot win.
+   Excluded: icon fonts, code, maths, and monospace / symbol fonts that an
+   author picked on purpose. With data-atm-font="theme" nothing is touched. */
+html:is([data-atm-font="lato"], [data-atm-font="system"]) body,
+html:is([data-atm-font="lato"], [data-atm-font="system"]) body *:not(
+  .fa, .fas, .far, .fab, .fa-solid, .fa-regular, .fa-brands,
+  [class^="fa-"], [class*=" fa-"], i.icon, .tox-icon, [class*="glyphicon"],
+  code, pre, kbd, samp, tt, code *, pre *,
+  mjx-container, mjx-container *, .MathJax, .MathJax *, .MathJax_Display *,
+  .katex, .katex *,
+  [style*="monospace" i], [style*="monospace" i] *,
+  [style*="courier" i], [style*="courier" i] *,
+  [style*="consolas" i], [style*="consolas" i] *,
+  [style*="symbol" i], [style*="wingdings" i]
+) {
   font-family: var(--atm-font) !important;
 }
 
@@ -115,12 +111,19 @@ html[data-atm] .muted {
   color: var(--atm-muted) !important;
 }
 
+/* set by features.js while it measures colours */
+html[data-atm-measuring] *,
+html[data-atm-measuring] *::before,
+html[data-atm-measuring] *::after {
+  transition: none !important;
+}
+
 html[data-atm] :focus-visible {
   outline: 2px solid var(--atm-primary-2) !important;
   outline-offset: 2px;
 }
 
-/* Ortak: ayrıştırılmış ders başlığı (features.js smartTitles) */
+/* Shared: parsed course title (features.js smartTitles) */
 html[data-atm] .atm-ct { display: none; }
 html[data-atm-smart-titles="1"] .atm-ct { display: inline-flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; max-width: 100%; }
 html[data-atm-smart-titles="1"] .atm-ct-orig { display: none !important; }
@@ -155,7 +158,7 @@ html[data-atm] .atm-ct-term + .atm-ct-inst::before {
   content: '\00b7\00a0';
 }
 
-/* satır içi (breadcrumb, listeler) */
+/* inline variant (breadcrumb, lists) */
 html[data-atm-smart-titles="1"] .atm-ct-inline {
   flex-direction: row;
   align-items: center;

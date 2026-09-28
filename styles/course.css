@@ -1,8 +1,8 @@
 /* ------------------------------------------------------------------
-   Ders sayfası: bölümler, etkinlik kartları, ikon renkleri, gezinme.
+   Course page: sections, activity rows, icon colours, navigation.
    ------------------------------------------------------------------ */
 
-/* bölüm kutusu */
+/* section box */
 html[data-atm] .course-section .section-item {
   background-color: var(--atm-bg-3) !important;
   border: 1px solid var(--atm-border-strong) !important;
@@ -17,7 +17,7 @@ html[data-atm-compact="1"] .course-section {
   margin-bottom: 0.5rem !important;
 }
 
-/* bölüm başlığı (görüntüleme modu) */
+/* section header (view mode) */
 html[data-atm] .course-section-header {
   padding: 0.15rem 0 !important;
 }
@@ -59,7 +59,7 @@ html[data-atm] .course-section .summarytext {
   font-size: 0.92rem;
 }
 
-/* "Collapse all" bağlantısı */
+/* "Collapse all" link */
 html[data-atm] .course-content .collapsible-actions .collapseall,
 html[data-atm] .course-content .collapsible-actions .expandall,
 html[data-atm] .course-content [data-toggle="toggleall"] {
@@ -68,7 +68,7 @@ html[data-atm] .course-content [data-toggle="toggleall"] {
   font-weight: 600;
 }
 
-/* etkinlik satırı */
+/* activity row */
 html[data-atm] li.activity {
   border-top: 0 !important;
   margin: 0 !important;
@@ -102,7 +102,7 @@ html[data-atm] li.activity[data-atm-purpose="communication"] .activity-item { bo
 html[data-atm] li.activity[data-atm-purpose="interactivecontent"] .activity-item { border-left-color: var(--atm-p-interactivecontent) !important; }
 html[data-atm] li.activity[data-atm-purpose="administration"] .activity-item { border-left-color: var(--atm-p-administration) !important; }
 
-/* etkinlik adı */
+/* activity name */
 html[data-atm] .activity-item .activityname a,
 html[data-atm] .activity-item .activityname .instancename {
   color: var(--atm-link) !important;
@@ -142,7 +142,7 @@ html[data-atm] .activity-item .activity-information {
   font-size: 0.82rem;
 }
 
-/* ---------------- ikonlar ---------------- */
+/* ---------------- icons ---------------- */
 
 html[data-atm] .activityiconcontainer {
   border-radius: var(--atm-radius) !important;
@@ -165,7 +165,7 @@ html[data-atm] .activityiconcontainer .activityicon {
   object-fit: contain;
 }
 
-/* amaca göre renk: zemin renkli, ikon beyaz */
+/* colour by purpose: tinted tile, white glyph */
 html[data-atm-color-icons="1"] .activityiconcontainer.assessment { background-color: var(--atm-p-assessment) !important; }
 html[data-atm-color-icons="1"] .activityiconcontainer.content { background-color: var(--atm-p-content) !important; }
 html[data-atm-color-icons="1"] .activityiconcontainer.collaboration { background-color: var(--atm-p-collaboration) !important; }
@@ -186,13 +186,13 @@ html[data-atm] .courseindex-item:hover .activityiconcontainer {
   transform: scale(1.08);
 }
 
-/* ayraç */
+/* divider */
 html[data-atm] .divider hr {
   border-top: 2px dashed var(--atm-primary-2) !important;
   opacity: 0.7;
 }
 
-/* etkinlik altındaki önceki/sonraki */
+/* previous / next activity links */
 html[data-atm] .activity-navigation .btn {
   background-color: var(--atm-primary) !important;
   color: var(--atm-on-primary) !important;
@@ -209,11 +209,43 @@ html[data-atm] .activity-navigation .custom-select {
   color: var(--atm-text) !important;
 }
 
-/* tamamlanma düğmeleri ve kısıtlama bilgisi */
+/* completion buttons and restriction info */
 html[data-atm] .completion-dropdown .btn,
 html[data-atm] .completion-dropdown .btn .icon {
   color: var(--atm-accent) !important;
   font-weight: 600;
+}
+html[data-atm] .completion-dropdown .btn {
+  background-color: var(--atm-surface-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+}
+html[data-atm] .completion-dropdown .btn.btn-success,
+html[data-atm] .completion-dropdown .btn[data-completion="complete"] {
+  background-color: var(--atm-success) !important;
+  border-color: var(--atm-success) !important;
+}
+html[data-atm] .completion-dropdown .btn.btn-success,
+html[data-atm] .completion-dropdown .btn.btn-success .icon {
+  color: #fff !important;
+}
+
+/* activity badges ("Hidden from students", "Restricted", ...) */
+html[data-atm] .activity-item .badge[class*="bg-"],
+html[data-atm] .section-item .badge.bg-secondary,
+html[data-atm] .section-item .badge.bg-info {
+  background-color: var(--atm-surface-2) !important;
+  color: var(--atm-text-2) !important;
+  border: 1px solid var(--atm-border) !important;
+  font-weight: 600 !important;
+  opacity: 1 !important;
+}
+html[data-atm] .activity-item .badge .icon {
+  color: inherit !important;
+}
+html[data-atm] .activity-item .activitybadge:not([class*="bg-"]) {
+  background: transparent !important;
+  border: 0 !important;
 }
 html[data-atm] .completion-dropdown .btn:hover {
   color: var(--atm-link-hover) !important;
@@ -245,7 +277,7 @@ html[data-atm] .activity-actions .action-menu .dropdown-toggle .icon {
   color: var(--atm-accent) !important;
 }
 
-/* etkinlik sayfasında (mod/*) başlık altı açıklama */
+/* activity pages (mod/*): description block under the header */
 html[data-atm] .path-mod .activity-header:not(:empty) {
   background-color: var(--atm-surface) !important;
   border: 1px solid var(--atm-border) !important;
