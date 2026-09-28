@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Atılım Moodle UI Fix",
-  "version": "3.2.0",
+  "version": "3.2.1",
   "description": "A calmer, more readable and more usable interface for moodle.atilim.edu.tr, for both students and teachers.",
   "permissions": [
     "storage"

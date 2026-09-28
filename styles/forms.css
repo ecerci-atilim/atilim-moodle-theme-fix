@@ -437,3 +437,31 @@ html[data-atm] .tox-tinymce {
   border-color: var(--atm-border) !important;
   border-radius: var(--atm-radius) !important;
 }
+
+/* autocomplete dropdowns (participants filter, tags, user pickers). Moodle
+   core gives the suggestion list a fixed white background while the text
+   colour follows the theme, so light text ended up on white. */
+html[data-atm] .form-autocomplete-suggestions {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border) !important;
+  border-radius: var(--atm-radius) !important;
+  box-shadow: var(--atm-shadow-lg) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .form-autocomplete-suggestions li {
+  background-color: transparent !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .form-autocomplete-suggestions li:hover,
+html[data-atm] .form-autocomplete-suggestions li[aria-selected="true"] {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
+html[data-atm] .form-autocomplete-downarrow {
+  color: var(--atm-text-2) !important;
+}
+html[data-atm] .form-autocomplete-selection .badge,
+html[data-atm] .form-autocomplete-selection [role="option"] {
+  background-color: var(--atm-selected) !important;
+  color: var(--atm-on-selected) !important;
+}
