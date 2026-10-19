@@ -241,3 +241,61 @@ html[data-atm] .mod_turnitintooltwo_listbar-container {
   color: var(--atm-text) !important;
   border-color: var(--atm-border) !important;
 }
+
+/* Turnitin's own stylesheet stripes the inbox rows and the sorted column
+   with !important light greys (#efefef / #fff / #e7e7e7 / #fafafa), partly
+   through an ID selector. :is() with that ID plus a doubled attribute lifts
+   these rules above it, so rows alternate between two calm surfaces in both
+   themes instead of flashing light cells in dark mode. */
+html[data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) tbody tr.even,
+html[data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) tbody tr.even > td {
+  background: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) tbody tr.odd,
+html[data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) tbody tr.odd > td {
+  background: var(--atm-surface-2) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) tbody tr:hover > td {
+  background: var(--atm-hover) !important;
+}
+html[data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table),
+html[data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) :is(th, td),
+html[data-atm] .mod_turnitintooltwo_part_details,
+html[data-atm] .mod_turnitintooltwo_part_details :is(tr, th, td, .introduction, .peermark_instructions),
+html[data-atm] .mod_turnitintooltwo_peermark_details,
+html[data-atm] .mod_turnitintooltwo :is(#course_search_options, .create_checkboxes, iframe) {
+  border-color: var(--atm-border) !important;
+}
+/* one more attribute than the row rules above, so the red wins over their text colour */
+html[data-atm][data-atm][data-atm] :is(#mod_turnitintooltwo_course_browser_table, .mod_turnitintooltwo_submissions_data_table) .late_submission,
+html[data-atm] .mod_turnitintooltwo_eula,
+html[data-atm] .mod_turnitintooltwo_eula_warn,
+html[data-atm] #mod_turnitintooltwo_upload_success {
+  color: var(--atm-danger) !important;
+  border-color: var(--atm-danger) !important;
+}
+html[data-atm] :is(.mod_turnitintooltwo_quickmark_manager_launch, .mod_turnitintooltwo_rubric_manager_launch, .mod_turnitintooltwo_rubric_view_launch) {
+  color: var(--atm-link) !important;
+}
+html[data-atm] :is(#mod_turnitintooltwo_digital_receipt_box, .mod_turnitintooltwo_unanonymise_form, .mod_turnitintooltwo_edit_course_end_date_form) {
+  background: var(--atm-surface) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm] .turnitintooltwo-dropdown-content {
+  background-color: var(--atm-surface) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+  box-shadow: var(--atm-shadow-lg);
+}
+html[data-atm] .turnitintooltwo-dropdown-content .turnitintooltwo-dropdown-content-item {
+  color: var(--atm-text) !important;
+}
+html[data-atm] .turnitintooltwo-dropdown-content .turnitintooltwo-dropdown-content-item:hover {
+  background-color: var(--atm-hover) !important;
+  color: var(--atm-text) !important;
+}
+html[data-atm][data-atm] .turnitintooltwo-dropdown-toggle {
+  border-color: var(--atm-border) !important;
+}
