@@ -158,6 +158,14 @@ html[data-atm] #sticky-footer.sticky-footer-content {
   color: var(--atm-text) !important;
 }
 
+/* user grade report (student view): Moodle core frames the table with a
+   fixed #f8f9fa panel (.user-report-container) */
+html[data-atm] .user-report-container {
+  background-color: var(--atm-surface) !important;
+  border: 1px solid var(--atm-border);
+  border-radius: var(--atm-radius-lg);
+}
+
 /* user grade report (student view) */
 html[data-atm] .user-grade,
 html[data-atm] .path-grade-report-user .user-grade td,
