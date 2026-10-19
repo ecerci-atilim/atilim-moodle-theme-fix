@@ -42,6 +42,8 @@
   --atm-info-bg: #dcebf8;       /* informational notes (e.g. Turnitin's form hints) */
   --atm-info-border: #9cc3e6;
   --atm-info-text: #1d2125;
+  --atm-avatar-bg: #dfe5f5;     /* initials badges (users without a photo) */
+  --atm-avatar-text: #223675;
 
   /* activity purposes (Moodle "purpose" groups) */
   --atm-p-assessment: #c62f74;
@@ -173,4 +175,39 @@ html[data-atm-smart-titles="1"] .atm-ct-inline .atm-ct-name {
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+}
+
+/* Avatars. One style for every initials badge: Moodle's own .userinitials
+   (participants, grading) and the badges features.js puts in place of the
+   default silhouette picture (.atm-avatar). The navbar keeps its own. */
+html[data-atm] .userinitials,
+html[data-atm] .atm-avatar {
+  background-color: var(--atm-avatar-bg) !important;
+  color: var(--atm-avatar-text) !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.02em;
+}
+html[data-atm] .atm-avatar {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  border-radius: 50% !important;
+  border: 0 !important;
+  padding: 0 !important;
+  line-height: 1;
+  vertical-align: middle;
+  user-select: none;
+  overflow: hidden;
+}
+html[data-atm] .atm-avatar .icon {
+  color: inherit !important;
+  margin: 0 !important;
+  font-size: 1em;
+}
+html[data-atm-initials-avatars="1"] img[data-atm-avatar="default"] {
+  display: none !important;
+}
+html[data-atm-initials-avatars="0"] .atm-avatar {
+  display: none !important;
 }

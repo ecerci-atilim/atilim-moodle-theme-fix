@@ -109,3 +109,16 @@ html[data-atm] [data-region="message-drawer"] .badge-primary {
 html[data-atm] [data-region="message-drawer"] .bg-light {
   background-color: var(--atm-surface-2) !important;
 }
+
+/* online indicator on avatars: Moodle colours it green (.message-app
+   .contact-status.online .icon), but the dark theme's generic icon rule
+   turned it into text colour; a surface-coloured disc keeps it readable
+   on top of the avatar */
+html[data-atm] .contact-status.online .icon {
+  color: var(--atm-success) !important;
+}
+html[data-atm] .message-app .contact-status.online {
+  background-color: var(--atm-surface);
+  border-radius: 50%;
+  line-height: 1;
+}

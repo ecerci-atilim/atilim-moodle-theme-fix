@@ -931,6 +931,94 @@
   };
 
   /* ------------------------------------------------------------------ */
+  /* 11. Initials instead of the default profile picture                 */
+  /* ------------------------------------------------------------------ */
+
+  // Users without a photo get Moodle's grey silhouette (core u/f1, f2, f3)
+  // in forums, messages, grading screens and so on, while the participants
+  // list and the user menu already show initials. Every default picture is
+  // replaced with an initials badge in the same style, sized like the image
+  // and carrying its classes so the layout stays the same. The name comes
+  // from the image's alt/title text ("Picture of Emre ÇERÇİ", "Emre ÇERÇİ");
+  // without a usable name a neutral person icon is shown instead.
+
+  const DEFAULT_PIC_RE = /\/u\/f[123](?:[?#/]|$)|[?&]image=u%2Ff[123](?:&|$)/;
+
+  function isDefaultPicture(img) {
+    return img.classList.contains('defaultuserpic') || DEFAULT_PIC_RE.test(img.getAttribute('src') || '');
+  }
+
+  function avatarName(img) {
+    let name = (img.getAttribute('alt') || img.getAttribute('title') || '').trim();
+    name = name
+      .replace(/^(profile\s+)?(picture|image|photo)\s+of\s+/i, '')
+      .replace(/\s+(adlı kullanıcının\s+)?(profil\s+)?(resmi|fotoğrafı|görseli)$/i, '');
+    if (!name) {
+      // e.g. an image inside a link that holds only the person's name
+      const link = img.closest('a');
+      const text = link ? link.textContent.replace(/\s+/g, ' ').trim() : '';
+      if (text && text.length <= 60) name = text;
+    }
+    return name.replace(/\s+/g, ' ').trim();
+  }
+
+  function initialsOf(name) {
+    const words = name.split(' ').filter(function (w) { return /\p{L}/u.test(w); });
+    if (!words.length) return '';
+    const first = Array.from(words[0].replace(/^[^\p{L}]+/u, ''))[0] || '';
+    const last = words.length > 1 ? (Array.from(words[words.length - 1].replace(/^[^\p{L}]+/u, ''))[0] || '') : '';
+    return (first + last).toLocaleUpperCase('tr-TR');
+  }
+
+  function avatarSize(img) {
+    return img.offsetHeight ||
+      parseInt(img.style.height, 10) || parseInt(img.style.width, 10) ||
+      parseInt(img.getAttribute('height'), 10) || parseInt(img.getAttribute('width'), 10) ||
+      35;
+  }
+
+  F.initialsAvatars = function () {
+    // Undo badges whose image was switched to a real photo meanwhile.
+    document.querySelectorAll('img[data-atm-avatar]').forEach(function (img) {
+      if (isDefaultPicture(img)) return;
+      const badge = img.previousElementSibling;
+      if (badge && badge.classList.contains('atm-avatar')) badge.remove();
+      img.removeAttribute('data-atm-avatar');
+    });
+
+    document.querySelectorAll('img:not([data-atm-avatar])').forEach(function (img) {
+      if (!isDefaultPicture(img)) return;
+      img.setAttribute('data-atm-avatar', 'default');
+      const name = avatarName(img);
+      const initials = name ? initialsOf(name) : '';
+      const size = avatarSize(img);
+
+      const badge = document.createElement('span');
+      // Keep the image's own classes (margins, rounded-circle, userpicture...).
+      badge.className = (img.className ? img.className + ' ' : '') + 'atm-avatar';
+      badge.style.width = size + 'px';
+      badge.style.height = size + 'px';
+      badge.style.fontSize = Math.max(10, Math.round(size * 0.38)) + 'px';
+      if (initials) {
+        badge.textContent = initials;
+      } else {
+        const icon = document.createElement('i');
+        icon.className = 'icon fa fa-user fa-fw';
+        icon.setAttribute('aria-hidden', 'true');
+        badge.appendChild(icon);
+      }
+      if (img.getAttribute('aria-hidden') === 'true' || img.getAttribute('alt') === '') {
+        badge.setAttribute('aria-hidden', 'true');
+      } else {
+        badge.setAttribute('role', 'img');
+        badge.setAttribute('aria-label', img.getAttribute('alt') || name);
+      }
+      if (name) badge.title = name;
+      img.parentNode.insertBefore(badge, img);
+    });
+  };
+
+  /* ------------------------------------------------------------------ */
   /* Run order                                                           */
   /* ------------------------------------------------------------------ */
 
@@ -944,6 +1032,7 @@
       ['allCourses', F.allCourses],
       ['turkishInitials', F.turkishInitials],
       ['nameSort', F.nameSort],
+      ['initialsAvatars', F.initialsAvatars],
       [null, F.tagActivities],
       [null, F.emptyHeaders],
       [null, F.darkContent]

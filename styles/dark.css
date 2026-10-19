@@ -37,6 +37,8 @@ html[data-atm-theme="dark"] {
   --atm-info-bg: #1e3550;
   --atm-info-border: #2b4a70;
   --atm-info-text: #cfe3ff;
+  --atm-avatar-bg: #2e3a5c;
+  --atm-avatar-text: #c3d0ff;
 
   --atm-p-assessment: #d9468b;
   --atm-p-content: #3f86e5;

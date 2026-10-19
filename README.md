@@ -46,6 +46,10 @@ views. It only changes how pages look; it never sends data anywhere.
   which Moodle supports and then keeps by itself. `content/page-bridge.js`
   is injected into the page to call `core_table/dynamic.refreshTableContent`,
   since content scripts cannot reach Moodle's AMD modules.
+- **Initials instead of the default photo.** Moodle's grey silhouette
+  (core `u/f1`, `u/f2`, `u/f3`) is replaced everywhere with an initials badge
+  that matches Moodle's own `.userinitials` (participants, profile), all in
+  one theme-coloured style. The name comes from the image's alt text.
 - **Less clutter**: no header photo or hero carousel, no footer, no 830px
   width cap, tighter rows, and a primary menu without the theme's custom
   dropdowns (a direct My courses link is added instead).

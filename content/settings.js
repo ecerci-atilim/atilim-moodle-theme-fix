@@ -25,6 +25,7 @@
     allCourses: true,      // show every enrolled course in the home page list
     turkishInitials: true, // add Ç Ğ İ Ö Ş Ü to name initials bars in the English UI
     nameSort: true,        // sort participants by last name then first name (or the reverse)
+    initialsAvatars: true, // initials badge instead of the default profile picture
     colorIcons: true,      // colour activity icons by purpose
     indexIcons: true,      // add icons to the course index drawer
     smartTitles: true,     // split "CODE | Name TERM | Instructor" titles

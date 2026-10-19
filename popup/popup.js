@@ -14,6 +14,7 @@
     allCourses: true,
     turkishInitials: true,
     nameSort: true,
+    initialsAvatars: true,
     colorIcons: true,
     indexIcons: true,
     smartTitles: true,

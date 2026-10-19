@@ -59,10 +59,6 @@ html[data-atm] [data-region="filter-group"] .bg-white {
   background-color: var(--atm-surface) !important;
   border-color: var(--atm-border) !important;
 }
-html[data-atm] .userinitials {
-  background-color: var(--atm-surface-2) !important;
-  color: var(--atm-text-2) !important;
-}
 
 /* Turkish initials (features.js turkishInitials): the added letters, the
    rows they filter out in the browser, and the empty-result row. Everything
