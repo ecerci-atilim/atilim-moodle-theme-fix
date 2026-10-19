@@ -1,7 +1,7 @@
 {
   "manifest_version": 3,
   "name": "Atılım Moodle UI Fix",
-  "version": "3.3.0",
+  "version": "3.4.0",
   "description": "A calmer, more readable and more usable interface for moodle.atilim.edu.tr, for both students and teachers.",
   "permissions": [
     "storage"
@@ -49,7 +49,8 @@
   "web_accessible_resources": [
     {
       "resources": [
-        "fonts/*.woff2"
+        "fonts/*.woff2",
+        "content/page-bridge.js"
       ],
       "matches": [
         "https://moodle.atilim.edu.tr/*"

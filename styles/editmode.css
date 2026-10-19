@@ -95,6 +95,20 @@ html[data-atm] .bulkEnable:hover,
 html[data-atm] [data-action="bulkEnable"]:hover {
   background-color: var(--atm-primary-2) !important;
 }
+/* Stream dims it to 0.8 in the header; keep it solid and calm after
+   Moodle hands focus back to it */
+html[data-atm] header .bulkEnable {
+  opacity: 1 !important;
+}
+html[data-atm] .bulkEnable:focus:not(:focus-visible):not(:hover) {
+  background-color: var(--atm-primary) !important;
+}
+
+/* bulk editing mode: the dashed separators Moodle draws between activities
+   are near-white; follow the palette */
+html[data-atm] .bulkenabled .activity {
+  border-top-color: var(--atm-border) !important;
+}
 
 /* bulk-edit footer (sticky bar at the bottom) */
 html[data-atm] #sticky-footer,

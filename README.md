@@ -40,6 +40,12 @@ views. It only changes how pages look; it never sends data anywhere.
   are left alone. A site administrator can fix this for every table by adding
   the letters to the English `alphabet` string under *Language customisation*
   (`langconfig`).
+- **Full name sorting.** The Participants table sorts by one name field, so
+  people with the same surname came back in database order. The table is
+  switched to a two-key sort (last name, then first name, or the reverse),
+  which Moodle supports and then keeps by itself. `content/page-bridge.js`
+  is injected into the page to call `core_table/dynamic.refreshTableContent`,
+  since content scripts cannot reach Moodle's AMD modules.
 - **Less clutter**: no header photo or hero carousel, no footer, no 830px
   width cap, tighter rows, and a primary menu without the theme's custom
   dropdowns (a direct My courses link is added instead).
@@ -98,6 +104,7 @@ manifest.json          Manifest V3 definition
 content/settings.js    Settings model; mirrors settings onto <html data-atm-*>
 content/features.js    DOM features (titles, icons, menu, dark-mode contrast)
 content/main.js        Entry point; one debounced MutationObserver
+content/page-bridge.js Page-world helper that reloads Moodle tables on request
 styles/base.css        Colour palette (CSS custom properties), font, shared bits
 styles/layout.css      Page skeleton, header strip, secondary navigation
 styles/navbar.css      Top bar

@@ -873,6 +873,64 @@
   };
 
   /* ------------------------------------------------------------------ */
+  /* 10. Name sorting: break ties with the other name                    */
+  /* ------------------------------------------------------------------ */
+
+  // The participants table sorts by one name field only, so people who
+  // share a surname (or a first name) come back in database order:
+  // "Ferit GÜLER" before "Begüm GÜLER". Moodle's tables keep up to two sort
+  // keys and put a newly clicked column first, so once the table is sorted
+  // by [last name, first name] Moodle maintains the tie-breaker by itself:
+  // clicking "First name" later gives [first name, last name].
+  // This sets the second key when only one name key is present and asks
+  // Moodle to reload the table (through page-bridge.js). The server stores
+  // the two-key sort in the user's table preferences, so it happens once.
+
+  let bridgeReady = null;
+  function pageBridge() {
+    if (!bridgeReady) {
+      bridgeReady = new Promise(function (resolve) {
+        if (document.documentElement.getAttribute('data-atm-bridge') === 'ready') { resolve(); return; }
+        const s = document.createElement('script');
+        s.src = chrome.runtime.getURL('content/page-bridge.js');
+        s.onload = function () { s.remove(); resolve(); };
+        s.onerror = function () { s.remove(); resolve(); };
+        (document.head || document.documentElement).appendChild(s);
+      });
+    }
+    return bridgeReady;
+  }
+
+  const NAME_KEYS = { lastname: 'firstname', firstname: 'lastname' };
+  // One attempt per table and page load: Moodle replaces the table node on
+  // every refresh, so a mark on the node would allow a loop if the server
+  // ever dropped the second key.
+  const nameSortTried = {};
+
+  F.nameSort = function () {
+    document.querySelectorAll(DYNAMIC_TABLE).forEach(function (root) {
+      const id = tableId(root);
+      if (nameSortTried[id]) return;
+      nameSortTried[id] = true;
+      let sort;
+      try { sort = JSON.parse(root.getAttribute('data-table-sort-data') || '[]'); } catch (e) { return; }
+      if (!Array.isArray(sort) || sort.length !== 1) return;
+      const primary = sort[0];
+      const other = primary && NAME_KEYS[primary.sortby];
+      if (!other) return;
+      // Only for tables that can sort by both names (the fullname column).
+      if (!root.querySelector('a[data-sortable="1"][data-sortby="' + other + '"]')) return;
+      root.setAttribute('data-table-sort-data', JSON.stringify([
+        { sortby: primary.sortby, sortorder: primary.sortorder },
+        { sortby: other, sortorder: 4 } // SORT_ASC
+      ]));
+      pageBridge().then(function () {
+        if (root.isConnected) root.dispatchEvent(new CustomEvent('atm:refresh-table', { bubbles: true }));
+      });
+    });
+  };
+
+  /* ------------------------------------------------------------------ */
   /* Run order                                                           */
   /* ------------------------------------------------------------------ */
 
@@ -885,6 +943,7 @@
       ['indexIcons', F.indexIcons],
       ['allCourses', F.allCourses],
       ['turkishInitials', F.turkishInitials],
+      ['nameSort', F.nameSort],
       [null, F.tagActivities],
       [null, F.emptyHeaders],
       [null, F.darkContent]

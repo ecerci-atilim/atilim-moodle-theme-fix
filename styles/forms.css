@@ -2,6 +2,18 @@
    Buttons, forms, dropdowns, modals, the activity chooser, editors.
    ------------------------------------------------------------------ */
 
+/* Focus rings only for keyboard focus. Bootstrap rings every focused .btn
+   (0 0 0 .2rem navy at 75%); Moodle moves focus back to buttons by script,
+   e.g. "Bulk edit" after closing bulk editing, which left it looking pressed. */
+html[data-atm] .btn:focus:not(:focus-visible),
+html[data-atm] .btn.focus:not(:focus-visible) {
+  box-shadow: none !important;
+  outline: none !important;
+}
+html[data-atm] .btn:focus-visible {
+  box-shadow: 0 0 0 3px var(--atm-focus) !important;
+}
+
 /* buttons */
 html[data-atm] .btn {
   border-radius: var(--atm-radius) !important;

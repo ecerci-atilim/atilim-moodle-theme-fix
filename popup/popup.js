@@ -13,6 +13,7 @@
     courseList: true,
     allCourses: true,
     turkishInitials: true,
+    nameSort: true,
     colorIcons: true,
     indexIcons: true,
     smartTitles: true,
