@@ -12,6 +12,7 @@
     compact: true,
     courseList: true,
     allCourses: true,
+    turkishInitials: true,
     colorIcons: true,
     indexIcons: true,
     smartTitles: true,

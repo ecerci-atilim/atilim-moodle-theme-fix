@@ -64,6 +64,25 @@ html[data-atm] .userinitials {
   color: var(--atm-text-2) !important;
 }
 
+/* Turkish initials (features.js turkishInitials): the added letters, the
+   rows they filter out in the browser, and the empty-result row. Everything
+   reverts when the setting is switched off. */
+html[data-atm-turkish-initials="0"] .initialbar [data-atm-initial],
+html[data-atm-turkish-initials="0"] tr.atm-tr-empty {
+  display: none !important;
+}
+html[data-atm-turkish-initials="1"] tr[data-atm-tr-hidden] {
+  display: none !important;
+}
+html[data-atm] .initialbar [data-atm-initial] .page-link {
+  cursor: pointer;
+}
+html[data-atm] tr.atm-tr-empty td {
+  text-align: center;
+  color: var(--atm-muted) !important;
+  padding: 1rem !important;
+}
+
 /* paging and initials bar */
 html[data-atm] .pagination .page-link,
 html[data-atm] .initialbar .page-link {

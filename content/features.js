@@ -671,6 +671,208 @@
   };
 
   /* ------------------------------------------------------------------ */
+  /* 9. Turkish letters in the first / last name initials bars           */
+  /* ------------------------------------------------------------------ */
+
+  // With the interface in English, Moodle's initials bars offer only A-Z.
+  // The server cannot be asked for Ç, Ğ, İ, Ö, Ş or Ü either: tablelib.php
+  // (set_initials_preferences) accepts an initial only if it appears in the
+  // current language's "alphabet" string, and silently falls back to "All".
+  //
+  // So on dynamic tables (the participants page) these letters filter in the
+  // browser: picking one resets that bar's server filter to "All", asks the
+  // table to show every row on one page, and hides the rows whose initial
+  // does not match. Each row's initials come from Moodle's own avatar badge
+  // ("SC" = first name S, last name C), falling back to the displayed name for
+  // users with a profile picture. Static tables (assignment grading, reports)
+  // paginate on the server, where a browser-side filter would only see one
+  // page, so no letters are added there.
+
+  const TR_INITIALS = [['C', 'Ç'], ['G', 'Ğ'], ['I', 'İ'], ['O', 'Ö'], ['S', 'Ş'], ['U', 'Ü']];
+  const DYNAMIC_TABLE = '[data-region="core_table/dynamic"]';
+
+  // Client-side choice per table and bar: { "<uniqueid>": { first: 'Ç', last: null } }.
+  // Kept in memory because Moodle replaces the whole table node on refresh.
+  const trState = {};
+
+  function tableId(root) { return root.getAttribute('data-table-uniqueid') || 'table'; }
+  function barKind(bar) { return bar.classList.contains('lastinitial') ? 'last' : 'first'; }
+  function upperTr(s) { return String(s || '').toLocaleUpperCase('tr-TR'); }
+
+  function stateOf(root) {
+    const id = tableId(root);
+    if (!trState[id]) trState[id] = { first: null, last: null, showAllAsked: false };
+    return trState[id];
+  }
+
+  // [first initial, last initial] of a participants row, or null.
+  function rowInitials(tr) {
+    const link = tr.querySelector('a[href*="/user/view.php"]');
+    if (!link) return null;
+    const badge = link.querySelector('.userinitials');
+    if (badge) {
+      const t = Array.from(badge.textContent.trim());
+      if (t.length >= 2) return [upperTr(t[0]), upperTr(t[t.length - 1])];
+    }
+    let name = '';
+    link.childNodes.forEach(function (n) { if (n.nodeType === 3) name += n.textContent; });
+    const parts = name.trim().split(/\s+/).filter(Boolean);
+    if (!parts.length) return null;
+    return [upperTr(Array.from(parts[0])[0]), upperTr(Array.from(parts[parts.length - 1])[0])];
+  }
+
+  // Make the table show every row on one page, so the filter sees them all.
+  function ensureAllRows(root, state) {
+    const total = parseInt(root.getAttribute('data-table-total-rows') || '0', 10);
+    const size = parseInt(root.getAttribute('data-table-page-size') || '0', 10);
+    if (!total || !size || size >= total) return false;
+    const link = Array.from(root.querySelectorAll('[data-action="showcount"]')).find(function (a) {
+      return parseInt(a.getAttribute('data-target-page-size') || '0', 10) >= total;
+    });
+    if (!link || state.showAllAsked) return false;
+    state.showAllAsked = true;
+    link.click();
+    return true;
+  }
+
+  function applyTrFilter(root) {
+    const state = stateOf(root);
+    const tbody = root.querySelector('table tbody');
+    root.querySelectorAll('.initialbar').forEach(function (bar) {
+      const letter = state[barKind(bar)];
+      bar.querySelectorAll('li[data-atm-initial]').forEach(function (li) {
+        const on = li.getAttribute('data-atm-initial') === letter;
+        li.classList.toggle('active', on);
+        const a = li.querySelector('a');
+        if (a) { if (on) a.setAttribute('aria-current', 'true'); else a.removeAttribute('aria-current'); }
+      });
+      if (letter) {
+        // The server shows "All" as current; the real choice is ours.
+        bar.querySelectorAll('li.active:not([data-atm-initial])').forEach(function (li) {
+          li.classList.remove('active');
+          const a = li.querySelector('a');
+          if (a) a.removeAttribute('aria-current');
+        });
+      } else if (!bar.querySelector('li.active')) {
+        // Our choice was cleared without a refresh: give the highlight back to
+        // the item that matches the server's own filter.
+        const server = root.getAttribute(barKind(bar) === 'last' ? 'data-table-last-initial' : 'data-table-first-initial');
+        const li = server ? bar.querySelector('li[data-initial="' + server + '"]') : bar.querySelector('li.initialbarall');
+        if (li) {
+          li.classList.add('active');
+          const a = li.querySelector('a');
+          if (a) a.setAttribute('aria-current', 'true');
+        }
+      }
+    });
+    if (!tbody) return;
+    const filtering = !!(state.first || state.last);
+    let shown = 0;
+    // :not(.emptyrow): in "Show all" mode Moodle pads the table with
+    // thousands of empty placeholder rows; they hold no user.
+    tbody.querySelectorAll('tr:not(.emptyrow)').forEach(function (tr) {
+      if (tr.classList.contains('atm-tr-empty')) return;
+      const ini = filtering ? rowInitials(tr) : null;
+      const hide = filtering && !!ini && ((state.first && ini[0] !== state.first) || (state.last && ini[1] !== state.last));
+      if (hide) tr.setAttribute('data-atm-tr-hidden', '1'); else tr.removeAttribute('data-atm-tr-hidden');
+      if (!hide && ini) shown++;
+    });
+    let empty = tbody.querySelector('tr.atm-tr-empty');
+    if (filtering && shown === 0) {
+      if (!empty) {
+        empty = document.createElement('tr');
+        empty.className = 'atm-tr-empty';
+        const td = document.createElement('td');
+        td.colSpan = 99;
+        td.textContent = 'Nothing to display';
+        empty.appendChild(td);
+        tbody.appendChild(empty);
+      }
+    } else if (empty) {
+      empty.remove();
+    }
+  }
+
+  function onTrInitialClick(e) {
+    e.preventDefault();
+    e.stopPropagation(); // keep Moodle's table handler out of it
+    const li = e.currentTarget.closest('li');
+    const bar = li.closest('.initialbar');
+    const root = bar.closest(DYNAMIC_TABLE);
+    if (!root) return;
+    const state = stateOf(root);
+    const kind = barKind(bar);
+    state[kind] = li.getAttribute('data-atm-initial');
+    state.showAllAsked = false;
+    const serverInitial = root.getAttribute(kind === 'last' ? 'data-table-last-initial' : 'data-table-first-initial');
+    const all = bar.querySelector('a[data-initial=""], li.initialbarall a');
+    if (serverInitial && all) {
+      all.click(); // the refresh re-runs the features, which continue below
+      return;
+    }
+    if (!ensureAllRows(root, state)) applyTrFilter(root);
+  }
+
+  // Picking a regular letter or "All" in a bar clears our choice for that bar.
+  document.addEventListener('click', function (e) {
+    const li = e.target.closest && e.target.closest('.initialbar li[data-initial], .initialbar a[data-initial]');
+    if (!li) return;
+    const bar = li.closest('.initialbar');
+    const root = bar && bar.closest(DYNAMIC_TABLE);
+    if (!root || e.isTrusted === false) return; // our own programmatic "All" click keeps the choice
+    const state = stateOf(root);
+    const kind = barKind(bar);
+    if (!state[kind]) return;
+    state[kind] = null;
+    // Moodle skips the refresh when its own filter does not change (e.g.
+    // "All" while ours was active), so re-apply right away; if it does
+    // refresh, the new table is filtered again anyway.
+    window.requestAnimationFrame(function () {
+      document.querySelectorAll(DYNAMIC_TABLE).forEach(applyTrFilter);
+    });
+  }, true);
+
+  F.turkishInitials = function () {
+    if (isTurkish()) return; // the Turkish interface has these letters natively
+    document.querySelectorAll(DYNAMIC_TABLE).forEach(function (root) {
+      root.querySelectorAll('.initialbar').forEach(function (bar) {
+        TR_INITIALS.forEach(function (pair) {
+          const base = bar.querySelector('li[data-initial="' + pair[0] + '"]');
+          if (!base) return;
+          // Skip when Moodle already renders the letter (e.g. a site alphabet
+          // customised to include it) or when it was added before.
+          if (bar.querySelector('li[data-initial="' + pair[1] + '"], li[data-atm-initial="' + pair[1] + '"]')) return;
+          const item = base.cloneNode(true);
+          // No data-initial on purpose: Moodle's handler must not see it.
+          item.removeAttribute('data-initial');
+          item.setAttribute('data-atm-initial', pair[1]);
+          if (item.id) item.id = item.id.replace(/_[^_]*$/, '_atm_' + pair[1]);
+          item.classList.remove(pair[0], 'active');
+          item.classList.add(pair[1]);
+          const a = item.querySelector('a');
+          a.removeAttribute('aria-current');
+          a.removeAttribute('href');
+          a.setAttribute('role', 'button');
+          a.setAttribute('tabindex', '0');
+          a.setAttribute('title', t('Bu harfle başlayan adlar', 'Names starting with ') + pair[1]);
+          a.textContent = pair[1];
+          a.addEventListener('click', onTrInitialClick);
+          a.addEventListener('keydown', function (e) { if (e.key === 'Enter' || e.key === ' ') onTrInitialClick(e); });
+          base.parentNode.insertBefore(item, base.nextSibling);
+        });
+      });
+      const state = stateOf(root);
+      if (state.first || state.last) {
+        const kindsReset = ['first', 'last'].every(function (k) {
+          return !state[k] || !root.getAttribute(k === 'last' ? 'data-table-last-initial' : 'data-table-first-initial');
+        });
+        if (kindsReset && ensureAllRows(root, state)) return; // wait for the refresh
+      }
+      applyTrFilter(root);
+    });
+  };
+
+  /* ------------------------------------------------------------------ */
   /* Run order                                                           */
   /* ------------------------------------------------------------------ */
 
@@ -682,6 +884,7 @@
       ['smartTitles', F.smartTitles],
       ['indexIcons', F.indexIcons],
       ['allCourses', F.allCourses],
+      ['turkishInitials', F.turkishInitials],
       [null, F.tagActivities],
       [null, F.emptyHeaders],
       [null, F.darkContent]

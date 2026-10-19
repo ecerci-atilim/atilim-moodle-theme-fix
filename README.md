@@ -31,6 +31,15 @@ views. It only changes how pages look; it never sends data anywhere.
 - **Every course on the home page.** The site home list stops at 20 courses;
   the extension fetches the rest through the same web service that the My
   courses page uses.
+- **Turkish letters in name filters.** With Moodle in English, the first /
+  last name letter bars on the Participants page get Ç, Ğ, İ, Ö, Ş and Ü.
+  Moodle only accepts letters of the current language's alphabet
+  (`set_initials_preferences` in `lib/tablelib.php`), so these letters filter
+  in the browser: all rows are loaded on one page and non-matching rows are
+  hidden. Tables that paginate on the server (assignment grading, reports)
+  are left alone. A site administrator can fix this for every table by adding
+  the letters to the English `alphabet` string under *Language customisation*
+  (`langconfig`).
 - **Less clutter**: no header photo or hero carousel, no footer, no 830px
   width cap, tighter rows, and a primary menu without the theme's custom
   dropdowns (a direct My courses link is added instead).
