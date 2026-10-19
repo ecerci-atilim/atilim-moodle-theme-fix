@@ -68,6 +68,28 @@
     document.getElementById('version').textContent = 'v' + chrome.runtime.getManifest().version;
   } catch (e) { /* ignore */ }
 
+  // Firefox lets users withhold host access (and Chrome's "site access"
+  // menu can do the same); without it the content scripts never run.
+  // permissions.request needs a user gesture, hence the button.
+  const SITE = { origins: ['https://moodle.atilim.edu.tr/*'] };
+  const access = document.getElementById('access');
+  function checkAccess() {
+    try {
+      chrome.permissions.contains(SITE, function (ok) {
+        access.hidden = !!ok || !!chrome.runtime.lastError;
+      });
+    } catch (e) { /* permissions API unavailable: assume granted */ }
+  }
+  document.getElementById('grant').addEventListener('click', function () {
+    chrome.permissions.request(SITE, function (granted) {
+      if (granted) {
+        access.hidden = true;
+        flash('Allowed, reload Moodle');
+      }
+    });
+  });
+  checkAccess();
+
   chrome.storage.sync.get(KEY, function (data) {
     if (!chrome.runtime.lastError && data && data[KEY]) {
       Object.keys(DEFAULTS).forEach(function (k) {

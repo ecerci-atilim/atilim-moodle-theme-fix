@@ -91,3 +91,22 @@ select {
   text-decoration: underline;
 }
 .status { color: var(--muted); font-size: 11px; }
+
+/* shown only when the browser has withheld access to the Moodle site */
+.access {
+  margin: 8px 0;
+  padding: 8px 10px;
+  border: 1px solid #e0b252;
+  border-radius: 8px;
+  background: #fff4d6;
+  color: #4a3a0e;
+}
+.access[hidden] { display: none; }
+.access .btn {
+  margin-top: 6px;
+  background: var(--primary); color: #fff;
+  border: 0; border-radius: 6px; padding: 5px 10px; font: inherit; font-weight: 600; cursor: pointer;
+}
+@media (prefers-color-scheme: dark) {
+  .access { background: #4a3d12; border-color: #6b5a1c; color: #ffe8a3; }
+}

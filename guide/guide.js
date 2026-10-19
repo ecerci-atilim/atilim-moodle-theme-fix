@@ -68,6 +68,23 @@
     applyTheme();
   }
 
+  /* ---------------- store links ---------------- */
+
+  // Filled in once the store listings are approved. Empty entries stay
+  // hidden; with no link at all the guide shows only the manual install.
+  const STORE_LINKS = {
+    chrome: '',
+    firefox: ''
+  };
+
+  let anyStore = false;
+  document.querySelectorAll('[data-store]').forEach(function (a) {
+    const url = STORE_LINKS[a.getAttribute('data-store')];
+    if (url) { a.href = url; a.hidden = false; anyStore = true; }
+  });
+  document.getElementById('stores').hidden = !anyStore;
+  document.querySelectorAll('[data-store-pending]').forEach(function (el) { el.hidden = anyStore; });
+
   /* ---------------- version ---------------- */
 
   try {

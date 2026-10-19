@@ -87,6 +87,21 @@ body {
 .card ol, .card ul { margin: 0; padding-left: 22px; }
 .card li { margin: 4px 0; }
 .note { color: var(--atm-muted); font-size: 0.92rem; }
+.card h3 { font-size: 1rem; margin: 16px 0 8px; }
+
+/* store buttons (shown only when guide.js has links) */
+.store-links { display: flex; flex-wrap: wrap; gap: 10px; margin: 4px 0 12px; }
+.store-btn {
+  display: inline-block;
+  padding: 8px 16px;
+  border-radius: 8px;
+  background: var(--atm-primary-2);
+  color: var(--atm-on-primary) !important;
+  font-weight: 700;
+  text-decoration: none;
+}
+.store-btn:hover { filter: brightness(1.1); }
+[hidden] { display: none !important; }
 
 code {
   font-size: 0.88em;

@@ -626,7 +626,11 @@
       methodname: 'core_course_get_enrolled_courses_by_timeline_classification',
       args: { offset: 0, limit: 0, classification: 'all', sort: 'fullname', customfieldname: '', customfieldvalue: '' }
     }]);
-    fetch('/lib/ajax/service.php?sesskey=' + encodeURIComponent(key) +
+    // Firefox: content.fetch sends the request as the page itself (same
+    // origin, Moodle session cookie); in Chrome the plain fetch already does.
+    const pageFetch = (typeof content !== 'undefined' && content && typeof content.fetch === 'function')
+      ? content.fetch.bind(content) : fetch;
+    pageFetch(location.origin + '/lib/ajax/service.php?sesskey=' + encodeURIComponent(key) +
           '&info=core_course_get_enrolled_courses_by_timeline_classification', {
       method: 'POST',
       credentials: 'same-origin',

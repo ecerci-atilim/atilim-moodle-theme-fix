@@ -41,8 +41,20 @@
 
     <section class="card">
       <h2><span data-l="en">Installing</span><span data-l="tr">Kurulum</span></h2>
-      <p class="note" data-l="en">The extension is not on the Chrome Web Store yet, so it is installed by hand. It takes about a minute.</p>
-      <p class="note" data-l="tr">Eklenti henüz Chrome Web Mağazası'nda değil, bu yüzden elle kuruluyor. Yaklaşık bir dakika sürer.</p>
+      <!-- Shown by guide.js once STORE_LINKS has at least one link. -->
+      <div class="stores" id="stores" hidden>
+        <p data-l="en">Install it from your browser's store; updates then arrive automatically.</p>
+        <p data-l="tr">Tarayıcınızın mağazasından kurun; güncellemeler otomatik gelir.</p>
+        <div class="store-links">
+          <a class="store-btn" data-store="chrome" target="_blank" rel="noopener" hidden>Chrome Web Store</a>
+          <a class="store-btn" data-store="firefox" target="_blank" rel="noopener" hidden>Firefox Add-ons</a>
+        </div>
+        <p class="note" data-l="en">The Chrome Web Store link also works in Edge, Brave, Vivaldi and Opera. Edge asks you to allow extensions from other stores; if Opera shows no install button, first add <i>Install Chrome Extensions</i> from addons.opera.com.</p>
+        <p class="note" data-l="tr">Chrome Web Mağazası linki Edge, Brave, Vivaldi ve Opera'da da çalışır. Edge diğer mağazalardan eklentilere izin vermenizi ister; Opera kurulum düğmesi göstermezse önce addons.opera.com'dan <i>Install Chrome Extensions</i> eklentisini kurun.</p>
+        <h3><span data-l="en">Manual installation</span><span data-l="tr">Elle kurulum</span></h3>
+      </div>
+      <p class="note" data-l="en" data-store-pending>The extension is not on the stores yet, so it is installed by hand. It takes about a minute.</p>
+      <p class="note" data-l="tr" data-store-pending>Eklenti henüz mağazalarda değil, bu yüzden elle kuruluyor. Yaklaşık bir dakika sürer.</p>
       <ol data-l="en">
         <li>Download the extension as a ZIP file: <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip">atilim-moodle-theme-fix-main.zip</a>.</li>
         <li>Extract the ZIP. You get a folder that contains <code>manifest.json</code>.</li>

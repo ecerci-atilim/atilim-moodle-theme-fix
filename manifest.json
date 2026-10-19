@@ -1,10 +1,13 @@
 {
   "manifest_version": 3,
   "name": "Atılım Moodle UI Fix",
-  "version": "3.5.1",
+  "version": "3.6.0",
   "description": "A calmer, more readable and more usable interface for moodle.atilim.edu.tr, for both students and teachers.",
   "permissions": [
     "storage"
+  ],
+  "host_permissions": [
+    "https://moodle.atilim.edu.tr/*"
   ],
   "icons": {
     "16": "icons/icon16.png",
@@ -25,7 +28,6 @@
       ],
       "run_at": "document_start",
       "css": [
-        "fonts/lato.css",
         "styles/base.css",
         "styles/layout.css",
         "styles/navbar.css",

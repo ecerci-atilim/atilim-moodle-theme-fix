@@ -85,6 +85,31 @@
     ATM.applyAttrs();
   };
 
+  // 0. Bundled Lato. Declared from JS because the extension URL scheme
+  //    differs per browser (chrome-extension:// vs moz-extension://), so it
+  //    cannot be hard-coded in a stylesheet. The files are listed in
+  //    web_accessible_resources.
+  const LATIN = 'U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD';
+  const LATIN_EXT = 'U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C0, U+2113, U+2C60-2C7F, U+A720-A7FF';
+  const FACES = [['normal', 400, 'lato-400'], ['italic', 400, 'lato-400-italic'], ['normal', 700, 'lato-700']];
+  (function injectFonts() {
+    if (document.getElementById('atm-fonts')) return;
+    let css = '';
+    try {
+      FACES.forEach(function (f) {
+        [['latin-ext', LATIN_EXT], ['latin', LATIN]].forEach(function (s) {
+          css += "@font-face{font-family:'Lato';font-style:" + f[0] + ';font-weight:' + f[1] +
+                 ';font-display:swap;src:url(' + chrome.runtime.getURL('fonts/' + f[2] + '-' + s[0] + '.woff2') +
+                 ") format('woff2');unicode-range:" + s[1] + '}';
+        });
+      });
+    } catch (e) { return; } // no extension context (e.g. a preview)
+    const style = document.createElement('style');
+    style.id = 'atm-fonts';
+    style.textContent = css;
+    (document.head || document.documentElement).appendChild(style);
+  })();
+
   // 1. Synchronous: the localStorage copy (prevents a white flash).
   try {
     const cached = JSON.parse(localStorage.getItem(ATM.LS_KEY) || 'null');

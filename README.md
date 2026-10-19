@@ -59,9 +59,23 @@ views. It only changes how pages look; it never sends data anywhere.
 
 ## Installation
 
-The extension is not on the Chrome Web Store yet, so it is loaded as an
-unpacked extension. This works in Chrome, Edge, Brave, Opera and other
-Chromium-based browsers; Firefox and Safari are not supported.
+### Install from a store
+
+Store listings for Chrome and Firefox are being prepared; the links will
+appear here once they are approved. A store install updates itself.
+
+- **Chrome, Edge, Brave, Vivaldi, Opera**: Chrome Web Store, link to follow.
+  Edge asks you to allow extensions from other stores; if Opera shows no
+  install button, first add *Install Chrome Extensions* from
+  addons.opera.com.
+- **Firefox** (desktop and Android): Firefox Add-ons, link to follow.
+
+Safari is not supported.
+
+### Manual installation (Chromium browsers)
+
+Until the store links are live, or to try changes from this repository, load
+the extension unpacked:
 
 1. **Download.** On this GitHub page click **Code → Download ZIP**, or use
    [this direct link](https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip).
@@ -86,7 +100,8 @@ again from the **User guide** link in the settings popup.
 
 ### Updating
 
-Unpacked extensions do not update themselves.
+Store installs update automatically. Unpacked extensions do not update
+themselves.
 
 - **ZIP install**: download the ZIP again, replace the contents of your
   extension folder with the new files, then press the **reload** (circular
@@ -124,8 +139,11 @@ styles/dark.css        Dark palette and dark-only fixes
 popup/                 Settings popup
 guide/                 User guide page (English / Turkish)
 background.js          Service worker; opens the guide after the first install
-fonts/                 Lato (latin + latin-ext subsets)
+fonts/                 Lato (latin + latin-ext subsets, SIL Open Font License)
 icons/                 Extension icon
+scripts/build.py       Builds the Chrome and Firefox store packages into dist/
+store/                 Store listing texts, screenshots, publishing steps
+PRIVACY.md             Privacy policy (no data is collected)
 ```
 
 ## How it works
@@ -147,6 +165,11 @@ the marks are cleared and recomputed whenever the theme changes.
 ## Development
 
 After editing files, press the **reload** button of the extension on
-`chrome://extensions` and reload the Moodle tab. The site runs Moodle 4.4
+`chrome://extensions` and reload the Moodle tab. The site runs Moodle 4.5
 (Bootstrap 4) with the Stream theme, a Boost child theme; the selectors are
 written for that markup.
+
+`python scripts/build.py` packs the store uploads into `dist/`: one ZIP for
+Chrome (and other Chromium stores) and one for Firefox, whose manifest gets a
+background script instead of a service worker and the `gecko` add-on ID.
+Publishing steps and store texts are in [store/PUBLISHING.md](store/PUBLISHING.md).

@@ -1,5 +1,6 @@
-/* Same @font-face rules as fonts/lato.css, with URLs relative to this page
-   so the guide also works outside the extension. */
+/* Same @font-face rules that content/settings.js injects into Moodle pages,
+   with URLs relative to this page so the guide also works outside the
+   extension. Lato is under the SIL Open Font License (fonts/OFL.txt). */
 @font-face {
   font-family: 'Lato';
   font-style: italic;
