@@ -34,6 +34,9 @@ html[data-atm-theme="dark"] {
   --atm-danger: #e5645a;
   --atm-success: #3ec27e;
   --atm-done: #1f7a4d;
+  --atm-info-bg: #1e3550;
+  --atm-info-border: #2b4a70;
+  --atm-info-text: #cfe3ff;
 
   --atm-p-assessment: #d9468b;
   --atm-p-content: #3f86e5;

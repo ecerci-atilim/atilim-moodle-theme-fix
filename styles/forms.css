@@ -142,6 +142,14 @@ html[data-atm] .form-control-feedback {
   color: var(--atm-muted) !important;
 }
 
+/* grade field group (Type / Scale / Maximum grade): Moodle core boxes it
+   with a fixed white background */
+html[data-atm] [data-fieldtype="modgrade"] {
+  background-color: var(--atm-surface-2) !important;
+  border-color: var(--atm-border) !important;
+  color: var(--atm-text) !important;
+}
+
 /* mform: collapsible sections */
 html[data-atm] .mform .collapsible .fheader,
 html[data-atm] .mform fieldset legend a,

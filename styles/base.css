@@ -39,6 +39,9 @@
   --atm-danger: #c0392b;
   --atm-success: #1a9a5a;
   --atm-done: #1a7f4b;          /* "Done" completion buttons, white text on it */
+  --atm-info-bg: #dcebf8;       /* informational notes (e.g. Turnitin's form hints) */
+  --atm-info-border: #9cc3e6;
+  --atm-info-text: #1d2125;
 
   /* activity purposes (Moodle "purpose" groups) */
   --atm-p-assessment: #c62f74;

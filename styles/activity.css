@@ -276,6 +276,15 @@ html[data-atm] #mod_turnitintooltwo_upload_success {
   color: var(--atm-danger) !important;
   border-color: var(--atm-danger) !important;
 }
+/* Turnitin form hints ("Check against..." note in Similarity Report Options):
+   fixed light blue (#bbe6ff) that carried light text in dark mode */
+html[data-atm] :is(.tii_checkagainstnote, .tii_genspeednote) {
+  background: var(--atm-info-bg) !important;
+  border-color: var(--atm-info-border) !important;
+  color: var(--atm-info-text) !important;
+  border-radius: var(--atm-radius);
+}
+
 html[data-atm] :is(.mod_turnitintooltwo_quickmark_manager_launch, .mod_turnitintooltwo_rubric_manager_launch, .mod_turnitintooltwo_rubric_view_launch) {
   color: var(--atm-link) !important;
 }
