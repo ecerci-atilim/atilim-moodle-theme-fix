@@ -87,7 +87,8 @@ Microsoft Edge only (Edge Add-ons cannot be installed in other browsers).
    - Description: the detailed description from listing.md.
    - Extension logo: `store/logo-300x300.png`.
    - Small promotional tile: `store/promo-tile-440x280.png`.
-   - Screenshots: the four files in `store/screenshots/` (640 × 480).
+   - Screenshots: the four files in `store/screenshots-640x400/` (the form
+     accepts only 640 × 400 or 1280 × 800).
    - Search terms: from listing.md.
 7. **Publish**, paste the reviewer notes into *Notes for certification*,
    **Publish** again. Certification takes up to seven business days.

@@ -105,14 +105,17 @@ Kaynak kod ve sorun bildirimi: https://github.com/ecerci-atilim/atilim-moodle-th
 | `store/logo-300x300.png` | Edge "Extension logo" (300 × 300) |
 | `icons/icon128.png` | Icon where a store asks for 128 × 128 |
 | `store/icon-64x64.png` | Icon where a store asks for 64 × 64 (Opera) |
+| `store/screenshots-640x400/*.png` | The same four screenshots without captions, 640 × 400, for Edge |
 | `store/screenshots/1-course-dark.png` | Screenshot: course page, dark theme, course index |
 | `store/screenshots/2-course-light.png` | Screenshot: the same page, light (grey) theme |
 | `store/screenshots/3-my-courses.png` | Screenshot: single-column My courses |
 | `store/screenshots/4-initials.png` | Screenshot: forum with initials badges |
 | `store/promo-tile-440x280.png` | Edge "Small promotional tile" (440 × 280) |
 
-The screenshots are 640 × 480: the size Edge requires, within Opera's
-800 × 600 limit, and accepted by AMO. Opera accepts at most three (1–3). Names in them are placeholders; no real
+`store/screenshots/` holds 640 × 480 versions with a caption band, used for
+AMO and Opera (within Opera's 800 × 600 limit; Opera accepts at most three,
+1–3). Edge's form accepts only 1280 × 800 or 640 × 400 (its documentation
+says 640 × 480, the form does not), so Edge gets `store/screenshots-640x400/`. Names in them are placeholders; no real
 student or staff names are shown.
 
 ## Edge: Privacy page
