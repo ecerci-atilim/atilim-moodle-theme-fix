@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>Atılım Moodle UI Fix – User guide</title>
+  <title>UI Fix for Atılım Moodle – User guide</title>
   <!-- The palette comes from the extension's own stylesheets, so the guide
        always matches the light and dark themes. -->
   <link rel="stylesheet" href="../styles/base.css">
@@ -17,7 +17,7 @@
       <div class="brand">
         <span class="logo" aria-hidden="true"></span>
         <div>
-          <div class="brand-title">Atılım Moodle UI Fix</div>
+          <div class="brand-title">UI Fix for Atılım Moodle</div>
           <div class="brand-sub">
             <span data-l="en">User guide</span><span data-l="tr">Kullanım kılavuzu</span>
             <span class="version" id="version"></span>
@@ -43,22 +43,26 @@
       <h2><span data-l="en">Installing</span><span data-l="tr">Kurulum</span></h2>
       <!-- Shown by guide.js once STORE_LINKS has at least one link. -->
       <div class="stores" id="stores" hidden>
-        <p data-l="en">Install it from your browser's store; updates then arrive automatically.</p>
-        <p data-l="tr">Tarayıcınızın mağazasından kurun; güncellemeler otomatik gelir.</p>
+        <p data-l="en">Firefox, Edge and Opera: install it from your browser's add-on store. Updates then arrive automatically.</p>
+        <p data-l="tr">Firefox, Edge ve Opera: tarayıcınızın eklenti mağazasından kurun. Güncellemeler otomatik gelir.</p>
         <div class="store-links">
-          <a class="store-btn" data-store="chrome" target="_blank" rel="noopener" hidden>Chrome Web Store</a>
           <a class="store-btn" data-store="firefox" target="_blank" rel="noopener" hidden>Firefox Add-ons</a>
+          <a class="store-btn" data-store="edge" target="_blank" rel="noopener" hidden>Microsoft Edge Add-ons</a>
+          <a class="store-btn" data-store="opera" target="_blank" rel="noopener" hidden>Opera Add-ons</a>
         </div>
-        <p class="note" data-l="en">The Chrome Web Store link also works in Edge, Brave, Vivaldi and Opera. Edge asks you to allow extensions from other stores; if Opera shows no install button, first add <i>Install Chrome Extensions</i> from addons.opera.com.</p>
-        <p class="note" data-l="tr">Chrome Web Mağazası linki Edge, Brave, Vivaldi ve Opera'da da çalışır. Edge diğer mağazalardan eklentilere izin vermenizi ister; Opera kurulum düğmesi göstermezse önce addons.opera.com'dan <i>Install Chrome Extensions</i> eklentisini kurun.</p>
-        <h3><span data-l="en">Manual installation</span><span data-l="tr">Elle kurulum</span></h3>
+        <p class="note" data-l="en">Each store installs only into its own browser.</p>
+        <p class="note" data-l="tr">Her mağaza yalnızca kendi tarayıcısına kurar.</p>
       </div>
-      <p class="note" data-l="en" data-store-pending>The extension is not on the stores yet, so it is installed by hand. It takes about a minute.</p>
-      <p class="note" data-l="tr" data-store-pending>Eklenti henüz mağazalarda değil, bu yüzden elle kuruluyor. Yaklaşık bir dakika sürer.</p>
+      <p class="note" data-l="en" data-store-pending>The Firefox, Edge and Opera store listings are not live yet. Until then, use the manual installation below.</p>
+      <p class="note" data-l="tr" data-store-pending>Firefox, Edge ve Opera mağaza sayfaları henüz yayında değil. O zamana kadar aşağıdaki elle kurulumu kullanın.</p>
+
+      <h3><span data-l="en">Chrome, Brave, Vivaldi: manual installation</span><span data-l="tr">Chrome, Brave, Vivaldi: elle kurulum</span></h3>
+      <p class="note" data-l="en">There is no Chrome Web Store version: Google charges developers a registration fee for it, and this is a free, volunteer project. Installing by hand takes about a minute and works in every Chromium-based browser. A manually installed extension does not update itself; download it again when a new version is announced.</p>
+      <p class="note" data-l="tr">Chrome Web Mağazası sürümü yok: Google bu mağaza için geliştiricilerden kayıt ücreti alıyor, bu ise gönüllü ve ücretsiz bir proje. Elle kurulum yaklaşık bir dakika sürer ve Chromium tabanlı her tarayıcıda çalışır. Elle kurulan eklenti kendini güncellemez; yeni sürüm duyurulduğunda yeniden indirin.</p>
       <ol data-l="en">
         <li>Download the extension as a ZIP file: <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip">atilim-moodle-theme-fix-main.zip</a>.</li>
         <li>Extract the ZIP. You get a folder that contains <code>manifest.json</code>.</li>
-        <li>Open <code>chrome://extensions</code> (Edge: <code>edge://extensions</code>, Brave: <code>brave://extensions</code>).</li>
+        <li>Open <code>chrome://extensions</code> (Brave: <code>brave://extensions</code>, Vivaldi: <code>vivaldi://extensions</code>, Edge: <code>edge://extensions</code>, Opera: <code>opera://extensions</code>).</li>
         <li>Turn on <b>Developer mode</b> in the top right corner.</li>
         <li>Click <b>Load unpacked</b> and choose the folder that contains <code>manifest.json</code>. If Chrome says the manifest is missing, you picked the outer folder; go one level deeper.</li>
         <li>Reload any open Moodle tab.</li>
@@ -66,7 +70,7 @@
       <ol data-l="tr">
         <li>Eklentiyi ZIP olarak indirin: <a href="https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip">atilim-moodle-theme-fix-main.zip</a>.</li>
         <li>ZIP dosyasını çıkartın. İçinde <code>manifest.json</code> bulunan bir klasör oluşur.</li>
-        <li><code>chrome://extensions</code> adresini açın (Edge: <code>edge://extensions</code>, Brave: <code>brave://extensions</code>).</li>
+        <li><code>chrome://extensions</code> adresini açın (Brave: <code>brave://extensions</code>, Vivaldi: <code>vivaldi://extensions</code>, Edge: <code>edge://extensions</code>, Opera: <code>opera://extensions</code>).</li>
         <li>Sağ üstten <b>Geliştirici modu</b>'nu açın.</li>
         <li><b>Paketlenmemiş öğe yükle</b>'ye tıklayın ve içinde <code>manifest.json</code> olan klasörü seçin. Chrome manifest bulunamadı derse dıştaki klasörü seçmişsinizdir; bir alt klasöre inin.</li>
         <li>Açık olan Moodle sekmelerini yenileyin.</li>
@@ -75,8 +79,8 @@
 
     <section class="card">
       <h2><span data-l="en">Opening the settings</span><span data-l="tr">Ayarları açmak</span></h2>
-      <p data-l="en">Click the puzzle icon in the browser toolbar and pin <b>Atılım Moodle UI Fix</b>. Clicking its icon opens the settings. Every change applies to open Moodle tabs immediately, without reloading, and is synced with your browser profile.</p>
-      <p data-l="tr">Tarayıcı araç çubuğundaki yapboz simgesine tıklayın ve <b>Atılım Moodle UI Fix</b>'i sabitleyin. Simgesine tıklayınca ayarlar açılır. Her değişiklik açık Moodle sekmelerine sayfa yenilemeden hemen uygulanır ve tarayıcı profilinizle eşitlenir.</p>
+      <p data-l="en">Click the puzzle icon in the browser toolbar and pin <b>UI Fix for Atılım Moodle</b>. Clicking its icon opens the settings. Every change applies to open Moodle tabs immediately, without reloading, and is synced with your browser profile.</p>
+      <p data-l="tr">Tarayıcı araç çubuğundaki yapboz simgesine tıklayın ve <b>UI Fix for Atılım Moodle</b>'ı sabitleyin. Simgesine tıklayınca ayarlar açılır. Her değişiklik açık Moodle sekmelerine sayfa yenilemeden hemen uygulanır ve tarayıcı profilinizle eşitlenir.</p>
     </section>
 
     <section class="card">

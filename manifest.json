@@ -1,6 +1,6 @@
 {
   "manifest_version": 3,
-  "name": "Atılım Moodle UI Fix",
+  "name": "UI Fix for Atılım Moodle",
   "version": "3.6.0",
   "description": "A calmer, more readable and more usable interface for moodle.atilim.edu.tr, for both students and teachers.",
   "permissions": [
@@ -16,7 +16,7 @@
   },
   "action": {
     "default_popup": "popup/popup.html",
-    "default_title": "Atılım Moodle UI Fix"
+    "default_title": "UI Fix for Atılım Moodle"
   },
   "background": {
     "service_worker": "background.js"

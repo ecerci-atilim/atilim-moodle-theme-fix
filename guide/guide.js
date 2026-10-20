@@ -20,8 +20,8 @@
       b.setAttribute('aria-pressed', b.getAttribute('data-set-lang') === lang ? 'true' : 'false');
     });
     document.title = lang === 'tr'
-      ? 'Atılım Moodle UI Fix – Kullanım kılavuzu'
-      : 'Atılım Moodle UI Fix – User guide';
+      ? 'UI Fix for Atılım Moodle – Kullanım kılavuzu'
+      : 'UI Fix for Atılım Moodle – User guide';
   }
 
   let initialLang = params.get('lang');
@@ -72,9 +72,11 @@
 
   // Filled in once the store listings are approved. Empty entries stay
   // hidden; with no link at all the guide shows only the manual install.
+  // There is no Chrome Web Store listing (registration fee), by choice.
   const STORE_LINKS = {
-    chrome: '',
-    firefox: ''
+    firefox: '',
+    edge: '',
+    opera: ''
   };
 
   let anyStore = false;

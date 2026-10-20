@@ -1,4 +1,4 @@
-# Atılım Moodle UI Fix
+# UI Fix for Atılım Moodle
 
 A Chrome extension that makes the Stream theme on moodle.atilim.edu.tr calmer,
 more readable and easier to use. It covers both the student and the teacher
@@ -61,21 +61,23 @@ views. It only changes how pages look; it never sends data anywhere.
 
 ### Install from a store
 
-Store listings for Chrome and Firefox are being prepared; the links will
-appear here once they are approved. A store install updates itself.
+Store listings are being prepared; the links will appear here once they are
+approved. A store install updates itself.
 
-- **Chrome, Edge, Brave, Vivaldi, Opera**: Chrome Web Store, link to follow.
-  Edge asks you to allow extensions from other stores; if Opera shows no
-  install button, first add *Install Chrome Extensions* from
-  addons.opera.com.
 - **Firefox** (desktop and Android): Firefox Add-ons, link to follow.
+- **Microsoft Edge**: Edge Add-ons, link to follow.
+- **Opera**: Opera Add-ons, link to follow.
 
 Safari is not supported.
 
-### Manual installation (Chromium browsers)
+### Chrome, Brave, Vivaldi: manual installation
 
-Until the store links are live, or to try changes from this repository, load
-the extension unpacked:
+There is no Chrome Web Store version: Google charges developers a
+registration fee for it, and this is a free, volunteer project. Chrome, Brave
+and Vivaldi users load the extension unpacked instead. The same steps work in
+every Chromium-based browser, so Edge and Opera users can also use them until
+the store links are live, and developers can use them to try changes from
+this repository:
 
 1. **Download.** On this GitHub page click **Code → Download ZIP**, or use
    [this direct link](https://github.com/ecerci-atilim/atilim-moodle-theme-fix/archive/refs/heads/main.zip).
@@ -84,7 +86,8 @@ the extension unpacked:
    clean up). The browser loads the extension from this folder every time it
    starts, so do not delete or move it afterwards.
 3. **Open the extensions page**: `chrome://extensions` in Chrome,
-   `edge://extensions` in Edge, `brave://extensions` in Brave.
+   `brave://extensions` in Brave, `vivaldi://extensions` in Vivaldi,
+   `edge://extensions` in Edge, `opera://extensions` in Opera.
 4. **Turn on Developer mode** (a switch in the top right corner; in Edge it is
    in the left sidebar).
 5. Click **Load unpacked** and select the folder that directly contains
@@ -92,7 +95,7 @@ the extension unpacked:
    `atilim-moodle-theme-fix-main/`; if the browser reports that the manifest
    is missing, you selected a folder one level too high.
 6. **Pin the extension**: click the puzzle icon in the toolbar and pin
-   *Atılım Moodle UI Fix*. Its icon opens the settings.
+   *UI Fix for Atılım Moodle*. Its icon opens the settings.
 7. **Reload** any open moodle.atilim.edu.tr tab.
 
 The user guide opens automatically after the first install. It can be opened
@@ -170,6 +173,6 @@ After editing files, press the **reload** button of the extension on
 written for that markup.
 
 `python scripts/build.py` packs the store uploads into `dist/`: one ZIP for
-Chrome (and other Chromium stores) and one for Firefox, whose manifest gets a
+the Chromium stores (Edge, Opera) and one for Firefox, whose manifest gets a
 background script instead of a service worker and the `gecko` add-on ID.
 Publishing steps and store texts are in [store/PUBLISHING.md](store/PUBLISHING.md).

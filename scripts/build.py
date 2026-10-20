@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
 """
-Build store packages for Chrome (and every Chromium browser) and Firefox.
+Build store packages for Chromium browsers (Edge, Opera) and Firefox.
 
     python scripts/build.py
 
 Creates, from the current source tree:
 
-    dist/atilim-moodle-ui-fix-<version>-chrome.zip    Chrome Web Store, Edge, Opera
+    dist/atilim-moodle-ui-fix-<version>-chromium.zip  Edge Add-ons, Opera Add-ons
     dist/atilim-moodle-ui-fix-<version>-firefox.zip   addons.mozilla.org (AMO)
 
 Both packages contain the same files; only manifest.json differs:
 
-* Chrome keeps the manifest as it is in the repository (MV3 service worker).
+* Chromium keeps the manifest as it is in the repository (MV3 service worker).
 * Firefox gets "background.scripts" instead of "background.service_worker"
   (Firefox runs background scripts as an event page and does not support
   extension service workers) and "browser_specific_settings.gecko" with a
@@ -97,12 +97,12 @@ def main():
     files = collect_files()
     os.makedirs(DIST, exist_ok=True)
 
-    chrome_zip = os.path.join(DIST, "atilim-moodle-ui-fix-%s-chrome.zip" % version)
+    chromium_zip = os.path.join(DIST, "atilim-moodle-ui-fix-%s-chromium.zip" % version)
     firefox_zip = os.path.join(DIST, "atilim-moodle-ui-fix-%s-firefox.zip" % version)
-    write_zip(chrome_zip, files, manifest)
+    write_zip(chromium_zip, files, manifest)
     write_zip(firefox_zip, files, firefox_manifest(manifest))
 
-    for path in (chrome_zip, firefox_zip):
+    for path in (chromium_zip, firefox_zip):
         print("%-60s %7.1f KB" % (os.path.relpath(path, ROOT), os.path.getsize(path) / 1024))
     print("%d files, version %s" % (len(files), version))
 

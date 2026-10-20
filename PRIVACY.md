@@ -1,6 +1,6 @@
 # Privacy policy
 
-*Atılım Moodle UI Fix* is a browser extension that changes how
+*UI Fix for Atılım Moodle* is a browser extension that changes how
 moodle.atilim.edu.tr looks. It is an unofficial project and is not affiliated
 with Atılım University.
 
@@ -54,7 +54,7 @@ Questions and problem reports:
 
 # Gizlilik politikası
 
-*Atılım Moodle UI Fix*, moodle.atilim.edu.tr'nin görünümünü değiştiren bir
+*UI Fix for Atılım Moodle*, moodle.atilim.edu.tr'nin görünümünü değiştiren bir
 tarayıcı eklentisidir. Resmi değildir ve Atılım Üniversitesi ile bağlantısı
 yoktur.
 
