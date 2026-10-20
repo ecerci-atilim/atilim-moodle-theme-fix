@@ -104,6 +104,7 @@ Kaynak kod ve sorun bildirimi: https://github.com/ecerci-atilim/atilim-moodle-th
 | --- | --- |
 | `store/logo-300x300.png` | Edge "Extension logo" (300 × 300) |
 | `icons/icon128.png` | Icon where a store asks for 128 × 128 |
+| `store/icon-64x64.png` | Icon where a store asks for 64 × 64 (Opera) |
 | `store/screenshots/1-course-dark.png` | Screenshot: course page, dark theme, course index |
 | `store/screenshots/2-course-light.png` | Screenshot: the same page, light (grey) theme |
 | `store/screenshots/3-my-courses.png` | Screenshot: single-column My courses |

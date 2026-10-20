@@ -107,7 +107,11 @@ be slow (weeks are common), so submit it early and do not wait for it.
    manual installation like Chrome users.
 3. **Listing:** summary and description from listing.md, category, the four
    screenshots (640 × 480, within Opera's 800 × 600 limit), homepage and
-   support URL, privacy policy URL.
+   support URL, privacy policy URL. If an icon is asked for, use
+   `store/icon-64x64.png` or `icons/icon128.png`.
+   **License:** give MIT
+   (`https://github.com/ecerci-atilim/atilim-moodle-theme-fix/blob/main/LICENSE`);
+   without one, Opera publishes the extension under CC BY-NC-ND 4.0.
 4. **Notes for the moderator:** paste the reviewer notes from listing.md (they
    state that the code is not minified and where the source is).
 5. **Submit for moderation.** The store link is
