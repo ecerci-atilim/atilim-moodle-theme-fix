@@ -9,9 +9,12 @@ Creates, from the current source tree:
     dist/atilim-moodle-ui-fix-<version>-chromium.zip  Edge Add-ons, Opera Add-ons
     dist/atilim-moodle-ui-fix-<version>-firefox.zip   addons.mozilla.org (AMO)
 
-Both packages contain the same files; only manifest.json differs:
+Both packages are built from the same files, with these differences:
 
-* Chromium keeps the manifest as it is in the repository (MV3 service worker).
+* Chromium keeps the manifest as it is in the repository (MV3 service worker)
+  and leaves out popup/access.js, the host-access banner: Chromium grants
+  host access at install, and the Opera store's checker flags the
+  permissions API that the banner uses.
 * Firefox gets "background.scripts" instead of "background.service_worker"
   (Firefox runs background scripts as an event page and does not support
   extension service workers) and "browser_specific_settings.gecko" with a
@@ -44,6 +47,10 @@ INCLUDE = [
 FIREFOX_ID = "atilim-moodle-ui-fix@ecerci-atilim.github.io"
 FIREFOX_MIN_VERSION = "140.0"  # first release with built-in data consent (data_collection_permissions)
 FIREFOX_ANDROID_MIN_VERSION = "142.0"
+
+# Firefox-only file, and the popup.html line that loads it.
+ACCESS_JS = "popup/access.js"
+ACCESS_TAG = '  <script src="access.js"></script>\n'
 
 
 def collect_files():
@@ -81,11 +88,22 @@ def firefox_manifest(manifest):
     return m
 
 
-def write_zip(target, files, manifest):
+def chromium_popup_html():
+    with open(os.path.join(ROOT, "popup", "popup.html"), encoding="utf-8") as f:
+        html = f.read()
+    if ACCESS_TAG not in html:
+        sys.exit("popup.html: access.js script tag not found")
+    return html.replace(ACCESS_TAG, "")
+
+
+def write_zip(target, files, manifest, overrides=None):
+    overrides = overrides or {}
     with zipfile.ZipFile(target, "w", zipfile.ZIP_DEFLATED) as z:
         for rel in files:
             if rel == "manifest.json":
                 z.writestr("manifest.json", json.dumps(manifest, indent=2, ensure_ascii=False) + "\n")
+            elif rel in overrides:
+                z.writestr(rel, overrides[rel])
             else:
                 z.write(os.path.join(ROOT, rel), rel)
 
@@ -99,7 +117,8 @@ def main():
 
     chromium_zip = os.path.join(DIST, "atilim-moodle-ui-fix-%s-chromium.zip" % version)
     firefox_zip = os.path.join(DIST, "atilim-moodle-ui-fix-%s-firefox.zip" % version)
-    write_zip(chromium_zip, files, manifest)
+    write_zip(chromium_zip, [f for f in files if f != ACCESS_JS], manifest,
+              {"popup/popup.html": chromium_popup_html()})
     write_zip(firefox_zip, files, firefox_manifest(manifest))
 
     for path in (chromium_zip, firefox_zip):
