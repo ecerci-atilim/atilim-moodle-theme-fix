@@ -105,9 +105,9 @@ be slow (weeks are common), so submit it early and do not wait for it.
 2. **Upload** the `-chromium.zip` as a new extension. If the uploader rejects
    the Manifest V3 package, skip Opera for now: Opera users can use the
    manual installation like Chrome users.
-3. **Listing:** summary and description from listing.md, category, the four
-   screenshots (640 × 480, within Opera's 800 × 600 limit), homepage and
-   support URL, privacy policy URL. If an icon is asked for, use
+3. **Listing:** summary and description from listing.md, category
+   *Appearance*, at most **three** screenshots (Opera refuses the submission
+   with more; use 1, 2 and 3), homepage and support URL, privacy policy URL. If an icon is asked for, use
    `store/icon-64x64.png` or `icons/icon128.png`.
    **License:** give MIT
    (`https://github.com/ecerci-atilim/atilim-moodle-theme-fix/blob/main/LICENSE`);

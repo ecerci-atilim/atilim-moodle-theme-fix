@@ -88,7 +88,7 @@ Kaynak kod ve sorun bildirimi: https://github.com/ecerci-atilim/atilim-moodle-th
 
 - AMO: **Appearance** (alternative: Other)
 - Edge: **Productivity** (or **Education** if the list offers it)
-- Opera: **Productivity** (or the closest match the form offers)
+- Opera: **Appearance**
 
 ## Links
 
@@ -112,7 +112,7 @@ Kaynak kod ve sorun bildirimi: https://github.com/ecerci-atilim/atilim-moodle-th
 | `store/promo-tile-440x280.png` | Edge "Small promotional tile" (440 × 280) |
 
 The screenshots are 640 × 480: the size Edge requires, within Opera's
-800 × 600 limit, and accepted by AMO. Names in them are placeholders; no real
+800 × 600 limit, and accepted by AMO. Opera accepts at most three (1–3). Names in them are placeholders; no real
 student or staff names are shown.
 
 ## Edge: Privacy page
