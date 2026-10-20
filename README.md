@@ -176,3 +176,8 @@ written for that markup.
 the Chromium stores (Edge, Opera) and one for Firefox, whose manifest gets a
 background script instead of a service worker and the `gecko` add-on ID.
 Publishing steps and store texts are in [store/PUBLISHING.md](store/PUBLISHING.md).
+
+## License
+
+[MIT](LICENSE). The bundled Lato font is licensed separately under the SIL
+Open Font License 1.1 ([fonts/OFL.txt](fonts/OFL.txt)).

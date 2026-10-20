@@ -52,7 +52,7 @@ Firefox for desktop and Android.
 4. **Source code question:** answer *No* (see listing.md).
 5. **Describe the add-on.** Name, summary (max. 250 characters),
    description, category *Appearance*, support links, privacy policy (AMO
-   accepts the text itself: paste PRIVACY.md, or the URL) and a license.
+   accepts the text itself: paste PRIVACY.md, or the URL) and the license (MIT).
    Add the screenshots afterwards on the listing's *Edit* page (*Media*).
 6. **Notes to reviewer:** paste the text from listing.md.
 7. **Submit.** Listed add-ons are usually published within hours after an

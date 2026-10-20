@@ -189,6 +189,4 @@ Source repository: https://github.com/ecerci-atilim/atilim-moodle-theme-fix
 No. The package contains the original, unminified source files; there is no build step that transforms code. scripts/build.py only zips the files and adjusts manifest.json for Firefox.
 ```
 
-**License**: AMO asks for one. Choose what you prefer; MIT is a common choice
-for small open-source tools. If you pick one, also add the same `LICENSE`
-file to the repository.
+**License**: **MIT License**, the same as the repository's `LICENSE` file.
