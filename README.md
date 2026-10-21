@@ -61,11 +61,11 @@ views. It only changes how pages look; it never sends data anywhere.
 
 ### Install from a store
 
-Store listings are being prepared; the links will appear here once they are
-approved. A store install updates itself.
+A store install updates itself. Listings still in review get their link here
+once they are approved.
 
 - **Firefox** (desktop and Android): Firefox Add-ons, link to follow.
-- **Microsoft Edge**: Edge Add-ons, link to follow.
+- **Microsoft Edge**: [Edge Add-ons](https://microsoftedge.microsoft.com/addons/detail/hbcmkodmepmcccnhdjeghejemnemgngc)
 - **Opera**: Opera Add-ons, link to follow.
 
 Safari is not supported.

@@ -75,7 +75,7 @@
   // There is no Chrome Web Store listing (registration fee), by choice.
   const STORE_LINKS = {
     firefox: '',
-    edge: '',
+    edge: 'https://microsoftedge.microsoft.com/addons/detail/hbcmkodmepmcccnhdjeghejemnemgngc',
     opera: ''
   };
 
